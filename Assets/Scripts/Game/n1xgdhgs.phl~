@@ -1,0 +1,66 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Player : MonoBehaviour
+{
+    private float speed = 20.0f;
+    private bool grounded = false;
+
+    private Rigidbody2D rb;
+
+    private Vector2 velocity;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();;
+    }
+
+    private void Update()
+    {
+        //rb.velocity = velocity;
+        var horizontal = Input.GetAxis("Horizontal");
+
+        //velocity = new Vector2(horizontal * speed, rb.velocity.y);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log($"Try jump grounded: {grounded}");
+
+            if (!grounded)
+                return;
+
+            rb.AddForce(new Vector2(0f, 30f), ForceMode2D.Impulse);
+            //velocity += new Vector2(0f, 30f);
+        }
+
+        Debug.DrawLine(transform.position, transform.position + new Vector3(0, -2.5f), Color.red);
+        var groundHit = Physics2D.Linecast(transform.position, transform.position + new Vector3(0, -2.5f));
+        if (groundHit.collider == null)
+        {
+            grounded = false;
+        }
+        else
+        {
+            grounded = true;
+        }
+
+        if (grounded)
+        {
+            Debug.DrawRay(transform.position, new Vector3(0f, 1f), Color.cyan);
+        }
+
+        
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        Vector3 m_Input = new Vector3(Input.GetAxis("Horizontal"), -9.8f);
+
+        //Apply the movement vector to the current position, which is
+        //multiplied by deltaTime and speed for a smooth MovePosition
+        rb.MovePosition(transform.position + m_Input * Time.fixedDeltaTime * speed);
+
+    }
+}
