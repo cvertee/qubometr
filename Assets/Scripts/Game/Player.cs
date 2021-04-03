@@ -74,6 +74,7 @@ public class Player : MonoBehaviour
 
     private void Dash()
     {
+        return;
         if (!canDash)
             return;
 
