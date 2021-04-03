@@ -1,3 +1,4 @@
+using Assets.Scripts.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class Player : MonoBehaviour
     private bool grounded = false;
     private bool canAttack = true;
     private bool canDash = true;
+    private IInteractable interactable;
 
     private Rigidbody2D rb;
     public GameObject weapon;
@@ -43,6 +45,13 @@ public class Player : MonoBehaviour
 
             rb.AddForce(new Vector2(0, 30f), ForceMode2D.Impulse);
         }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (interactable == null)
+                return;
+
+            interactable.Interact();
+        }
 
         if (Input.GetMouseButtonDown(1))
             Dash();
@@ -70,6 +79,26 @@ public class Player : MonoBehaviour
         }
 
         rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed * Time.fixedDeltaTime, rb.velocity.y);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        var possibleInteractable = collision.GetComponent<IInteractable>();
+        if (possibleInteractable != null)
+        {
+            Debug.Log($"found interactable {collision.name}");
+            interactable = possibleInteractable;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.GetComponent<IInteractable>() != null)
+        {
+            Debug.Log($"exit interactable {collision.name}");
+            interactable.StopInteract();
+            interactable = null;
+        }
     }
 
     private void Dash()
