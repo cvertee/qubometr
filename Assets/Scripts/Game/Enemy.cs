@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public int hp = 10;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +21,9 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Weapon")
+            hp -= 10;
+
+        if (hp <= 0)
             Die();
     }
 
