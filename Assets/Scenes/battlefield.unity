@@ -217,7 +217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &196227703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -683,7 +683,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 18a029a2cdda57e42be345675882fe83, type: 2}
-  m_InitialState: 0
+  m_InitialState: 1
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -798,6 +798,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1038424615}
+    - target: {fileID: 263304433188454156, guid: 316f2280ee67b0f4bbffa96fd8cfe1f7, type: 3}
+      propertyPath: offset.x
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 263304433188454156, guid: 316f2280ee67b0f4bbffa96fd8cfe1f7, type: 3}
       propertyPath: offset.y
       value: 0.5
