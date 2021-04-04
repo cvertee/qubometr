@@ -22,7 +22,7 @@ namespace Assets.Scripts.Game
             while (true)
             {
                 yield return new WaitForSeconds(1.5f);
-                Instantiate(bullet);
+                Instantiate(bullet, transform);
             }
         }
     }
