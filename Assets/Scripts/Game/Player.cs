@@ -114,11 +114,15 @@ public class Player : MonoBehaviour
 
         if (collision.CompareTag("Enemy"))
         {
-            if (currentState != State.Attacking) // TODO: fix this 
-            {
-                hp.Value -= 10;
-                Instantiate(Resources.Load("Prefabs/BloodParticle"), transform.position, Quaternion.identity);
-            }
+            ReceiveDamage();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Enemy"))
+        {
+            ReceiveDamage();
         }
     }
 
@@ -129,6 +133,15 @@ public class Player : MonoBehaviour
             Debug.Log($"exit interactable {collision.name}");
             interactable.StopInteract();
             interactable = null;
+        }
+    }
+
+    private void ReceiveDamage()
+    {
+        if (currentState != State.Attacking) // TODO: fix this 
+        {
+            hp.Value -= 10;
+            Instantiate(Resources.Load("Prefabs/BloodParticle"), transform.position, Quaternion.identity);
         }
     }
 
