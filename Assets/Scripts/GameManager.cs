@@ -21,7 +21,11 @@ public class GameManager : Singleton<GameManager>
     public void StartDialogue(string dialogueId, GameObject container)
     {
         Debug.Log($"Starting dialogue [{dialogueId}]");
-        FindObjectOfType<DialogueUi>().ShowDialogueTexts(new string[] { "test", "test1" }, container);
+        var lines = Resources.Load<TextAsset>($"Dialogues/{dialogueId}")
+            .text
+            .Split('\n');
+
+        FindObjectOfType<DialogueUi>().ShowDialogueTexts(lines, container);
     }
 
     public void StopCurrentDialogue()

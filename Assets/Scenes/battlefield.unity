@@ -11219,7 +11219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3658646083811505390, guid: 901c74c9e90d4b44cb10f5dbb411ea02, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3658646083811505390, guid: 901c74c9e90d4b44cb10f5dbb411ea02, type: 3}
       propertyPath: m_SortingLayerID
@@ -17082,7 +17082,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2842565204545019168, guid: 34e6fcc366150234abafa31f6b539388, type: 3}
       propertyPath: dialogueId
-      value: 1
+      value: firstman
       objectReference: {fileID: 0}
     - target: {fileID: 5975739888230688443, guid: 34e6fcc366150234abafa31f6b539388, type: 3}
       propertyPath: m_Name
