@@ -1084,6 +1084,25 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!1 &1519703435 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8105659037253959130, guid: ed57398a646848f46881bc0573d45ec6, type: 3}
+  m_PrefabInstance: {fileID: 8105659036769378432}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1519703436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519703435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc88627bf4f232345b06c52b7da242db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 20
+  bullet: {fileID: 6826192073173563327, guid: b4ca3b1e78276634ea911d904007804b, type: 3}
 --- !u!1001 &1753582108
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1674,5 +1693,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8105659037253959134, guid: ed57398a646848f46881bc0573d45ec6, type: 3}
+      propertyPath: hp
+      value: 20
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8105659037253959134, guid: ed57398a646848f46881bc0573d45ec6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ed57398a646848f46881bc0573d45ec6, type: 3}
