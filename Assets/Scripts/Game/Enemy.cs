@@ -29,6 +29,14 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        Destroy(this.gameObject);
+        Instantiate(Resources.Load("Prefabs/BloodParticle"), transform.position, Quaternion.identity);
+        Destroy(gameObject);
+        //GetComponent<BoxCollider2D>().enabled = false;
+        //StartCoroutine(DieCoroutine());
+    }
+    IEnumerator DieCoroutine()
+    {
+        yield return new WaitForSeconds(1.25f);
+        Destroy(gameObject);
     }
 }

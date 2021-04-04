@@ -117,6 +117,7 @@ public class Player : MonoBehaviour
             if (currentState != State.Attacking) // TODO: fix this 
             {
                 hp.Value -= 10;
+                Instantiate(Resources.Load("Prefabs/BloodParticle"), transform.position, Quaternion.identity);
             }
         }
     }
