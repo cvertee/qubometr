@@ -139,6 +139,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Lock()
+    {
+        canMove = false;
+    }
+
+    public void Unlock()
+    {
+        canMove = true;
+    }
+
     private void ReceiveDamage()
     {
         if (currentState != State.Attacking) // TODO: fix this 
