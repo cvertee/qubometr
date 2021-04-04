@@ -24,7 +24,9 @@ public class Player : MonoBehaviour
     private IInteractable interactable;
 
     private Rigidbody2D rb;
+    private AudioSource audioSource;
     public GameObject weapon;
+    public AudioClip slashSound;
     public PlayerHealth hp;
 
     private Vector2 velocity;
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
         hp.Value = 50;
     }
 
@@ -163,6 +166,7 @@ public class Player : MonoBehaviour
 
     private void Attack()
     {
+        audioSource.PlayOneShot(slashSound);
         currentState = State.Attacking;
 
         if (!canAttack)
