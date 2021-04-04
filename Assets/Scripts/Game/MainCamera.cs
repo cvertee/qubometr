@@ -5,6 +5,7 @@ using UnityEngine;
 public class MainCamera : MonoBehaviour
 {
     public Transform target;
+    public Vector3 offset = new Vector3(0f, 0f, -10f);
 
     private Vector3 velocity = Vector3.zero;
 
@@ -18,6 +19,6 @@ public class MainCamera : MonoBehaviour
     void FixedUpdate()
     {
         transform.position = Vector3.Lerp(transform.position, target.position, 0.125f);
-        transform.position += new Vector3(0f, 0f, -10f);
+        transform.position += offset;
     }
 }
