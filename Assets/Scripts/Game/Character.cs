@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class Character : MonoBehaviour, IInteractable, ICharacter
 {
     public string dialogueId;
+    public GameObject dialogueBox;
 
     public void GetName()
     {
@@ -17,7 +18,7 @@ public class Character : MonoBehaviour, IInteractable, ICharacter
     {
         if (!string.IsNullOrEmpty(dialogueId))
         {
-            GameManager.Instance.StartDialogue(dialogueId);
+            GameManager.Instance.StartDialogue(dialogueId, dialogueBox);
         }
     }
 

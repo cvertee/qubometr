@@ -1,6 +1,7 @@
 using Assets.Scripts.Core;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
@@ -17,9 +18,10 @@ public class GameManager : Singleton<GameManager>
         
     }
 
-    public void StartDialogue(string dialogueId)
+    public void StartDialogue(string dialogueId, GameObject container)
     {
         Debug.Log($"Starting dialogue [{dialogueId}]");
+        FindObjectOfType<DialogueUi>().ShowDialogueTexts(new string[] { "test", "test1" }, container);
     }
 
     public void StopCurrentDialogue()
