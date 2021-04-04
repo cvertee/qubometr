@@ -6581,6 +6581,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2842565204545019168, guid: 34e6fcc366150234abafa31f6b539388, type: 3}
+      propertyPath: dialogueId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5975739888230688443, guid: 34e6fcc366150234abafa31f6b539388, type: 3}
       propertyPath: m_Name
       value: Character
