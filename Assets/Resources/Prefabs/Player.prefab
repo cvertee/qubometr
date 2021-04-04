@@ -101,8 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 3658646084354926658}
-  slashSound: {fileID: 8300000, guid: ad04c206d925d9140bd8a957e2cf1139, type: 3}
-  enemyDamageSound: {fileID: 8300000, guid: bdfdc70ef9cd58a46b61742768a463b4, type: 3}
+  slashSound: {fileID: 8300000, guid: 5dca7ad0e3966d4449cdbe32b3bf0ff7, type: 3}
   hp: {fileID: 11400000, guid: 46d3f6dc45f8b74459c9f50814aecae4, type: 2}
 --- !u!61 &3658646083811505389
 BoxCollider2D:
