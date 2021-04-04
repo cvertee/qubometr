@@ -20,6 +20,6 @@ public class DialogueUi : MonoBehaviour
             yield return new WaitForSeconds(2.0f);
         }
         yield return new WaitForSeconds(1.0f);
-        Destroy(gameObject);
+        Destroy(textObject.gameObject);
     }
 }
