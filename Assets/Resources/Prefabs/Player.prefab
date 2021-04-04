@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 3658646084354926658}
+  hp: {fileID: 11400000, guid: 46d3f6dc45f8b74459c9f50814aecae4, type: 2}
 --- !u!61 &3658646083811505389
 BoxCollider2D:
   m_ObjectHideFlags: 0

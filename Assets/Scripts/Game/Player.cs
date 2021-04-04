@@ -1,18 +1,31 @@
 using Assets.Scripts.Core;
+using Assets.Scripts.Game;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    enum State
+    {
+        Moving,
+        Attacking,
+        Jumping,
+        Any
+    }
+
     private float speed = 1000f;
     private bool grounded = false;
     private bool canAttack = true;
     private bool canDash = true;
+    private bool canMove = true;
+    private State currentState = State.Any;
     private IInteractable interactable;
 
     private Rigidbody2D rb;
     public GameObject weapon;
+    public PlayerHealth hp;
 
     private Vector2 velocity;
     private Vector2 movementDirection;
@@ -20,10 +33,17 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        hp.Value = 50;
     }
 
     private void Update()
     {
+        if (hp.Value <= 0)
+            Die();
+
+        if (!canMove)
+            return;
+
         var horizontal = Input.GetAxis("Horizontal");
         if (horizontal < 0.0f)
         {
@@ -62,11 +82,13 @@ public class Player : MonoBehaviour
         {
             Debug.DrawRay(transform.position, new Vector3(0f, 1f), Color.cyan);
         }
-
     }
 
     void FixedUpdate()
     {
+        if (!canMove)
+            return;
+
         Debug.DrawLine(transform.position, transform.position + new Vector3(0, -2.5f), Color.red);
         var groundHit = Physics2D.Linecast(transform.position, transform.position + new Vector3(0, -2.5f));
         if (groundHit.collider == null)
@@ -88,6 +110,14 @@ public class Player : MonoBehaviour
         {
             Debug.Log($"found interactable {collision.name}");
             interactable = possibleInteractable;
+        }
+
+        if (collision.CompareTag("Enemy"))
+        {
+            if (currentState != State.Attacking) // TODO: fix this 
+            {
+                hp.Value -= 10;
+            }
         }
     }
 
@@ -119,6 +149,8 @@ public class Player : MonoBehaviour
 
     private void Attack()
     {
+        currentState = State.Attacking;
+
         if (!canAttack)
             return;
 
@@ -130,7 +162,21 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(0.15f);
         weapon.SetActive(false);
+        currentState = State.Any;
+
         yield return new WaitForSeconds(0.15f);
         canAttack = true;
+    }
+
+    private void Die()
+    {
+        GameEvents.onPlayerDeath.Invoke();
+        canMove = false;
+        StartCoroutine(DieCooldown());
+    }
+    private IEnumerator DieCooldown()
+    {
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
