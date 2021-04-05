@@ -1,3 +1,4 @@
+using Assets.Scripts.Game;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class Coin : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("+15");
+            GameData.Instance.coins += 15;
             Destroy(gameObject);
         }
     }

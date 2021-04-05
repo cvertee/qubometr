@@ -27,7 +27,6 @@ public class Player : MonoBehaviour
     private AudioSource audioSource;
     public GameObject weapon;
     public AudioClip slashSound;
-    public PlayerHealth hp;
 
     private Vector2 velocity;
     private Vector2 movementDirection;
@@ -36,12 +35,11 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
-        hp.Value = 50;
     }
 
     private void Update()
     {
-        if (hp.Value <= 0)
+        if (GameData.Instance.HP <= 0)
             Die();
 
         if (!canMove)
@@ -153,7 +151,7 @@ public class Player : MonoBehaviour
     {
         if (currentState != State.Attacking) // TODO: fix this 
         {
-            hp.Value -= 10;
+            GameData.Instance.HP -= 10;
             Instantiate(Resources.Load("Prefabs/BloodParticle"), transform.position, Quaternion.identity);
         }
     }

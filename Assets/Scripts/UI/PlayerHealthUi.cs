@@ -1,3 +1,4 @@
+using Assets.Scripts.Game;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,6 @@ public class PlayerHealthUi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        slider.value = playerHealth.Value;
+        slider.value = GameData.Instance.HP;
     }
 }
