@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Game
 {
+    [Serializable]
     public class GameData : Singleton<GameData>
     {
         private int hp = 50;
