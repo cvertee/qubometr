@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb;
     private AudioSource audioSource;
+    private Animator weaponAnimator;
     public GameObject weapon;
     public AudioClip slashSound;
 
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
+        weaponAnimator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -180,14 +182,15 @@ public class Player : MonoBehaviour
         if (!canAttack)
             return;
 
-        weapon.SetActive(true);
+        //weapon.SetActive(true);
+        weaponAnimator.Play("Attack");
         StartCoroutine(AttackCooldown());
         canAttack = false;
     }
     private IEnumerator AttackCooldown()
     {
         yield return new WaitForSeconds(0.15f);
-        weapon.SetActive(false);
+        //weapon.SetActive(false);
         currentState = State.Any;
 
         yield return new WaitForSeconds(0.15f);
