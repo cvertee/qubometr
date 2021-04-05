@@ -31,5 +31,27 @@ namespace Assets.Scripts.Game
         public int maxHp = 50;
         public int coins;
         public string sceneName;
+
+        private void Start()
+        {
+            DontDestroyOnLoad(this);
+        }
+
+        public void InitFromSaveData(SaveData saveData)
+        {
+            hp = saveData.hp;
+            coins = saveData.coins;
+            sceneName = saveData.sceneName;
+        }
+
+        public SaveData GetSaveData()
+        {
+            return new SaveData
+            {
+                hp = HP,
+                coins = coins,
+                sceneName = sceneName
+            };
+        }
     }
 }
