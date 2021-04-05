@@ -134,7 +134,7 @@ public class Player : MonoBehaviour
         if (collision.GetComponent<IInteractable>() != null)
         {
             Debug.Log($"exit interactable {collision.name}");
-            interactable.StopInteract();
+            //interactable.StopInteract();
             interactable = null;
         }
     }
