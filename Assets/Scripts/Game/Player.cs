@@ -25,8 +25,8 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb;
     private AudioSource audioSource;
-    private Animator weaponAnimator;
-    public GameObject weapon;
+    private Weapon weapon;
+    public GameObject weaponGO;
     public AudioClip slashSound;
 
     private Vector2 velocity;
@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
-        weaponAnimator = GetComponentInChildren<Animator>();
+        weapon = GetComponentInChildren<Weapon>();
     }
 
     private void Update()
@@ -183,7 +183,7 @@ public class Player : MonoBehaviour
 
         audioSource.PlayOneShot(slashSound);
         //weapon.SetActive(true);
-        weaponAnimator.Play("Attack");
+        weapon.Attack();
         StartCoroutine(AttackCooldown());
         canAttack = false;
     }

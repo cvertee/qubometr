@@ -10805,7 +10805,7 @@ PlayableDirector:
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: -1220795418167583489, guid: 18a029a2cdda57e42be345675882fe83, type: 2}
-    value: {fileID: 1377118247}
+    value: {fileID: 1772306356}
   - key: {fileID: -2636288323502349500, guid: 18a029a2cdda57e42be345675882fe83, type: 2}
     value: {fileID: 810092151}
   - key: {fileID: 2192201845850474049, guid: 18a029a2cdda57e42be345675882fe83, type: 2}
@@ -11404,13 +11404,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3658646084354926658, guid: 901c74c9e90d4b44cb10f5dbb411ea02, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 901c74c9e90d4b44cb10f5dbb411ea02, type: 3}
---- !u!95 &1377118247 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5025422642237841882, guid: 901c74c9e90d4b44cb10f5dbb411ea02, type: 3}
-  m_PrefabInstance: {fileID: 1377118246}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1381501619
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11857,6 +11856,11 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!95 &1772306356 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4353173840183641963, guid: 901c74c9e90d4b44cb10f5dbb411ea02, type: 3}
+  m_PrefabInstance: {fileID: 1377118246}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1772306358 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3658646083811505385, guid: 901c74c9e90d4b44cb10f5dbb411ea02, type: 3}
