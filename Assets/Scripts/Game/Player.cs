@@ -176,12 +176,12 @@ public class Player : MonoBehaviour
 
     private void Attack()
     {
-        audioSource.PlayOneShot(slashSound);
         currentState = State.Attacking;
 
         if (!canAttack)
             return;
 
+        audioSource.PlayOneShot(slashSound);
         //weapon.SetActive(true);
         weaponAnimator.Play("Attack");
         StartCoroutine(AttackCooldown());
