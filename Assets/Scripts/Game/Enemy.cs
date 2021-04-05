@@ -30,6 +30,7 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         Instantiate(Resources.Load("Prefabs/BloodParticle"), transform.position, Quaternion.identity);
+        Instantiate(Resources.Load("Prefabs/Coin"), transform.position, Quaternion.identity);
         Destroy(gameObject);
         //GetComponent<BoxCollider2D>().enabled = false;
         //StartCoroutine(DieCoroutine());
