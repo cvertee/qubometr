@@ -12,6 +12,7 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         GameData.Instance.sceneName = SceneManager.GetActiveScene().name;
+        QualitySettings.vSyncCount = 1;
     }
 
     // Update is called once per frame
@@ -39,5 +40,10 @@ public class GameManager : Singleton<GameManager>
     {
         GameData.Instance.videoToLoad = videoName;
         SceneManager.LoadScene("vid");
+    }
+
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }
