@@ -31,6 +31,7 @@ namespace Assets.Scripts.Game
         public int maxHp = 50;
         public int coins;
         public string sceneName;
+        public string videoToLoad;
 
         private void Start()
         {

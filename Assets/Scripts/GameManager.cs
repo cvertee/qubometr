@@ -34,4 +34,10 @@ public class GameManager : Singleton<GameManager>
     {
         Debug.Log("Stopped current dialogue");
     }
+
+    public void StartVideoScene(string videoName)
+    {
+        GameData.Instance.videoToLoad = videoName;
+        SceneManager.LoadScene("vid");
+    }
 }
