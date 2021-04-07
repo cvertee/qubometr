@@ -16,14 +16,19 @@ public class Character : MonoBehaviour, IInteractable, ICharacter
 
     public void Interact()
     {
-        if (!string.IsNullOrEmpty(dialogueId))
-        {
-            GameManager.Instance.StartDialogue(dialogueId, dialogueBox);
-        }
+        StartDialogue(dialogueId);
     }
 
     public void StopInteract()
     {
         GameManager.Instance.StopCurrentDialogue();
+    }
+
+    public void StartDialogue(string id)
+    {
+        if (!string.IsNullOrEmpty(id))
+        {
+            GameManager.Instance.StartDialogue(id, dialogueBox);
+        }
     }
 }
