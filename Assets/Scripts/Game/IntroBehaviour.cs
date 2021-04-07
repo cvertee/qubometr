@@ -20,6 +20,10 @@ public class IntroBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            FindObjectOfType<VideoPlayer>().Stop();
+            IntroBehaviour_loopPointReached(null);
+        }
     }
 }
