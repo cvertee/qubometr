@@ -206,7 +206,7 @@ public class Player : MonoBehaviour
         canAttack = true;
     }
 
-    private void Die()
+    public void Die()
     {
         GameEvents.onPlayerDeath.Invoke();
         canMove = false;
