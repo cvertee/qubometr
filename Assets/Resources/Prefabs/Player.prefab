@@ -102,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponGO: {fileID: 0}
   slashSound: {fileID: 8300000, guid: ae2bd1062a3af1c40844eddd438b08d8, type: 3}
+  overlapCircleRadius: 2.5
 --- !u!61 &3658646083811505389
 BoxCollider2D:
   m_ObjectHideFlags: 0

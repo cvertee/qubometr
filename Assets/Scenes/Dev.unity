@@ -1870,6 +1870,10 @@ PrefabInstance:
       propertyPath: hp
       value: 
       objectReference: {fileID: 11400000, guid: 46d3f6dc45f8b74459c9f50814aecae4, type: 2}
+    - target: {fileID: 3658646083811505385, guid: 901c74c9e90d4b44cb10f5dbb411ea02, type: 3}
+      propertyPath: overlapCircleRadius
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3658646083811505389, guid: 901c74c9e90d4b44cb10f5dbb411ea02, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 3.89

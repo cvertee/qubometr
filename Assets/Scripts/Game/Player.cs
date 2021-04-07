@@ -1,3 +1,4 @@
+using System;
 using Assets.Scripts.Core;
 using Assets.Scripts.Game;
 using System.Collections;
@@ -31,6 +32,8 @@ public class Player : MonoBehaviour
 
     private Vector2 velocity;
     private Vector2 movementDirection;
+    
+    [SerializeField] private float overlapCircleRadius;
 
     void Start()
     {
@@ -92,9 +95,10 @@ public class Player : MonoBehaviour
         if (!canMove)
             return;
 
-        Debug.DrawLine(transform.position, transform.position + new Vector3(0, -2.5f), Color.red);
-        var groundHit = Physics2D.Linecast(transform.position, transform.position + new Vector3(0, -2.5f));
-        if (groundHit.collider == null)
+        //Debug.DrawLine(transform.position, transform.position + new Vector3(0, -2.5f), Color.red);
+        //var groundHit = Physics2D.Linecast(transform.position, transform.position + new Vector3(0, -2.5f));
+        var groundHit = Physics2D.OverlapCircle(transform.position, overlapCircleRadius);
+        if (groundHit == null)
         {
             grounded = false;
         }
@@ -137,6 +141,11 @@ public class Player : MonoBehaviour
             //interactable.StopInteract();
             interactable = null;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(transform.position, overlapCircleRadius);
     }
 
     public void Lock()
