@@ -54,5 +54,10 @@ namespace Assets.Scripts.Game
                 sceneName = sceneName
             };
         }
+
+        public Player GetPlayer()
+        {
+            return FindObjectOfType<Player>();
+        }
     }
 }

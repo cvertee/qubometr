@@ -12,7 +12,7 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         GameData.Instance.sceneName = SceneManager.GetActiveScene().name;
-        QualitySettings.vSyncCount = 1;
+        Application.targetFrameRate = Screen.currentResolution.refreshRate;
     }
 
     // Update is called once per frame
