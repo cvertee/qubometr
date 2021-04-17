@@ -95,8 +95,7 @@ public class Player : MonoBehaviour
         if (!canMove)
             return;
 
-        //Debug.DrawLine(transform.position, transform.position + new Vector3(0, -2.5f), Color.red);
-        //var groundHit = Physics2D.Linecast(transform.position, transform.position + new Vector3(0, -2.5f));
+        // Check if player is grounded with overlapping circle
         var groundHit = Physics2D.OverlapCircle(transform.position, overlapCircleRadius);
         if (groundHit == null)
         {
@@ -107,6 +106,7 @@ public class Player : MonoBehaviour
             grounded = true;
         }
 
+        // Move 
         rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed * Time.fixedDeltaTime, rb.velocity.y);
     }
 
