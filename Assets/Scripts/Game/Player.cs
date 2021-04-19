@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     private float speed = 1000f;
     private float speedMultiplier = 1.25f;
     private bool grounded = false;
+    private float jumpForce = 30.0f;
+    private float jumpMultiplier = 1.0f;
     private bool canAttack = true;
     private bool canDash = true;
     private bool canMove = true;
@@ -70,7 +72,7 @@ public class Player : MonoBehaviour
             if (!grounded)
                 return;
 
-            rb.AddForce(new Vector2(0, 30f), ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(0, jumpForce * jumpMultiplier), ForceMode2D.Impulse);
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
