@@ -156,6 +156,7 @@ public class Player : MonoBehaviour
 
     public void Lock()
     {
+        rb.velocity = new Vector2(0f, 0f);
         canMove = false;
     }
 
