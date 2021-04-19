@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     }
 
     private float speed = 1000f;
+    private float speedMultiplier = 1.25f;
     private bool grounded = false;
     private bool canAttack = true;
     private bool canDash = true;
@@ -107,7 +108,10 @@ public class Player : MonoBehaviour
         }
 
         // Move 
-        rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed * Time.fixedDeltaTime, rb.velocity.y);
+        rb.velocity = new Vector2(
+            Input.GetAxis("Horizontal") * (speed * speedMultiplier) * Time.fixedDeltaTime,
+            rb.velocity.y
+        );
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
