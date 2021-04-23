@@ -7,16 +7,25 @@ public class Enemy : MonoBehaviour
 {
     public int hp = 10;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Update()
     {
-        if (collision.tag == "Weapon")
-        {
-            AudioManager.Instance.PlaySound("slashkut");
-            hp -= 10;
-        }
-
         if (hp <= 0)
             Die();
+    }
+    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            collision.GetComponent<Player>()
+                .AddDamage();
+        }
+    }
+
+    public void AddDamage()
+    {
+        AudioManager.Instance.PlaySound("slashkut"); // OnDamage.Invoke() ?
+        hp -= 10;
     }
 
     void Die()

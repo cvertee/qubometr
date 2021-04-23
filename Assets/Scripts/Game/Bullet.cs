@@ -14,6 +14,14 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        var collisionGO = collision.gameObject;
+        
+        if (collisionGO.CompareTag("Player"))
+        {
+            var player = collisionGO.GetComponent<Player>();
+            player.AddDamage(); // TODO: IDamageReceiver.SendDamage() ?
+        }
+        
         Instantiate(Resources.Load("Prefabs/ExplosionParticle"), transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

@@ -124,19 +124,6 @@ public class Player : MonoBehaviour
             Debug.Log($"found interactable {collision.name}");
             interactable = possibleInteractable;
         }
-
-        if (collision.CompareTag("Enemy"))
-        {
-            ReceiveDamage();
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Enemy"))
-        {
-            ReceiveDamage();
-        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -163,6 +150,11 @@ public class Player : MonoBehaviour
     public void Unlock()
     {
         canMove = true;
+    }
+
+    public void AddDamage(int damage = 0)
+    {
+        ReceiveDamage();
     }
 
     private void ReceiveDamage()
