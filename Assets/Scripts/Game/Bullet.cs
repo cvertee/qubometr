@@ -22,13 +22,18 @@ public class Bullet : MonoBehaviour
             player.AddDamage(); // TODO: IDamageReceiver.SendDamage() ?
         }
         
-        Instantiate(Resources.Load("Prefabs/ExplosionParticle"), transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        Die();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Weapon"))
-            Destroy(gameObject);
+            Die();
+    }
+
+    private void Die()
+    {
+        Instantiate(Resources.Load("Prefabs/ExplosionParticle"), transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }
