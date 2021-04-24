@@ -1,11 +1,8 @@
-using System;
 using Assets.Scripts.Core;
 using Assets.Scripts.Game;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
@@ -29,7 +26,6 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private AudioSource audioSource;
     private Weapon weapon;
-    public GameObject weaponGO;
     public AudioClip slashSound;
 
     private Vector2 velocity;
@@ -56,41 +52,23 @@ public class Player : MonoBehaviour
         var horizontal = Input.GetAxis("Horizontal");
         if (horizontal < 0.0f)
         {
-            movementDirection = Vector2.left;
-            transform.eulerAngles = new Vector3(0f, -180f, 0f);
+            FlipByDegrees(180f);
         }
         else if (horizontal > 0.0f)
         {
-            movementDirection = Vector2.right;
-            transform.eulerAngles = new Vector3(0f, -360f, 0f);
+            FlipByDegrees(360f);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log($"Try jump grounded: {grounded}");
-
-            if (!grounded)
-                return;
-
-            rb.AddForce(new Vector2(0, jumpForce * jumpMultiplier), ForceMode2D.Impulse);
+            Jump();
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (interactable == null)
-                return;
-
-            interactable.Interact();
+            interactable?.Interact();
         }
-
-        if (Input.GetMouseButtonDown(1))
-            Dash();
         if (Input.GetMouseButtonDown(0))
             Attack();
-
-        if (grounded)
-        {
-            Debug.DrawRay(transform.position, new Vector3(0f, 1f), Color.cyan);
-        }
     }
 
     void FixedUpdate()
@@ -135,7 +113,6 @@ public class Player : MonoBehaviour
         if (collision.GetComponent<IInteractable>() != null)
         {
             Debug.Log($"exit interactable {collision.name}");
-            //interactable.StopInteract();
             interactable = null;
         }
     }
@@ -143,11 +120,21 @@ public class Player : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawSphere(transform.position + overlapCircleOffset, overlapCircleRadius);
+        
+        if (grounded)
+        {
+            Debug.DrawRay(transform.position, new Vector3(0f, 1f), Color.cyan);
+        }
+    }
+
+    private void FlipByDegrees(float degrees)
+    {
+        transform.eulerAngles = new Vector3(0f, -degrees, 0f);
     }
 
     public void Lock()
     {
-        rb.velocity = new Vector2(0f, 0f);
+        rb.velocity = new Vector2(0f, 0f); // Stop player to prevent sliding in cutscene
         currentState = State.Locked;
     }
 
@@ -170,22 +157,16 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Dash()
+    private void Jump()
     {
-        return;
-        // if (currentState == State.Locked)
-        //     return;
-        //
-        // rb.MovePosition(new Vector2(transform.position.x + 9f * movementDirection.x, 0f));
-        // canDash = false;
-        // StartCoroutine(DashCooldown());
-    }
-    private IEnumerator DashCooldown()
-    {
-        yield return new WaitForSeconds(0.33f);
-        // canDash = true;
-    }
+        Debug.Log($"Try jump grounded: {grounded}");
 
+        if (!grounded)
+            return;
+
+        rb.AddForce(new Vector2(0, jumpForce * jumpMultiplier), ForceMode2D.Impulse);
+    }
+    
     private void Attack()
     {
         if (currentState == State.Attacking)
@@ -193,26 +174,24 @@ public class Player : MonoBehaviour
 
         currentState = State.Attacking;
         audioSource.PlayOneShot(slashSound);
-        //weapon.SetActive(true);
         weapon.Attack();
         StartCoroutine(AttackCooldown());
     }
-    private IEnumerator AttackCooldown()
+    private IEnumerator AttackCooldown() // TODO: fix timings?
     {
         yield return new WaitForSeconds(0.15f);
-        //weapon.SetActive(false);
         currentState = State.Any;
 
         yield return new WaitForSeconds(0.15f);
     }
 
-    public void Die()
+    private void Die()
     {
         GameEvents.onPlayerDeath.Invoke();
         currentState = State.Locked;
         StartCoroutine(DieCooldown());
     }
-    private IEnumerator DieCooldown()
+    private IEnumerator DieCooldown() // TODO: use it somewhere else?
     {
         yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
