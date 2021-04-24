@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3658646083811505388}
   - component: {fileID: 4059883774087484145}
   - component: {fileID: 4353173840183641963}
-  m_Layer: 2
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 3658646084354926657}
   - component: {fileID: 6089061542567785819}
   - component: {fileID: 6758383766119742668}
-  m_Layer: 2
+  m_Layer: 7
   m_Name: Weapon
   m_TagString: Weapon
   m_Icon: {fileID: 0}

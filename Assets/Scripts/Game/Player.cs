@@ -100,15 +100,19 @@ public class Player : MonoBehaviour
         if (!canMove)
             return;
 
+        grounded = false;
+
         // Check if player is grounded with overlapping circle
-        var groundHit = Physics2D.OverlapCircle(transform.position + overlapCircleOffset, overlapCircleRadius);
-        if (groundHit == null)
+        var groundHits = Physics2D.OverlapCircleAll(
+            transform.position + overlapCircleOffset, 
+            overlapCircleRadius
+        );
+        foreach (var hit in groundHits)
         {
-            grounded = false;
-        }
-        else
-        {
-            grounded = true;
+            if (hit.CompareTag("Floor"))
+            {
+                grounded = true;
+            }
         }
 
         // Move 
