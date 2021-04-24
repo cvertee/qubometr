@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class Player : MonoBehaviour
     private Vector2 movementDirection;
     
     [SerializeField] private float overlapCircleRadius;
+    [SerializeField] private Vector3 overlapCircleOffset;
 
     void Start()
     {
@@ -99,7 +101,7 @@ public class Player : MonoBehaviour
             return;
 
         // Check if player is grounded with overlapping circle
-        var groundHit = Physics2D.OverlapCircle(transform.position, overlapCircleRadius);
+        var groundHit = Physics2D.OverlapCircle(transform.position + overlapCircleOffset, overlapCircleRadius);
         if (groundHit == null)
         {
             grounded = false;
@@ -138,7 +140,7 @@ public class Player : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(transform.position, overlapCircleRadius);
+        Gizmos.DrawSphere(transform.position + overlapCircleOffset, overlapCircleRadius);
     }
 
     public void Lock()
