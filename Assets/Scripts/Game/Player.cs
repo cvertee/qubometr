@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
         Moving,
         Attacking,
         Jumping,
+        Locked,
         Any
     }
 
@@ -22,9 +23,6 @@ public class Player : MonoBehaviour
     private bool grounded = false;
     private float jumpForce = 30.0f;
     private float jumpMultiplier = 1.0f;
-    private bool canAttack = true;
-    private bool canDash = true;
-    private bool canMove = true;
     private State currentState = State.Any;
     private IInteractable interactable;
 
@@ -52,7 +50,7 @@ public class Player : MonoBehaviour
         if (GameData.Instance.HP <= 0)
             Die();
 
-        if (!canMove)
+        if (currentState == State.Locked)
             return;
 
         var horizontal = Input.GetAxis("Horizontal");
@@ -97,7 +95,7 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!canMove)
+        if (currentState == State.Locked)
             return;
 
         grounded = false;
@@ -150,12 +148,12 @@ public class Player : MonoBehaviour
     public void Lock()
     {
         rb.velocity = new Vector2(0f, 0f);
-        canMove = false;
+        currentState = State.Locked;
     }
 
     public void Unlock()
     {
-        canMove = true;
+        currentState = State.Any;
     }
 
     public void AddDamage(int damage = 0)
@@ -175,31 +173,29 @@ public class Player : MonoBehaviour
     private void Dash()
     {
         return;
-        if (!canDash)
-            return;
-
-        rb.MovePosition(new Vector2(transform.position.x + 9f * movementDirection.x, 0f));
-        canDash = false;
-        StartCoroutine(DashCooldown());
+        // if (currentState == State.Locked)
+        //     return;
+        //
+        // rb.MovePosition(new Vector2(transform.position.x + 9f * movementDirection.x, 0f));
+        // canDash = false;
+        // StartCoroutine(DashCooldown());
     }
     private IEnumerator DashCooldown()
     {
         yield return new WaitForSeconds(0.33f);
-        canDash = true;
+        // canDash = true;
     }
 
     private void Attack()
     {
-        currentState = State.Attacking;
-
-        if (!canAttack)
+        if (currentState == State.Attacking)
             return;
 
+        currentState = State.Attacking;
         audioSource.PlayOneShot(slashSound);
         //weapon.SetActive(true);
         weapon.Attack();
         StartCoroutine(AttackCooldown());
-        canAttack = false;
     }
     private IEnumerator AttackCooldown()
     {
@@ -208,13 +204,12 @@ public class Player : MonoBehaviour
         currentState = State.Any;
 
         yield return new WaitForSeconds(0.15f);
-        canAttack = true;
     }
 
     public void Die()
     {
         GameEvents.onPlayerDeath.Invoke();
-        canMove = false;
+        currentState = State.Locked;
         StartCoroutine(DieCooldown());
     }
     private IEnumerator DieCooldown()
