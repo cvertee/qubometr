@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 10
-  damageReceiveSound: {fileID: 8300000, guid: bdfdc70ef9cd58a46b61742768a463b4, type: 3}
+  moveSpeed: 10
+  sightDistance: 10
   bullet: {fileID: 6826192073173563327, guid: b4ca3b1e78276634ea911d904007804b, type: 3}
 --- !u!1001 &8204264428201353249
 PrefabInstance:
@@ -29,18 +30,6 @@ PrefabInstance:
     - target: {fileID: 8105659037253959132, guid: ed57398a646848f46881bc0573d45ec6, type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8105659037253959132, guid: ed57398a646848f46881bc0573d45ec6, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 4.94901
-      objectReference: {fileID: 0}
-    - target: {fileID: 8105659037253959132, guid: ed57398a646848f46881bc0573d45ec6, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 4.94901
-      objectReference: {fileID: 0}
-    - target: {fileID: 8105659037253959132, guid: ed57398a646848f46881bc0573d45ec6, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 4.94901
       objectReference: {fileID: 0}
     - target: {fileID: 8105659037253959132, guid: ed57398a646848f46881bc0573d45ec6, type: 3}
       propertyPath: m_LocalPosition.x
