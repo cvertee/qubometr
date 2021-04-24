@@ -76,20 +76,13 @@ public class Player : MonoBehaviour
         if (currentState == State.Locked)
             return;
 
-        grounded = false;
-
         // Check if player is grounded with overlapping circle
-        var groundHits = Physics2D.OverlapCircleAll(
+        var groundHit = Physics2D.OverlapCircle(
             transform.position + overlapCircleOffset, 
-            overlapCircleRadius
+            overlapCircleRadius,
+            LayerMask.GetMask("Player")
         );
-        foreach (var hit in groundHits)
-        {
-            if (hit.CompareTag("Floor"))
-            {
-                grounded = true;
-            }
-        }
+        grounded = groundHit != null;
 
         // Move 
         rb.velocity = new Vector2(
