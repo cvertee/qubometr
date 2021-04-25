@@ -60,7 +60,7 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawRay(transform.position, Vector3.right);
     }
 
-    private void OnIdle()
+    protected virtual void OnIdle()
     {
         rb.velocity = Vector2.zero; // Stop move
         
@@ -76,7 +76,7 @@ public class Enemy : MonoBehaviour
             Debug.Log($"Player detected by {name}. Starting to follow him");
         }
     }
-    private void OnFollow()
+    protected virtual void OnFollow()
     {
         var playerHitRight = Physics2D.Raycast(
             transform.position, 
