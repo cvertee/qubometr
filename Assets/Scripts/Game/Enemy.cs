@@ -12,10 +12,16 @@ public class Enemy : MonoBehaviour
     public int hp = 10;
     public float moveSpeed = 10.0f;
     private float moveSpeedMultiplier = 1.0f;
+    [SerializeField] private float attackCooldownTime = 0.5f;
+    [SerializeField] private float attackCooldownTimeMultiplier = 1.0f;
+    [SerializeField] private float attackMinDistance = 3.0f;
+    [SerializeField] private float attackMaxDistance = 3.0f;
+    [SerializeField] private float attackMaxDistanceMultiplier = 1.0f;
     private Vector3 moveDirection = Vector3.right;
     [SerializeField] private float sightDistance = 10.0f;
     private float sightDistanceFollowMultiplier = 1.5f;
     private CharacterState state = CharacterState.Idle;
+    private bool canAttack = true;
 
     private void Awake()
     {
@@ -38,8 +44,9 @@ public class Enemy : MonoBehaviour
             case CharacterState.Follow:
                 OnFollow();
                 break;
-            
-            
+            case CharacterState.Attack:
+                OnAttack();
+                break;
             default:
                 OnIdle();
                 break;
@@ -99,6 +106,17 @@ public class Enemy : MonoBehaviour
         {
             moveDirection = Vector3.left;
         }
+        var playerIsNear = Physics2D.Raycast(
+            transform.position, 
+            moveDirection, 
+            attackMinDistance, 
+            LayerMask.GetMask("Player")
+        ).collider != null;
+
+        if (playerIsNear)
+        {
+            state = CharacterState.Attack;
+        }
         
         var hitWall = Physics2D.Raycast(
             transform.position, 
@@ -115,6 +133,33 @@ public class Enemy : MonoBehaviour
             moveDirection.x * moveSpeed * moveSpeedMultiplier * Time.fixedDeltaTime,
             rb.velocity.y
         );
+    }
+
+    protected virtual void OnAttack()
+    {
+        if (canAttack)
+        {
+            GetComponentInChildren<Animator>().Play("Attack");
+            StartCoroutine(AttackCooldown());
+        }
+        
+        var playerHit = Physics2D.Raycast(
+            transform.position, 
+            moveDirection, 
+            attackMaxDistance * attackMaxDistanceMultiplier, 
+            LayerMask.GetMask("Player")
+        );
+        if (playerHit.collider == null) // means enemy lost the player
+        {
+            state = CharacterState.Follow;
+        }
+    }
+
+    private IEnumerator AttackCooldown()
+    {
+        canAttack = false;
+        yield return new WaitForSeconds(attackCooldownTime * attackCooldownTimeMultiplier);
+        canAttack = true;
     }
 
     public void AddDamage()
