@@ -32,6 +32,15 @@ public class Enemy : MonoBehaviour
     {
         if (hp <= 0)
             Die();
+
+        if (moveDirection == Vector3.left)
+        {
+            transform.eulerAngles = new Vector3(0f, -180f);
+        }
+        else
+        {
+            transform.eulerAngles = new Vector3(0f, 0f);
+        }
     }
 
     private void FixedUpdate()
