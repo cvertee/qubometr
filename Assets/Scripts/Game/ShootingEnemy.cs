@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core;
 using UnityEngine;
 
 namespace Assets.Scripts.Game
@@ -14,16 +15,35 @@ namespace Assets.Scripts.Game
 
         private void Start()
         {
-            StartCoroutine(ShootCoroutine());
+            
         }
 
-        IEnumerator ShootCoroutine()
+        protected override void OnAttack()
         {
-            while (true)
+            if (!canAttack)
+                return;
+            
+            var playerHit = Physics2D.Raycast(
+                transform.position, 
+                moveDirection, 
+                attackMaxDistance * attackMaxDistanceMultiplier, 
+                LayerMask.GetMask("Player")
+            );
+            if (playerHit.collider == null) // means enemy lost the player
             {
-                yield return new WaitForSeconds(1.5f);
-                Instantiate(bullet, transform);
+                state = CharacterState.Follow;
             }
+            
+            Instantiate(bullet, transform);
+            
+            StartCoroutine(ShootCooldown());
+        }
+
+        IEnumerator ShootCooldown()
+        {
+            canAttack = false;
+            yield return new WaitForSeconds(attackCooldownTime * attackCooldownTimeMultiplier);
+            canAttack = true;
         }
     }
 }

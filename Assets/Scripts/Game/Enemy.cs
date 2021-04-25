@@ -12,16 +12,17 @@ public class Enemy : MonoBehaviour
     public int hp = 10;
     public float moveSpeed = 10.0f;
     private float moveSpeedMultiplier = 1.0f;
-    [SerializeField] private float attackCooldownTime = 0.5f;
-    [SerializeField] private float attackCooldownTimeMultiplier = 1.0f;
-    [SerializeField] private float attackMinDistance = 3.0f;
-    [SerializeField] private float attackMaxDistance = 3.0f;
-    [SerializeField] private float attackMaxDistanceMultiplier = 1.0f;
-    private Vector3 moveDirection = Vector3.right;
+    // TODO: decide if should use public or [...] protected 
+    public float attackCooldownTime = 0.5f;
+    public float attackCooldownTimeMultiplier = 1.0f;
+    public float attackMinDistance = 3.0f;
+    public float attackMaxDistance = 3.0f;
+    public float attackMaxDistanceMultiplier = 1.0f;
+    protected Vector3 moveDirection = Vector3.right;
     [SerializeField] private float sightDistance = 10.0f;
     private float sightDistanceFollowMultiplier = 1.5f;
-    private CharacterState state = CharacterState.Idle;
-    private bool canAttack = true;
+    protected CharacterState state = CharacterState.Idle;
+    protected bool canAttack = true;
 
     private void Awake()
     {
@@ -80,13 +81,19 @@ public class Enemy : MonoBehaviour
     {
         rb.velocity = Vector2.zero; // Stop move
         
-        var playerHit = Physics2D.Raycast(
+        var playerHitRight = Physics2D.Raycast(
             transform.position, 
             Vector2.right, 
             sightDistance, 
             LayerMask.GetMask("Player")
         );
-        if (playerHit.collider != null)
+        var playerHitLeft = Physics2D.Raycast(
+            transform.position, 
+            Vector2.left, 
+            sightDistance, 
+            LayerMask.GetMask("Player")
+        );
+        if (playerHitRight.collider != null || playerHitLeft.collider != null)
         {
             state = CharacterState.Follow;
             Debug.Log($"Player detected by {name}. Starting to follow him");
