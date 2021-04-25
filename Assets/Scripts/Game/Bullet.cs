@@ -7,6 +7,13 @@ public class Bullet : MonoBehaviour
     public Vector3 direction = Vector3.left;
     public float speed = 20.0f;
 
+    protected float lifeTime = 2.5f;
+
+    private void Start()
+    {
+        StartCoroutine(LifetimeCoroutine());
+    }
+    
     private void Update()
     {
         transform.position += direction * speed * Time.deltaTime;
@@ -29,6 +36,12 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Weapon"))
             Die();
+    }
+
+    private IEnumerator LifetimeCoroutine()
+    {
+        yield return new WaitForSeconds(lifeTime);
+        Die();
     }
 
     private void Die()
