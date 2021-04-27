@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -18,11 +19,8 @@ public class Weapon : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
-        {
-            collision.GetComponent<Enemy>()
-                .AddDamage();
-        }
+        var damageable = collision.GetComponent<ITakesDamage>();
+        damageable?.TakeDamage(0); // TODO: replace?
     }
 
     public void Attack()

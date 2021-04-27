@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Core;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, ITakesDamage
 {
     private Rigidbody2D rb;
     
@@ -178,10 +178,10 @@ public class Enemy : MonoBehaviour
         canAttack = true;
     }
 
-    public void AddDamage()
+    public void TakeDamage(float damage)
     {
         AudioManager.Instance.PlaySound("slashkut"); // OnDamage.Invoke() ?
-        hp -= 10;
+        hp -= 10; //TODO: use damage var
     }
 
     void Die()
