@@ -8,6 +8,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, ITakesDamage
 {
     private Rigidbody2D rb;
+    private BoxCollider2D collider;
     
     public int hp = 10;
     public float moveSpeed = 10.0f;
@@ -18,6 +19,7 @@ public class Enemy : MonoBehaviour, ITakesDamage
     public float attackMinDistance = 3.0f;
     public float attackMaxDistance = 3.0f;
     public float attackMaxDistanceMultiplier = 1.0f;
+    public float collisionDamageCooldownTime = 1.0f; // Time in which box collider of enemy is disabled
     protected Vector3 moveDirection = Vector3.right;
     [SerializeField] private float sightDistance = 10.0f;
     private float sightDistanceFollowMultiplier = 1.5f;
@@ -27,6 +29,7 @@ public class Enemy : MonoBehaviour, ITakesDamage
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        collider = GetComponent<BoxCollider2D>();
     }
     
     private void Update()
@@ -65,10 +68,15 @@ public class Enemy : MonoBehaviour, ITakesDamage
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!collider.enabled)
+            return;
+        
         if (collision.CompareTag("Player"))
         {
             collision.GetComponent<Player>()
                 .AddDamage();
+
+            StartCoroutine(CollisionDamageCooldown());
         }
     }
 
@@ -196,5 +204,14 @@ public class Enemy : MonoBehaviour, ITakesDamage
     {
         yield return new WaitForSeconds(1.25f);
         Destroy(gameObject);
+    }
+
+    private IEnumerator CollisionDamageCooldown()
+    {
+        Debug.Log($"Collision damage cooldown for {collisionDamageCooldownTime} seconds...");
+       
+        collider.enabled = false;
+        yield return new WaitForSeconds(collisionDamageCooldownTime);
+        collider.enabled = true;
     }
 }
