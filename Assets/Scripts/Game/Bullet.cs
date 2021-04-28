@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, ITakesDamage
 {
     public Vector3 direction = Vector3.left;
     public float speed = 20.0f;
@@ -21,21 +22,13 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        var collisionGO = collision.gameObject;
-        
-        if (collisionGO.CompareTag("Player"))
-        {
-            var player = collisionGO.GetComponent<Player>();
-            player.AddDamage(); // TODO: IDamageReceiver.SendDamage() ?
-        }
-        
         Die();
     }
+    
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void TakeDamage(float damage)
     {
-        if (collision.CompareTag("Weapon"))
-            Die();
+        Die(); // Explode on any damage
     }
 
     private IEnumerator LifetimeCoroutine()

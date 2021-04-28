@@ -1,10 +1,11 @@
 using Assets.Scripts.Core;
 using Assets.Scripts.Game;
 using System.Collections;
+using Core;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, ITakesDamage
 {
     enum State
     {
@@ -136,16 +137,11 @@ public class Player : MonoBehaviour
         currentState = State.Any;
     }
 
-    public void AddDamage(int damage = 0)
-    {
-        ReceiveDamage();
-    }
-
-    private void ReceiveDamage()
+    public void TakeDamage(float damage)
     {
         if (currentState != State.Attacking) // TODO: fix this 
         {
-            GameData.Instance.HP -= 10;
+            GameData.Instance.HP -= (int)damage; // TODO: OMG FIX TYPE
             Instantiate(Resources.Load("Prefabs/BloodParticle"), transform.position, Quaternion.identity);
         }
     }

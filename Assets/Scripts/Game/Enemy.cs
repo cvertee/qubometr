@@ -73,8 +73,8 @@ public class Enemy : MonoBehaviour, ITakesDamage
         
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<Player>()
-                .AddDamage();
+            collision.GetComponent<ITakesDamage>()
+                .TakeDamage(10.0f); // TODO: use variable
 
             StartCoroutine(CollisionDamageCooldown());
         }
