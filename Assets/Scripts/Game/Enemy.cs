@@ -163,6 +163,7 @@ public class Enemy : MonoBehaviour, ITakesDamage
     {
         if (canAttack)
         {
+            rb.velocity = Vector2.zero; // Stop before the attack
             GetComponentInChildren<Animator>().Play("Attack");
             StartCoroutine(AttackCooldown());
         }
