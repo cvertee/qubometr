@@ -10,8 +10,8 @@ namespace Assets.Scripts.Game
     [Serializable]
     public class GameData : Singleton<GameData>
     {
-        private int hp = 50;
-        public int HP
+        private float hp = 50;
+        public float HP
         {
             get
             {
@@ -28,7 +28,7 @@ namespace Assets.Scripts.Game
                 hp = value;
             }
         }
-        public int maxHp = 50;
+        public float maxHp = 50;
         public int coins;
         public string sceneName;
         public string videoToLoad;

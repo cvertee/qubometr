@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class SaveData
 {
-    public int hp;
+    public float hp;
     public int coins;
     public string sceneName;
     public float playerX;
