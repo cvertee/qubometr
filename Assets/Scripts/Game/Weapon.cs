@@ -5,26 +5,26 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Animator animator;
+    
+    [SerializeField] private float damage = 0.0f;
+    [SerializeField] private List<string> attackNames;
+    
+    private void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var damageable = collision.GetComponent<ITakesDamage>();
-        damageable?.TakeDamage(0); // TODO: replace?
+        damageable?.TakeDamage(damage); // TODO: replace?
     }
 
     public void Attack()
     {
-        GetComponent<Animator>().Play("Attack");
+        var randomAnimationIndex = Random.Range(0, attackNames.Count);
+        var randomAnimationName = attackNames[randomAnimationIndex];
+        animator.Play(randomAnimationName);
     }
 }
