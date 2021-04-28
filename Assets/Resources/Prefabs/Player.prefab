@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slashSound: {fileID: 8300000, guid: ae2bd1062a3af1c40844eddd438b08d8, type: 3}
   overlapCircleRadius: 1.1
-  overlapCircleOffset: {x: 0, y: -1.5, z: 0}
+  overlapCircleOffset: {x: 0, y: -3, z: 0}
 --- !u!61 &3658646083811505389
 BoxCollider2D:
   m_ObjectHideFlags: 0
