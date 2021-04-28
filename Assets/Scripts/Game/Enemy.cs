@@ -30,6 +30,12 @@ public class Enemy : MonoBehaviour, ITakesDamage
     {
         rb = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
+
+        if (GetComponentInChildren<Weapon>() == null) // means enemy doesn't have any weapons
+        {
+            var defaultWeapon = Resources.Load<GameObject>("Prefabs/Weapons/Sword");
+            Instantiate(defaultWeapon, transform);
+        }
     }
     
     private void Update()
