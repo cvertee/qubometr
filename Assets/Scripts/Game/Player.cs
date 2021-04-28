@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
         var groundHit = Physics2D.OverlapCircle(
             transform.position + overlapCircleOffset, 
             overlapCircleRadius,
-            LayerMask.GetMask("Player")
+            LayerMask.GetMask("Floor")
         );
         grounded = groundHit != null;
 
