@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 3658646083811505384}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.81, y: 0.96, z: 0}
-  m_LocalScale: {x: 0.5967, y: 0.5967, z: 0.5967}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3658646084354926659}
   m_Father: {fileID: 0}
@@ -100,7 +100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8d294eb13a68d44a0389cef60320ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponGO: {fileID: 0}
   slashSound: {fileID: 8300000, guid: ae2bd1062a3af1c40844eddd438b08d8, type: 3}
   overlapCircleRadius: 1.1
   overlapCircleOffset: {x: 0, y: -1.5, z: 0}
@@ -408,3 +407,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 422a1c425c146e14aa8d7b57fa21c1d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  attackNames: []
