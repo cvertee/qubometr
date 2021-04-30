@@ -2,6 +2,7 @@ using Assets.Scripts.Core;
 using Assets.Scripts.Game;
 using System.Collections;
 using Core;
+using Game;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,13 +26,13 @@ public class Player : MonoBehaviour, ITakesDamage
     private float takeDamageMultiplier = 1.0f;
     private bool imperviousToDamage = false;
     private float imperviousToDamageTime = 0.6f;
-    private float shieldedAttackBlockMultiplier = 1.0f / 2.0f; // Blocks (n - m)/n damages
     private State currentState = State.Any;
     private IInteractable interactable;
 
     private Rigidbody2D rb;
     private AudioSource audioSource;
     private Weapon weapon;
+    private Shield shield;
     public AudioClip slashSound;
 
     private Vector2 velocity;
@@ -45,6 +46,9 @@ public class Player : MonoBehaviour, ITakesDamage
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
         weapon = GetComponentInChildren<Weapon>();
+        shield = GetComponentInChildren<Shield>();
+
+        shield.Hide();
     }
 
     private void Update()
@@ -153,7 +157,10 @@ public class Player : MonoBehaviour, ITakesDamage
         
         if (currentState != State.Attacking) // TODO: fix this 
         {
-            GameData.Instance.HP -= damage * takeDamageMultiplier;
+            var totalDamage = damage * takeDamageMultiplier; 
+            GameData.Instance.HP -= totalDamage;
+            
+            Debug.Log($"Player: Took {totalDamage} HP");
             
             if (currentState == State.Blocking)
                 return; // TODO: shield particles
@@ -192,14 +199,21 @@ public class Player : MonoBehaviour, ITakesDamage
 
     private void StartBlockAttack()
     {
+        if (shield == null) // Player doesn't carry shield
+        {
+            Debug.LogWarning("Player doesn't have shield!");
+            return;
+        }
+        
         currentState = State.Blocking;
+        shield.Show();
         Debug.Log("Making player invincible");
         imperviousToDamage = true;
         StartCoroutine(BlockCoroutine());
     }
     private IEnumerator BlockCoroutine()
     {
-        takeDamageMultiplier *= shieldedAttackBlockMultiplier;
+        takeDamageMultiplier *= shield.blockMultiplier;
         Debug.Log($"Setting take damage multiplier to {takeDamageMultiplier}");
         
         yield return new WaitForSeconds(imperviousToDamageTime);
@@ -208,9 +222,13 @@ public class Player : MonoBehaviour, ITakesDamage
 
     private void StopBlockAttack()
     {
+        if (currentState != State.Blocking)
+            return;
+        
         StopCoroutine(BlockCoroutine());
-        takeDamageMultiplier /= shieldedAttackBlockMultiplier;
+        takeDamageMultiplier /= shield.blockMultiplier;
         Debug.Log($"Stop blocking (multiplier = {takeDamageMultiplier})");
+        shield.Hide();
         currentState = State.Any;
     }
     
