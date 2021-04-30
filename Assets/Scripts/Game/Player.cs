@@ -11,6 +11,7 @@ public class Player : MonoBehaviour, ITakesDamage
     {
         Moving,
         Attacking,
+        Blocking,
         Jumping,
         Locked,
         Any
@@ -21,6 +22,10 @@ public class Player : MonoBehaviour, ITakesDamage
     private bool grounded = false;
     private float jumpForce = 30.0f;
     private float jumpMultiplier = 1.0f;
+    private float takeDamageMultiplier = 1.0f;
+    private bool imperviousToDamage = false;
+    private float imperviousToDamageTime = 0.6f;
+    private float shieldedAttackBlockMultiplier = 1.0f / 2.0f; // Blocks (n - m)/n damages
     private State currentState = State.Any;
     private IInteractable interactable;
 
@@ -70,6 +75,10 @@ public class Player : MonoBehaviour, ITakesDamage
         }
         if (Input.GetMouseButtonDown(0))
             Attack();
+        if (Input.GetMouseButtonDown(1))
+            StartBlockAttack();
+        if (Input.GetMouseButtonUp(1))
+            StopBlockAttack();
     }
 
     void FixedUpdate()
@@ -139,9 +148,16 @@ public class Player : MonoBehaviour, ITakesDamage
 
     public void TakeDamage(float damage)
     {
+        if (imperviousToDamage)
+            return;
+        
         if (currentState != State.Attacking) // TODO: fix this 
         {
-            GameData.Instance.HP -= (int)damage; // TODO: OMG FIX TYPE
+            GameData.Instance.HP -= damage * takeDamageMultiplier;
+            
+            if (currentState == State.Blocking)
+                return; // TODO: shield particles
+            
             Instantiate(Resources.Load("Prefabs/BloodParticle"), transform.position, Quaternion.identity);
         }
     }
@@ -158,7 +174,7 @@ public class Player : MonoBehaviour, ITakesDamage
     
     private void Attack()
     {
-        if (currentState == State.Attacking)
+        if (currentState == State.Attacking || currentState == State.Blocking)
             return;
 
         currentState = State.Attacking;
@@ -174,6 +190,30 @@ public class Player : MonoBehaviour, ITakesDamage
         yield return new WaitForSeconds(0.15f);
     }
 
+    private void StartBlockAttack()
+    {
+        currentState = State.Blocking;
+        Debug.Log("Making player invincible");
+        imperviousToDamage = true;
+        StartCoroutine(BlockCoroutine());
+    }
+    private IEnumerator BlockCoroutine()
+    {
+        takeDamageMultiplier *= shieldedAttackBlockMultiplier;
+        Debug.Log($"Setting take damage multiplier to {takeDamageMultiplier}");
+        
+        yield return new WaitForSeconds(imperviousToDamageTime);
+        imperviousToDamage = false;
+    }
+
+    private void StopBlockAttack()
+    {
+        StopCoroutine(BlockCoroutine());
+        takeDamageMultiplier /= shieldedAttackBlockMultiplier;
+        Debug.Log($"Stop blocking (multiplier = {takeDamageMultiplier})");
+        currentState = State.Any;
+    }
+    
     private void Die()
     {
         GameEvents.onPlayerDeath.Invoke();
