@@ -77,12 +77,13 @@ public class Enemy : MonoBehaviour, ITakesDamage
         if (!collider.enabled)
             return;
         
-        if (collision.CompareTag("Player"))
+        // TODO: false until `double collision` (sword AND enemy) is fixed or replaced with something else
+        if (false)
         {
             collision.GetComponent<ITakesDamage>()
                 .TakeDamage(10.0f); // TODO: use variable
 
-            StartCoroutine(CollisionDamageCooldown());
+            //StartCoroutine(CollisionDamageCooldown());
         }
     }
 
