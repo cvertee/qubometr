@@ -1,6 +1,8 @@
 using Assets.Scripts.Core;
 using Assets.Scripts.Game;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Core;
 using Game;
 using UnityEngine;
@@ -24,15 +26,16 @@ public class Player : MonoBehaviour, ITakesDamage
     private float jumpForce = 30.0f;
     private float jumpMultiplier = 1.0f;
     private float takeDamageMultiplier = 1.0f;
-    private bool imperviousToDamage = false;
-    private float imperviousToDamageTime = 0.6f;
     private State currentState = State.Any;
     private IInteractable interactable;
 
     private Rigidbody2D rb;
     private AudioSource audioSource;
-    private Weapon weapon;
-    private Shield shield;
+    
+    private Item weapon;
+    private Item shield;
+    
+    private List<Item> items = new List<Item>();
     public AudioClip slashSound;
 
     private Vector2 velocity;
@@ -48,7 +51,11 @@ public class Player : MonoBehaviour, ITakesDamage
         weapon = GetComponentInChildren<Weapon>();
         shield = GetComponentInChildren<Shield>();
 
-        shield.Hide();
+        weapon.owner = this;
+        shield.owner = this;
+
+        items.Add(weapon);
+        items.Add(shield);
     }
 
     private void Update()
@@ -78,11 +85,11 @@ public class Player : MonoBehaviour, ITakesDamage
             interactable?.Interact();
         }
         if (Input.GetMouseButtonDown(0))
-            Attack();
+            weapon.Use();
         if (Input.GetMouseButtonDown(1))
-            StartBlockAttack();
+             shield.Use();
         if (Input.GetMouseButtonUp(1))
-            StopBlockAttack();
+             shield.StopUse();
     }
 
     void FixedUpdate()
@@ -152,12 +159,23 @@ public class Player : MonoBehaviour, ITakesDamage
 
     public void TakeDamage(float damage)
     {
-        if (imperviousToDamage)
-            return;
+        var totalDamage = damage * takeDamageMultiplier;
+        
+        foreach (var item in items)
+        {
+            if (!item.isBeingUsed)
+                continue;
+            
+            // probably no need for checking whether it's armor or shield
+            // because default items like weapon will have no protection 
+            totalDamage -= totalDamage * item.protectionMultiplier;
+        }
+
+        if (totalDamage <= 0.0f)
+            totalDamage = 0.0f;
         
         if (currentState != State.Attacking) // TODO: fix this 
         {
-            var totalDamage = damage * takeDamageMultiplier; 
             GameData.Instance.HP -= totalDamage;
             
             Debug.Log($"Player: Took {totalDamage} HP");
@@ -186,7 +204,7 @@ public class Player : MonoBehaviour, ITakesDamage
 
         currentState = State.Attacking;
         audioSource.PlayOneShot(slashSound);
-        weapon.Attack();
+        weapon.Use();
         StartCoroutine(AttackCooldown());
     }
     private IEnumerator AttackCooldown() // TODO: fix timings?
@@ -197,41 +215,6 @@ public class Player : MonoBehaviour, ITakesDamage
         yield return new WaitForSeconds(0.15f);
     }
 
-    private void StartBlockAttack()
-    {
-        if (shield == null) // Player doesn't carry shield
-        {
-            Debug.LogWarning("Player doesn't have shield!");
-            return;
-        }
-        
-        currentState = State.Blocking;
-        shield.Show();
-        Debug.Log("Making player invincible");
-        imperviousToDamage = true;
-        StartCoroutine(BlockCoroutine());
-    }
-    private IEnumerator BlockCoroutine()
-    {
-        takeDamageMultiplier *= shield.blockMultiplier;
-        Debug.Log($"Setting take damage multiplier to {takeDamageMultiplier}");
-        
-        yield return new WaitForSeconds(imperviousToDamageTime);
-        imperviousToDamage = false;
-    }
-
-    private void StopBlockAttack()
-    {
-        if (currentState != State.Blocking)
-            return;
-        
-        StopCoroutine(BlockCoroutine());
-        takeDamageMultiplier /= shield.blockMultiplier;
-        Debug.Log($"Stop blocking (multiplier = {takeDamageMultiplier})");
-        shield.Hide();
-        currentState = State.Any;
-    }
-    
     private void Die()
     {
         GameEvents.onPlayerDeath.Invoke();

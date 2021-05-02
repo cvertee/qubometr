@@ -1,19 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using Core;
+using Game;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public class Weapon : Item
 {
-    private Animator animator;
-    
     [SerializeField] private float damage = 0.0f;
     [SerializeField] private List<string> attackNames;
-    
-    private void Start()
-    {
-        animator = GetComponent<Animator>();
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -21,10 +15,15 @@ public class Weapon : MonoBehaviour
         damageable?.TakeDamage(damage); // TODO: replace?
     }
 
-    public void Attack()
+    private void Attack()
     {
         var randomAnimationIndex = Random.Range(0, attackNames.Count);
         var randomAnimationName = attackNames[randomAnimationIndex];
         animator.Play(randomAnimationName);
+    }
+
+    public override void Use()
+    {
+        Attack();
     }
 }
