@@ -34,6 +34,7 @@ public class Player : MonoBehaviour, ITakesDamage
     
     private Item weapon;
     private Item shield;
+    private Item armor;
     
     private List<Item> items = new List<Item>();
     public AudioClip slashSound;
@@ -51,6 +52,7 @@ public class Player : MonoBehaviour, ITakesDamage
 
         GameManager.Instance.AddItemById("Knife", this);
         GameManager.Instance.AddItemById("ShieldPlaceholder", this);
+        GameManager.Instance.AddItemById("DefaultArmor", this);
     }
 
     private void Update()
@@ -236,5 +238,8 @@ public class Player : MonoBehaviour, ITakesDamage
 
         if (item.type == ItemType.Shield)
             shield = item;
+        
+        if (item.type == ItemType.Armor)
+            armor = item;
     }
 }
