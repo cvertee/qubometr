@@ -44,18 +44,13 @@ public class Player : MonoBehaviour, ITakesDamage
     [SerializeField] private float overlapCircleRadius;
     [SerializeField] private Vector3 overlapCircleOffset;
 
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
-        weapon = GetComponentInChildren<Weapon>();
-        shield = GetComponentInChildren<Shield>();
 
-        weapon.owner = this;
-        shield.owner = this;
-
-        items.Add(weapon);
-        items.Add(shield);
+        GameManager.Instance.AddItemById("Knife", this);
+        GameManager.Instance.AddItemById("ShieldPlaceholder", this);
     }
 
     private void Update()
@@ -225,5 +220,21 @@ public class Player : MonoBehaviour, ITakesDamage
     {
         yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void AddItem(GameObject itemGO)
+    {
+        var item = Instantiate(itemGO, transform)
+            .GetComponent<Item>();
+        
+        items.Add(item);
+
+        item.owner = this;
+        
+        if (item.type == ItemType.Weapon)
+            weapon = item;
+
+        if (item.type == ItemType.Shield)
+            shield = item;
     }
 }

@@ -11,7 +11,7 @@ namespace Game
         private float originalProtectionMultiplier;
         public float imperviousToDamageTime = 0.6f;
 
-        private void Start()
+        private void Awake()
         {
             originalProtectionMultiplier = protectionMultiplier;
             
