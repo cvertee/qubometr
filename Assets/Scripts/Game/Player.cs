@@ -47,6 +47,9 @@ public class Player : MonoBehaviour, ITakesDamage
 
     void Awake()
     {
+        if (GameData.Data.playerPosition != null)
+            transform.position = GameData.Data.playerPosition.ToNormalVector3();
+
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
 
@@ -57,7 +60,7 @@ public class Player : MonoBehaviour, ITakesDamage
 
     private void Update()
     {
-        if (GameData.Instance.HP <= 0)
+        if (GameData.Data.hp <= 0)
             Die();
 
         if (currentState == State.Locked)
@@ -173,7 +176,7 @@ public class Player : MonoBehaviour, ITakesDamage
         
         if (currentState != State.Attacking) // TODO: fix this 
         {
-            GameData.Instance.HP -= totalDamage;
+            GameData.Data.hp -= totalDamage;
             
             Debug.Log($"Player: Took {totalDamage} HP");
             

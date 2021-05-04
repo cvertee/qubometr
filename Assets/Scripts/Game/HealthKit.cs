@@ -21,10 +21,10 @@ public class HealthKit : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if (GameData.Instance.HP >= GameData.Instance.maxHp)
+            if (GameData.Data.hp >= 50) // TODO: fix
                 return;
 
-            GameData.Instance.HP += 10;
+            GameData.Data.hp += 10;
             Destroy(gameObject);
         }
     }

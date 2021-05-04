@@ -7,57 +7,70 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Game
 {
-    [Serializable]
-    public class GameData : Singleton<GameData>
+    public static class GameData
     {
-        private float hp = 50;
-        public float HP
+        //private static float hp = 50;
+        //public static float HP
+        //{
+        //    get
+        //    {
+        //        return hp;
+        //    }
+
+        //    set
+        //    {
+        //        if (value > maxHp)
+        //        {
+        //            value = maxHp;
+        //        }
+
+        //        hp = value;
+        //    }
+        //}
+        //public static float maxHp = 50;
+        //public static int coins;
+        //public static string sceneName;
+        //public static string videoToLoad;
+
+        //public static void InitFromSaveData(SaveData saveData)
+        //{
+        //    hp = saveData.hp;
+        //    coins = saveData.coins;
+        //    sceneName = saveData.sceneName;
+        //}
+
+        //public static SaveData GetSaveData()
+        //{
+        //    return new SaveData
+        //    {
+        //        hp = HP,
+        //        coins = coins,
+        //        sceneName = sceneName
+        //    };
+        //}
+
+        private static SaveData data;
+        public static SaveData Data
         {
             get
             {
-                return hp;
+                if (data == null)
+                {
+                    data = new SaveData
+                    {
+                        coins = 0,
+                        hp = 50,
+                        
+                    };
+                }
+
+                return data;
             }
 
             set
             {
-                if (value > maxHp)
-                {
-                    value = maxHp;
-                }
-
-                hp = value;
+                data = value;
             }
-        }
-        public float maxHp = 50;
-        public int coins;
-        public string sceneName;
-        public string videoToLoad;
-
-        private void Start()
-        {
-            DontDestroyOnLoad(this);
-        }
-
-        public void InitFromSaveData(SaveData saveData)
-        {
-            hp = saveData.hp;
-            coins = saveData.coins;
-            sceneName = saveData.sceneName;
-        }
-
-        public SaveData GetSaveData()
-        {
-            return new SaveData
-            {
-                hp = HP,
-                coins = coins,
-                sceneName = sceneName
-            };
-        }
-
-        public Player GetPlayer()
-        {
-            return FindObjectOfType<Player>();
         }
     }
 }

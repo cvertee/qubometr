@@ -9,7 +9,7 @@ public class Coin : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            GameData.Instance.coins += 15;
+            GameData.Data.coins += 15;
             Destroy(gameObject);
         }
     }

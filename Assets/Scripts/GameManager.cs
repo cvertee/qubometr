@@ -12,7 +12,7 @@ public class GameManager : Singleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
-        GameData.Instance.sceneName = SceneManager.GetActiveScene().name;
+        GameData.Data.sceneName = SceneManager.GetActiveScene().name;
         Application.targetFrameRate = Screen.currentResolution.refreshRate;
     }
 
@@ -39,7 +39,7 @@ public class GameManager : Singleton<GameManager>
 
     public void StartVideoScene(string videoName)
     {
-        GameData.Instance.videoToLoad = videoName;
+        GameData.Data.videoToLoad = videoName;
         SceneManager.LoadScene("vid");
     }
 
@@ -56,5 +56,10 @@ public class GameManager : Singleton<GameManager>
     public GameObject GetItemObjectById(string id)
     {
         return Resources.Load<GameObject>($"Prefabs/Items/{id}");
+    }
+
+    public Player GetPlayer()
+    {
+        return FindObjectOfType<Player>();
     }
 }
