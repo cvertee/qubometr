@@ -1,4 +1,5 @@
 using Assets.Scripts.Save;
+using Game;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,5 +13,6 @@ public class SaveData
     public string sceneName;
     public string videoToLoad;
     public List<string> killedEnemies = new List<string>();
+    public List<string> playerItemIds = new List<string>();
     public SerializableVector3 playerPosition;
 }

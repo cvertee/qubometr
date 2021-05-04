@@ -34,8 +34,8 @@ public class Player : MonoBehaviour, ITakesDamage
     
     private Item primaryWeapon;
     private Item secondaryWeapon;
-    
     private List<Item> items = new List<Item>();
+
     public AudioClip slashSound;
 
     private Vector2 velocity;
@@ -46,9 +46,6 @@ public class Player : MonoBehaviour, ITakesDamage
 
     void Awake()
     {
-        if (GameData.Data.playerPosition != null)
-            transform.position = GameData.Data.playerPosition.ToNormalVector3();
-
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
 
@@ -57,6 +54,17 @@ public class Player : MonoBehaviour, ITakesDamage
             GameManager.Instance.AddItemById("Knife", this);
             GameManager.Instance.AddItemById("ShieldPlaceholder", this);
             GameManager.Instance.AddItemById("DefaultArmor", this);
+        }
+    }
+
+    private void Start()
+    {
+        if (GameData.Data.playerPosition != null)
+            transform.position = GameData.Data.playerPosition.ToNormalVector3();
+
+        foreach (var itemId in GameData.Data.playerItemIds.ToArray())
+        {
+            GameManager.Instance.AddItemById(itemId, this);
         }
     }
 
@@ -162,7 +170,7 @@ public class Player : MonoBehaviour, ITakesDamage
     public void TakeDamage(float damage)
     {
         var totalDamage = damage * takeDamageMultiplier;
-        
+
         foreach (var item in items)
         {
             if (!item.isBeingUsed)
@@ -235,6 +243,7 @@ public class Player : MonoBehaviour, ITakesDamage
             .GetComponent<Item>();
         
         items.Add(item);
+        GameData.Data.playerItemIds.Add(item.id);
 
         item.owner = this;
         
