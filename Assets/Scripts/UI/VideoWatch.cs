@@ -9,7 +9,7 @@ namespace UI
     {
         private void Start()
         {
-            var videoClip = Resources.Load<VideoClip>($"Video/{GameData.Instance.videoToLoad}");
+            var videoClip = Resources.Load<VideoClip>($"Video/{GameData.Data.videoToLoad}");
             var videoPlayer = FindObjectOfType<VideoPlayer>();
             videoPlayer.clip = videoClip;
             videoPlayer.Play();

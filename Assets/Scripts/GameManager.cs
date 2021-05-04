@@ -3,6 +3,7 @@ using Assets.Scripts.Game;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Game;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,7 +12,7 @@ public class GameManager : Singleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
-        GameData.Instance.sceneName = SceneManager.GetActiveScene().name;
+        GameData.Data.sceneName = SceneManager.GetActiveScene().name;
         Application.targetFrameRate = Screen.currentResolution.refreshRate;
     }
 
@@ -38,12 +39,27 @@ public class GameManager : Singleton<GameManager>
 
     public void StartVideoScene(string videoName)
     {
-        GameData.Instance.videoToLoad = videoName;
+        GameData.Data.videoToLoad = videoName;
         SceneManager.LoadScene("vid");
     }
 
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void AddItemById(string id, Player character)
+    {
+         character.AddItem(GetItemObjectById(id));
+    }
+
+    public GameObject GetItemObjectById(string id)
+    {
+        return Resources.Load<GameObject>($"Prefabs/Items/{id}");
+    }
+
+    public Player GetPlayer()
+    {
+        return FindObjectOfType<Player>();
     }
 }

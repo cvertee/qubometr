@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Core;
 using UnityEngine;
+using System.Linq;
 
 public class Enemy : MonoBehaviour, ITakesDamage
 {
@@ -28,6 +29,12 @@ public class Enemy : MonoBehaviour, ITakesDamage
 
     private void Awake()
     {
+        if (GameData.Data.killedEnemies.Any(x => x == name))
+        {
+            Destroy(gameObject);
+        }
+
+
         rb = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
 
@@ -77,12 +84,13 @@ public class Enemy : MonoBehaviour, ITakesDamage
         if (!collider.enabled)
             return;
         
-        if (collision.CompareTag("Player"))
+        // TODO: false until `double collision` (sword AND enemy) is fixed or replaced with something else
+        if (false)
         {
             collision.GetComponent<ITakesDamage>()
                 .TakeDamage(10.0f); // TODO: use variable
 
-            StartCoroutine(CollisionDamageCooldown());
+            //StartCoroutine(CollisionDamageCooldown());
         }
     }
 
@@ -170,7 +178,7 @@ public class Enemy : MonoBehaviour, ITakesDamage
         if (canAttack)
         {
             rb.velocity = Vector2.zero; // Stop before the attack
-            GetComponentInChildren<Weapon>().Attack();
+            GetComponentInChildren<Weapon>().Use();
             StartCoroutine(AttackCooldown());
         }
         
@@ -201,6 +209,9 @@ public class Enemy : MonoBehaviour, ITakesDamage
 
     void Die()
     {
+        Debug.Log($"Writing {name} to GameData.killedEnemies");
+        GameData.Data.killedEnemies.Add(name);
+
         Instantiate(Resources.Load("Prefabs/BloodParticle"), transform.position, Quaternion.identity);
         Instantiate(Resources.Load("Prefabs/Coin"), transform.position, Quaternion.identity);
         Destroy(gameObject);

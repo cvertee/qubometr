@@ -20,6 +20,6 @@ public class PlayerHealthUi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        slider.value = GameData.Instance.HP;
+        slider.value = GameData.Data.hp;
     }
 }

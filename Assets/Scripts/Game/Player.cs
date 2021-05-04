@@ -1,7 +1,10 @@
 using Assets.Scripts.Core;
 using Assets.Scripts.Game;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Core;
+using Game;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +14,7 @@ public class Player : MonoBehaviour, ITakesDamage
     {
         Moving,
         Attacking,
+        Blocking,
         Jumping,
         Locked,
         Any
@@ -21,12 +25,17 @@ public class Player : MonoBehaviour, ITakesDamage
     private bool grounded = false;
     private float jumpForce = 30.0f;
     private float jumpMultiplier = 1.0f;
+    private float takeDamageMultiplier = 1.0f;
     private State currentState = State.Any;
     private IInteractable interactable;
 
     private Rigidbody2D rb;
     private AudioSource audioSource;
-    private Weapon weapon;
+    
+    private Item primaryWeapon;
+    private Item secondaryWeapon;
+    private List<Item> items = new List<Item>();
+
     public AudioClip slashSound;
 
     private Vector2 velocity;
@@ -35,16 +44,33 @@ public class Player : MonoBehaviour, ITakesDamage
     [SerializeField] private float overlapCircleRadius;
     [SerializeField] private Vector3 overlapCircleOffset;
 
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
-        weapon = GetComponentInChildren<Weapon>();
+
+        if (SceneManager.GetActiveScene().name == "Dev")
+        {
+            GameManager.Instance.AddItemById("Knife", this);
+            GameManager.Instance.AddItemById("ShieldPlaceholder", this);
+            GameManager.Instance.AddItemById("DefaultArmor", this);
+        }
+    }
+
+    private void Start()
+    {
+        if (GameData.Data.playerPosition != null)
+            transform.position = GameData.Data.playerPosition.ToNormalVector3();
+
+        foreach (var itemId in GameData.Data.playerItemIds.ToArray())
+        {
+            GameManager.Instance.AddItemById(itemId, this);
+        }
     }
 
     private void Update()
     {
-        if (GameData.Instance.HP <= 0)
+        if (GameData.Data.hp <= 0)
             Die();
 
         if (currentState == State.Locked)
@@ -69,7 +95,11 @@ public class Player : MonoBehaviour, ITakesDamage
             interactable?.Interact();
         }
         if (Input.GetMouseButtonDown(0))
-            Attack();
+            primaryWeapon?.Use();
+        if (Input.GetMouseButtonDown(1))
+             secondaryWeapon?.Use();
+        if (Input.GetMouseButtonUp(1))
+             secondaryWeapon?.StopUse();
     }
 
     void FixedUpdate()
@@ -139,9 +169,30 @@ public class Player : MonoBehaviour, ITakesDamage
 
     public void TakeDamage(float damage)
     {
+        var totalDamage = damage * takeDamageMultiplier;
+
+        foreach (var item in items)
+        {
+            if (!item.isBeingUsed)
+                continue;
+            
+            // probably no need for checking whether it's armor or shield
+            // because default items like weapon will have no protection 
+            totalDamage -= totalDamage * item.protectionMultiplier;
+        }
+
+        if (totalDamage <= 0.0f)
+            totalDamage = 0.0f;
+        
         if (currentState != State.Attacking) // TODO: fix this 
         {
-            GameData.Instance.HP -= (int)damage; // TODO: OMG FIX TYPE
+            GameData.Data.hp -= totalDamage;
+            
+            Debug.Log($"Player: Took {totalDamage} HP");
+            
+            if (currentState == State.Blocking)
+                return; // TODO: shield particles
+            
             Instantiate(Resources.Load("Prefabs/BloodParticle"), transform.position, Quaternion.identity);
         }
     }
@@ -158,12 +209,12 @@ public class Player : MonoBehaviour, ITakesDamage
     
     private void Attack()
     {
-        if (currentState == State.Attacking)
+        if (currentState == State.Attacking || currentState == State.Blocking)
             return;
 
         currentState = State.Attacking;
         audioSource.PlayOneShot(slashSound);
-        weapon.Attack();
+        primaryWeapon.Use();
         StartCoroutine(AttackCooldown());
     }
     private IEnumerator AttackCooldown() // TODO: fix timings?
@@ -184,5 +235,22 @@ public class Player : MonoBehaviour, ITakesDamage
     {
         yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void AddItem(GameObject itemGO)
+    {
+        var item = Instantiate(itemGO, transform)
+            .GetComponent<Item>();
+        
+        items.Add(item);
+        GameData.Data.playerItemIds.Add(item.id);
+
+        item.owner = this;
+        
+        if (item.type == ItemType.Weapon)
+            primaryWeapon = item;
+
+        if (item.type == ItemType.Shield)
+            secondaryWeapon = item;
     }
 }
