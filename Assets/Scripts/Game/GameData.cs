@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.Game
 {
@@ -60,7 +61,7 @@ namespace Assets.Scripts.Game
                     {
                         coins = 0,
                         hp = 50,
-                        
+                        sceneName = SceneManager.GetActiveScene().name
                     };
                 }
 
