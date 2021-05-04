@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7256440645667588010
+--- !u!1 &8053346371211972309
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7256440645667588011}
-  - component: {fileID: 7256440645667588008}
-  - component: {fileID: 7256440645667588009}
-  - component: {fileID: 212408460818438835}
-  - component: {fileID: 844578117677028132}
+  - component: {fileID: 7671542260006903500}
+  - component: {fileID: 4751339490436770586}
+  - component: {fileID: 1924803214984742519}
+  - component: {fileID: 3689106190413854671}
   m_Layer: 7
-  m_Name: Sword
-  m_TagString: Weapon
+  m_Name: DefaultArmor
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7256440645667588011
+--- !u!4 &7671542260006903500
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7256440645667588010}
+  m_GameObject: {fileID: 8053346371211972309}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.03, y: 0.53, z: -2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &7256440645667588008
+--- !u!212 &4751339490436770586
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7256440645667588010}
+  m_GameObject: {fileID: 8053346371211972309}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -74,54 +73,28 @@ SpriteRenderer:
   m_SortingLayerID: 531218701
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f8f775236273cd14c9778d5913280b91, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bb5d0278c80c29b4f8ce1d9254a13ab0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.12, y: 0.83}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &7256440645667588009
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7256440645667588010}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 1.25, y: -0.11}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.1, y: 6.18}
-    newSize: {x: 5.12, y: 0.83}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 4.23, y: 4.83}
-  m_EdgeRadius: 0
---- !u!95 &212408460818438835
+--- !u!95 &1924803214984742519
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7256440645667588010}
+  m_GameObject: {fileID: 8053346371211972309}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a3b75295c4c132a44a9e2fb1d96ef30b, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -130,18 +103,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &844578117677028132
+--- !u!114 &3689106190413854671
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7256440645667588010}
+  m_GameObject: {fileID: 8053346371211972309}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 422a1c425c146e14aa8d7b57fa21c1d3, type: 3}
+  m_Script: {fileID: 11500000, guid: cff2d900eb714f2f97816983c9f43b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
-  attackNames:
-  - Attack
+  id: DefaultArmor
+  type: 2
+  icon: {fileID: 21300000, guid: bb5d0278c80c29b4f8ce1d9254a13ab0, type: 3}
+  animatorController: {fileID: 0}
+  owner: {fileID: 0}
+  isBeingUsed: 1
+  protectionMultiplier: 0.1

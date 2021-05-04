@@ -3,6 +3,7 @@ using Assets.Scripts.Game;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Game;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -45,5 +46,15 @@ public class GameManager : Singleton<GameManager>
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void AddItemById(string id, Player character)
+    {
+         character.AddItem(GetItemObjectById(id));
+    }
+
+    public GameObject GetItemObjectById(string id)
+    {
+        return Resources.Load<GameObject>($"Prefabs/Items/{id}");
     }
 }

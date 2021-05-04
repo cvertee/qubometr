@@ -1,26 +1,57 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using Core;
+using UnityEngine;
 
 namespace Game
 {
-    public class Shield : MonoBehaviour
+    public class Shield : Item
     {
         private SpriteRenderer spriteRenderer;
-        
-        public float blockMultiplier = 1.0f / 2.0f; // Blocks (n - m)/n damages 
 
-        private void Start()
+        private float originalProtectionMultiplier;
+        public float imperviousToDamageTime = 0.6f;
+
+        private void Awake()
         {
-            spriteRenderer = GetComponent<SpriteRenderer>();
+            originalProtectionMultiplier = protectionMultiplier;
+            
+            spriteRenderer = GetComponent<SpriteRenderer>(); 
+            
+            StopUse();
         }
-        
-        public void Show()
+
+        public override void Use()
+        {
+            isBeingUsed = true;
+            Show();
+            StartCoroutine(nameof(BlockCoroutine));
+        }
+        private IEnumerator BlockCoroutine()
+        {
+            protectionMultiplier = 1.0f;
+            Debug.Log($"Shield: full protection enabled");
+            yield return new WaitForSeconds(imperviousToDamageTime);
+            Debug.Log($"Shield: full protection disabled");
+            protectionMultiplier = originalProtectionMultiplier;
+        }
+
+        public override void StopUse()
+        {
+            StopCoroutine(nameof(BlockCoroutine));
+            protectionMultiplier = originalProtectionMultiplier;
+            isBeingUsed = false;
+            Hide();
+        }
+
+        private void Show()
         {
             spriteRenderer.enabled = true;
         }
 
-        public void Hide()
+        private void Hide()
         {
             spriteRenderer.enabled = false;
         }
+
     }
 }
