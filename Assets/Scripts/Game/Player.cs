@@ -52,9 +52,12 @@ public class Player : MonoBehaviour, ITakesDamage
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
 
-        GameManager.Instance.AddItemById("Knife", this);
-        GameManager.Instance.AddItemById("ShieldPlaceholder", this);
-        GameManager.Instance.AddItemById("DefaultArmor", this);
+        if (SceneManager.GetActiveScene().name == "Dev")
+        {
+            GameManager.Instance.AddItemById("Knife", this);
+            GameManager.Instance.AddItemById("ShieldPlaceholder", this);
+            GameManager.Instance.AddItemById("DefaultArmor", this);
+        }
     }
 
     private void Update()
