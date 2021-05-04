@@ -12,8 +12,20 @@ namespace Assets.Scripts.UI
 {
     public class DebugUi : MonoBehaviour
     {
+        private bool isShown = false;
+
+        private void Update()
+        {
+            if (Input.GetKeyUp(KeyCode.Tab))
+                isShown = !isShown;
+        }
+
         private void OnGUI()
         {
+#if DEBUG
+            if (!isShown)
+                return;
+
             if (GUILayout.Button("Try save"))
             {
                 SaveSystem.Save();
@@ -23,6 +35,7 @@ namespace Assets.Scripts.UI
             {
                 SaveSystem.Load();
             }
+#endif
         }
     }
 }
