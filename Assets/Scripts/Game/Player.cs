@@ -87,11 +87,11 @@ public class Player : MonoBehaviour, ITakesDamage
             interactable?.Interact();
         }
         if (Input.GetMouseButtonDown(0))
-            primaryWeapon.Use();
+            primaryWeapon?.Use();
         if (Input.GetMouseButtonDown(1))
-             secondaryWeapon.Use();
+             secondaryWeapon?.Use();
         if (Input.GetMouseButtonUp(1))
-             secondaryWeapon.StopUse();
+             secondaryWeapon?.StopUse();
     }
 
     void FixedUpdate()
