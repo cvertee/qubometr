@@ -32,9 +32,8 @@ public class Player : MonoBehaviour, ITakesDamage
     private Rigidbody2D rb;
     private AudioSource audioSource;
     
-    private Item weapon;
-    private Item shield;
-    private Item armor;
+    private Item primaryWeapon;
+    private Item secondaryWeapon;
     
     private List<Item> items = new List<Item>();
     public AudioClip slashSound;
@@ -85,11 +84,11 @@ public class Player : MonoBehaviour, ITakesDamage
             interactable?.Interact();
         }
         if (Input.GetMouseButtonDown(0))
-            weapon.Use();
+            primaryWeapon.Use();
         if (Input.GetMouseButtonDown(1))
-             shield.Use();
+             secondaryWeapon.Use();
         if (Input.GetMouseButtonUp(1))
-             shield.StopUse();
+             secondaryWeapon.StopUse();
     }
 
     void FixedUpdate()
@@ -204,7 +203,7 @@ public class Player : MonoBehaviour, ITakesDamage
 
         currentState = State.Attacking;
         audioSource.PlayOneShot(slashSound);
-        weapon.Use();
+        primaryWeapon.Use();
         StartCoroutine(AttackCooldown());
     }
     private IEnumerator AttackCooldown() // TODO: fix timings?
@@ -237,12 +236,9 @@ public class Player : MonoBehaviour, ITakesDamage
         item.owner = this;
         
         if (item.type == ItemType.Weapon)
-            weapon = item;
+            primaryWeapon = item;
 
         if (item.type == ItemType.Shield)
-            shield = item;
-        
-        if (item.type == ItemType.Armor)
-            armor = item;
+            secondaryWeapon = item;
     }
 }
