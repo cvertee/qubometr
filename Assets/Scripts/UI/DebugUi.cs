@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Save;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Game;
 
 namespace Assets.Scripts.UI
 {
@@ -34,6 +35,25 @@ namespace Assets.Scripts.UI
             if (GUILayout.Button("Try load"))
             {
                 SaveSystem.Load();
+            }
+
+            if (GUILayout.Button("Add 100 coins"))
+            {
+                GameData.Data.coins += 100;
+            }
+            if (GUILayout.Button("Zero coins"))
+            {
+                GameData.Data.coins = 0;
+            }
+
+            if (GUILayout.Button("Open example store"))
+            {
+                var item = GameManager.Instance.GetItemObjectById("HeavyArmor");
+                StoreUI.Instance.Show(new List<Item> { item.GetComponent<Item>() });
+            }
+            if (GUILayout.Button("Close store"))
+            {
+                StoreUI.Instance.Close();
             }
 #endif
         }
