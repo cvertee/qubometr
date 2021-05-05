@@ -197,8 +197,6 @@ public class Player : MonoBehaviour, ITakesDamage
 
     private void Jump()
     {
-        Debug.Log($"Try jump grounded: {grounded}");
-
         if (!grounded)
             return;
 
