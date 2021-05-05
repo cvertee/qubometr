@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.UI
 {
-    public class StoreUI : Singleton<StoreUI>
+    public class StoreUI : Singleton<StoreUI>, IPopupUIElement
     {
         public GameObject itemsContainer;
 
@@ -20,6 +20,7 @@ namespace Assets.Scripts.UI
 
         public void Show(List<Item> items)
         {
+            UIManager.Instance.RegisterPopup(this);
             itemsContainer.SetActive(true);
 
             foreach (var item in items)

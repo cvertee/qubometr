@@ -6,6 +6,7 @@ using System.Linq;
 using Game;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Assets;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -19,7 +20,13 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            if (!UIManager.Instance.CloseLatestPopup())
+            {
+                // TODO: open main menu
+            }
+        }
     }
 
     public void StartDialogue(string dialogueId, GameObject container)
