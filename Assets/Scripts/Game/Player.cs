@@ -127,7 +127,6 @@ public class Player : MonoBehaviour, ITakesDamage
         var possibleInteractable = collision.GetComponent<IInteractable>();
         if (possibleInteractable != null)
         {
-            Debug.Log($"found interactable {collision.name}");
             interactable = possibleInteractable;
         }
     }
@@ -136,7 +135,6 @@ public class Player : MonoBehaviour, ITakesDamage
     {
         if (collision.GetComponent<IInteractable>() != null)
         {
-            Debug.Log($"exit interactable {collision.name}");
             interactable = null;
         }
     }

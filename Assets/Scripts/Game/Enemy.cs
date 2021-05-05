@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour, ITakesDamage
     public float attackMaxDistanceMultiplier = 1.0f;
     public float collisionDamageCooldownTime = 1.0f; // Time in which box collider of enemy is disabled
     protected Vector3 moveDirection = Vector3.right;
+    private float aiTickTime = 0.1f;
     [SerializeField] private float sightDistance = 10.0f;
     private float sightDistanceFollowMultiplier = 1.5f;
     protected CharacterState state = CharacterState.Idle;
@@ -44,7 +45,12 @@ public class Enemy : MonoBehaviour, ITakesDamage
             Instantiate(defaultWeapon, transform);
         }
     }
-    
+
+    private void Start()
+    {
+        StartCoroutine(AIUpdate());
+    }
+
     private void Update()
     {
         if (hp <= 0)
@@ -60,7 +66,15 @@ public class Enemy : MonoBehaviour, ITakesDamage
         }
     }
 
-    private void FixedUpdate()
+    private IEnumerator AIUpdate()
+    {
+        while (true)
+        {
+            AIStateCheck();
+            yield return new WaitForSecondsRealtime(aiTickTime);
+        }
+    }
+    private void AIStateCheck()
     {
         switch (state)
         {

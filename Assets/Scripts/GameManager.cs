@@ -53,7 +53,7 @@ public class GameManager : Singleton<GameManager>
          character.AddItem(GetItemObjectById(id));
     }
 
-    public GameObject GetItemObjectById(string id)
+    public GameObject GetItemObjectById(string id) // TODO: wtf fix name
     {
         return Resources.Load<GameObject>($"Prefabs/Items/{id}");
     }
