@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         rb = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
 
-        if (GetComponentInChildren<Weapon>() == null) // means enemy doesn't have any weapons
+        if ((usableItem = GetComponentInChildren<Weapon>()) == null) // means enemy doesn't have any weapons
         {
             GameManager.Instance.AddItemById("Knife", this);
         }
