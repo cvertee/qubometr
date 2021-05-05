@@ -14,7 +14,7 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         GameData.Data.sceneName = SceneManager.GetActiveScene().name;
-        Application.targetFrameRate = Screen.currentResolution.refreshRate;
+        //Application.targetFrameRate = Screen.currentResolution.refreshRate;
     }
 
     // Update is called once per frame
