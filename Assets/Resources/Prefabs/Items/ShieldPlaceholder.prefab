@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7458637457354631683}
   - component: {fileID: 7035310430826490082}
   m_Layer: 7
-  m_Name: Shield
+  m_Name: ShieldPlaceholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 531218701
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 99
   m_Sprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
@@ -120,6 +120,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   animatorController: {fileID: 0}
   owner: {fileID: 0}
+  price: 15
   isBeingUsed: 0
   protectionMultiplier: 0.5
   imperviousToDamageTime: 0.6
