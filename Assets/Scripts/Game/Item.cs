@@ -21,6 +21,7 @@ namespace Game
         public Sprite icon;
         public RuntimeAnimatorController animatorController;
         public Player owner; // TODO: possibly character or IItemHolder etc
+        public int price;
 
         public bool isBeingUsed = false;
         public float protectionMultiplier = 0.0f;
