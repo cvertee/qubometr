@@ -23,7 +23,7 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
     private float speed = 1000f;
     private float speedMultiplier = 1.25f;
     private bool grounded = false;
-    private float jumpForce = 30.0f;
+    private float jumpForce = 42.0f;
     private float jumpMultiplier = 1.0f;
     private float takeDamageMultiplier = 1.0f;
     private State currentState = State.Any;
