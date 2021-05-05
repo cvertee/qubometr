@@ -220,12 +220,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c850a93b5eb487f4d91d1194967c3ab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
+  hp: 30
   moveSpeed: 450
-  attackCooldownTime: 0.75
+  attackCooldownTime: 1.5
   attackCooldownTimeMultiplier: 1
-  attackMinDistance: 4.5
-  attackMaxDistance: 6.5
+  attackMinDistance: 3.5
+  attackMaxDistance: 4
   attackMaxDistanceMultiplier: 1
   collisionDamageCooldownTime: 1
   sightDistance: 10
