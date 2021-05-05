@@ -8,8 +8,8 @@ It features:
 - Save system
 - "Story" (basic lore put in intro)
 
-Art stuff by instagram.com/kefeys/ | artstation.com/kefey
+Art stuff by [Kefey](artstation.com/kefey)
 
-Music stuff by soundcloud.com/d3adl1ne
+Music stuff by [Majorseat](soundcloud.com/d3adl1ne)
 
-Download at cvertee.itch.io/geometry-gear-solid
+Available at [itch.io](cvertee.itch.io/geometry-gear-solid)
