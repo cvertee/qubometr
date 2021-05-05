@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using Core;
 using UnityEngine;
 using System.Linq;
+using Assets.Scripts.Core;
+using Game;
 
-public class Enemy : MonoBehaviour, ITakesDamage
+public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
 {
     private Rigidbody2D rb;
     private BoxCollider2D collider;
@@ -27,6 +29,7 @@ public class Enemy : MonoBehaviour, ITakesDamage
     private float sightDistanceFollowMultiplier = 1.5f;
     protected CharacterState state = CharacterState.Idle;
     protected bool canAttack = true;
+    private Item usableItem;
 
     private void Awake()
     {
@@ -41,8 +44,7 @@ public class Enemy : MonoBehaviour, ITakesDamage
 
         if (GetComponentInChildren<Weapon>() == null) // means enemy doesn't have any weapons
         {
-            var defaultWeapon = Resources.Load<GameObject>("Prefabs/Weapons/Sword");
-            Instantiate(defaultWeapon, transform);
+            GameManager.Instance.AddItemById("Knife", this);
         }
     }
 
@@ -189,10 +191,10 @@ public class Enemy : MonoBehaviour, ITakesDamage
 
     protected virtual void OnAttack()
     {
-        if (canAttack)
+        if (canAttack && usableItem != null)
         {
             rb.velocity = Vector2.zero; // Stop before the attack
-            GetComponentInChildren<Weapon>().Use();
+            usableItem.Use();
             StartCoroutine(AttackCooldown());
         }
         
@@ -245,5 +247,16 @@ public class Enemy : MonoBehaviour, ITakesDamage
         collider.enabled = false;
         yield return new WaitForSeconds(collisionDamageCooldownTime);
         collider.enabled = true;
+    }
+
+    public void GetName()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void AddItem(Item item)
+    {
+        usableItem = Instantiate(item, transform);
+        
     }
 }

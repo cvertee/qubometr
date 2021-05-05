@@ -8,7 +8,7 @@ using Game;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour, ITakesDamage
+public class Player : MonoBehaviour, ITakesDamage, ICharacter
 {
     enum State
     {
@@ -238,11 +238,22 @@ public class Player : MonoBehaviour, ITakesDamage
         var item = Instantiate(itemGO, transform)
             .GetComponent<Item>();
         
+        
+    }
+
+    public void GetName()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void AddItem(Item item)
+    {
+        item = Instantiate<Item>(item, transform);
         items.Add(item);
         GameData.Data.playerItemIds.Add(item.id);
 
         item.owner = this;
-        
+
         if (item.type == ItemType.Weapon)
             primaryWeapon = item;
 

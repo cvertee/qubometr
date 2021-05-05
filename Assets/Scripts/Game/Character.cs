@@ -1,4 +1,5 @@
 using Assets.Scripts.Core;
+using Game;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,5 +31,10 @@ public class Character : MonoBehaviour, IInteractable, ICharacter
         {
             GameManager.Instance.StartDialogue(id, dialogueBox);
         }
+    }
+
+    public void AddItem(Item item)
+    {
+        throw new System.NotImplementedException();
     }
 }

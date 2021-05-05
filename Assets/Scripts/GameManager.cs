@@ -55,14 +55,14 @@ public class GameManager : Singleton<GameManager>
         SceneManager.LoadScene(sceneName);
     }
 
-    public void AddItemById(string id, Player character)
+    public void AddItemById(string id, ICharacter character)
     {
          character.AddItem(GetItemObjectById(id));
     }
 
-    public GameObject GetItemObjectById(string id) // TODO: wtf fix name
+    public Item GetItemObjectById(string id)
     {
-        return Resources.Load<GameObject>($"Prefabs/Items/{id}");
+        return Resources.Load<Item>($"Prefabs/Items/{id}");
     }
 
     public Player GetPlayer()
