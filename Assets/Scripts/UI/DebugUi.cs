@@ -49,6 +49,10 @@ namespace Assets.Scripts.UI
             {
                 GameData.Data.hp = 999;
             }
+            if (GUILayout.Button("-10 hp"))
+            {
+                GameData.Data.hp -= 10;
+            }
 
             if (GUILayout.Button("Open example store"))
             {

@@ -24,8 +24,17 @@ public class HealthKit : MonoBehaviour
             if (GameData.Data.hp >= 50) // TODO: fix
                 return;
 
-            GameData.Data.hp += 10;
-            Destroy(gameObject);
+            GetComponent<SpriteRenderer>().enabled = false; // hide
+            GetComponent<BoxCollider2D>().enabled = false; // to prevent several sounds playing
+            AudioManager.Instance.PlaySound("estus");
+            StartCoroutine(HealCoroutine());
         }
+    }
+
+    private IEnumerator HealCoroutine()
+    {
+        yield return new WaitForSeconds(0.8f);
+        GameData.Data.hp += 10;
+        Destroy(gameObject);
     }
 }

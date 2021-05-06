@@ -10,5 +10,6 @@ namespace Assets.Scripts.Game
     public static class GameEvents
     {
         public static UnityEvent onPlayerDeath = new UnityEvent();
+        public static UnityEvent onEnemyAlert = new UnityEvent();
     }
 }

@@ -161,6 +161,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         if (playerHitRight.collider != null || playerHitLeft.collider != null)
         {
             state = CharacterState.Follow;
+            GameEvents.onEnemyAlert.Invoke();
             Debug.Log($"Player detected by {name}. Starting to follow him");
         }
     }
@@ -215,7 +216,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
     {
         if (canAttack && usableItem != null)
         {
-            //rb.velocity = Vector2.zero; // Stop before the attack
+            currentMoveSpeed = 0f; // Stop before the attack
             usableItem.Use();
             StartCoroutine(AttackCooldown());
         }

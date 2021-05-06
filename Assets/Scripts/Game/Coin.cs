@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             GameData.Data.coins += 15;
+            AudioManager.Instance.PlaySound("coin_pickup");
             Destroy(gameObject);
         }
     }

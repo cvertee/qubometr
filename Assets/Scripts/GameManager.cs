@@ -15,6 +15,8 @@ public class GameManager : Singleton<GameManager>
     {
         GameData.Data.sceneName = SceneManager.GetActiveScene().name;
         //Application.targetFrameRate = Screen.currentResolution.refreshRate;
+
+        GameEvents.onEnemyAlert.AddListener(() => AudioManager.Instance.PlaySound("alert"));
     }
 
     // Update is called once per frame
