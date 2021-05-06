@@ -45,6 +45,10 @@ namespace Assets.Scripts.UI
             {
                 GameData.Data.coins = 0;
             }
+            if (GUILayout.Button("999 hp"))
+            {
+                GameData.Data.hp = 999;
+            }
 
             if (GUILayout.Button("Open example store"))
             {
