@@ -39,14 +39,25 @@ namespace Save
 
         public static void Load()
         {
-            if (!File.Exists(SAVE_FILE))
+            var saveData = GetSaveData();
+
+            if (saveData == null)
+            {
+                Debug.LogWarning("SaveSystem.Load: No save file");
                 return;
-            
-            var json = File.ReadAllText(SAVE_FILE);
-            var saveData = JsonConvert.DeserializeObject<SaveData>(json);
+            }
 
             GameData.Data = saveData;
             SceneManager.LoadScene(saveData.sceneName, LoadSceneMode.Single);
+        }
+
+        public static SaveData GetSaveData()
+        {
+            if (!File.Exists(SAVE_FILE))
+                return null;
+
+            var json = File.ReadAllText(SAVE_FILE);
+            return JsonConvert.DeserializeObject<SaveData>(json);
         }
     }
 }
