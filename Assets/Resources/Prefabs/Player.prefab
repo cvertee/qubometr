@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 531218701
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: efa838743bb67884b90c77cb41cc292f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -100,8 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slashSound: {fileID: 8300000, guid: ae2bd1062a3af1c40844eddd438b08d8, type: 3}
-  overlapCircleRadius: 1.1
-  overlapCircleOffset: {x: 0, y: -3, z: 0}
+  overlapCircleRadius: 1.31
+  overlapCircleOffset: {x: 0.11, y: -3.3, z: 0}
 --- !u!61 &3658646083811505389
 BoxCollider2D:
   m_ObjectHideFlags: 0
