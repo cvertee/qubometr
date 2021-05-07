@@ -224,14 +224,13 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
 
     private void Die()
     {
-        GameEvents.onPlayerDeath.Invoke();
         currentState = State.Locked;
         StartCoroutine(DieCooldown());
     }
     private IEnumerator DieCooldown() // TODO: use it somewhere else?
     {
         yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameEvents.onPlayerDeath.Invoke();
     }
 
     public void AddItem(GameObject itemGO)

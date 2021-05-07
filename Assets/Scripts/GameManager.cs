@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Assets;
 using Assets.Scripts.UI;
+using Save;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -18,6 +19,7 @@ public class GameManager : Singleton<GameManager>
         //Application.targetFrameRate = Screen.currentResolution.refreshRate;
 
         GameEvents.onEnemyAlert.AddListener(() => AudioManager.Instance.PlaySound("alert"));
+        GameEvents.onPlayerDeath.AddListener(() => SaveSystem.Load());
     }
 
     // Update is called once per frame
