@@ -228,6 +228,11 @@ MonoBehaviour:
   attackMaxDistance: 8
   attackMaxDistanceMultiplier: 1
   collisionDamageCooldownTime: 1
+  jumpForce: 40
+  wallDetectionBoxSize: {x: 9.08, y: 4.55, z: 0}
+  wallDetectionBoxOffset: {x: 0, y: 0, z: 0}
+  overlapCircleRadius: 0.77
+  overlapCircleOffset: {x: 0, y: -2.89, z: 0}
   sightDistance: 10
 --- !u!50 &6035777751491804244
 Rigidbody2D:

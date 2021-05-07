@@ -26,6 +26,15 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
     public float attackMaxDistance = 3.0f;
     public float attackMaxDistanceMultiplier = 1.0f;
     public float collisionDamageCooldownTime = 1.0f; // Time in which box collider of enemy is disabled
+    public float jumpForce = 40.0f;
+    
+    public Vector3 wallDetectionBoxSize;
+    public Vector3 wallDetectionBoxOffset;
+    
+    [SerializeField] private float overlapCircleRadius;
+    [SerializeField] private Vector3 overlapCircleOffset;
+    
+    // TODO: jump multiplier?
     protected Vector3 moveDirection = Vector3.right;
     private float aiTickTime = 0.1f;
     [SerializeField] private float sightDistance = 10.0f;
@@ -35,12 +44,12 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
     //private float sightDistanceFollowMultiplier = 1.5f;
     protected CharacterState state = CharacterState.Idle;
     protected bool canAttack = true;
+    private bool grounded = false;
     private Item usableItem;
+    
 
     private void Awake()
     {
-        sightDistanceFollow = sightDistance * 2.0f;
-
         if (GameData.Data.killedEnemies.Any(x => x == name))
         {
             Destroy(gameObject);
@@ -57,6 +66,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
 
     private void Start()
     {
+        sightDistanceFollow = sightDistance * 10.0f;
         StartCoroutine(AIUpdate());
     }
 
@@ -73,6 +83,13 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         {
             transform.eulerAngles = new Vector3(0f, 0f);
         }
+        
+        var groundHit = Physics2D.OverlapCircle(
+            transform.position + overlapCircleOffset, 
+            overlapCircleRadius,
+            ~LayerMask.GetMask("Player")
+        );
+        grounded = groundHit != null;
     }
 
     private void FixedUpdate()
@@ -127,13 +144,30 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
 
     private void OnDrawGizmos()
     {
+        var position = transform.position;
+        
         //Gizmos.DrawRay(transform.position, Vector3.right);
-        Gizmos.DrawLine(transform.position, transform.position + new Vector3(sightDistance * moveDirection.x, 0));
+        Gizmos.DrawLine(position, position + new Vector3(sightDistance * moveDirection.x, 0));
+        Gizmos.DrawLine(position, position + new Vector3(sightDistance * -moveDirection.x, 0));
+        
+        if (grounded)
+        {
+            Debug.DrawRay(transform.position, new Vector3(0f, 1f), Color.cyan);
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        var position = transform.position;
+        
+        Gizmos.DrawCube(position + wallDetectionBoxOffset, wallDetectionBoxSize);
+        Gizmos.DrawSphere(position + overlapCircleOffset, overlapCircleRadius);
     }
 
     private void OnGUI()
     {
-        var pos = UnityEngine.Camera.main.WorldToScreenPoint(transform.position);
+        var cam = Camera.main;
+        var pos = cam.WorldToScreenPoint(transform.position);
         var sb = new StringBuilder();
 
         sb.AppendLine($"state={state}");
@@ -170,26 +204,29 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
     {
         currentMoveSpeed = moveSpeed;
 
+        var position = transform.position;
         var playerRightCast = Physics2D.Raycast(
-            transform.position, 
+            position, 
             Vector2.right,
             sightDistanceFollow, 
             LayerMask.GetMask("Player")
         );
         var playerLeftCast = Physics2D.Raycast(
-            transform.position, 
+            position, 
             Vector2.left,
             sightDistanceFollow, 
             LayerMask.GetMask("Player")
         );
         var playerNearCast = Physics2D.Raycast(
-            transform.position, 
+            position, 
             moveDirection, 
             attackMinDistance, 
             LayerMask.GetMask("Player")
         );
-        var wallNearCast = Physics2D.Raycast(
-            transform.position,
+        var wallNearCast = Physics2D.BoxCast(
+            position + wallDetectionBoxOffset,
+            wallDetectionBoxSize,
+            0f,
             moveDirection,
             sightDistanceForWall,
             LayerMask.GetMask("Floor")
@@ -209,7 +246,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         } 
         if (wallNearCast.collider != null)
         {
-            state = CharacterState.Idle;
+            Jump();
         }
     }
 
@@ -221,21 +258,22 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
             usableItem.Use();
             StartCoroutine(AttackCooldown());
         }
-        
+
+        var position = transform.position;
         var playerHit = Physics2D.Raycast(
-            transform.position, 
+            position, 
             moveDirection, 
             attackMaxDistance * attackMaxDistanceMultiplier, 
             LayerMask.GetMask("Player")
         );
         var playerTooNearLeftCast = Physics2D.Raycast(
-            transform.position,
+            position,
             Vector2.left,
             sightDistanceForPlayerTooNear,
             LayerMask.GetMask("Player")
         );
         var playerTooNearRightCast = Physics2D.Raycast(
-            transform.position,
+            position,
             Vector2.left,
             sightDistanceForPlayerTooNear,
             LayerMask.GetMask("Player")
@@ -273,6 +311,11 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
             Instantiate(Resources.Load("Prefabs/Coin"), transform.position + new Vector3(UnityEngine.Random.Range(0, 7), 0), Quaternion.identity);
         }
         Destroy(gameObject);
+    }
+    
+    private void Jump()
+    {
+        rb.AddForce(new Vector2(0, jumpForce ), ForceMode2D.Impulse);
     }
 
     private IEnumerator CollisionDamageCooldown()
