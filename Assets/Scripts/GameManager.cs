@@ -60,7 +60,8 @@ public class GameManager : Singleton<GameManager>
 
     public void AddItemById(string id, ICharacter character)
     {
-         character.AddItem(GetItemObjectById(id));
+        var item = GetItemObjectById(id);
+        character.AddItem(item);
     }
 
     public Item GetItemObjectById(string id)
