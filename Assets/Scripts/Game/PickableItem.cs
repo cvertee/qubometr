@@ -10,6 +10,8 @@ namespace Assets.Scripts.Game
 
         public string itemId;
 
+        private AudioClip pickupSound;
+        
         private void Start()
         {
             if (string.IsNullOrEmpty(itemId))
@@ -26,10 +28,13 @@ namespace Assets.Scripts.Game
             }
 
             GetComponent<SpriteRenderer>().sprite = item.icon;
+
+            pickupSound = item.pickupSound;
         }
         public void Interact()
         {
             GameManager.Instance.AddItemById(itemId, FindObjectOfType<Player>()); // TODO: replace find object with somethign else
+            AudioManager.Instance.PlayClip(pickupSound);
             // TODO: play pickup sound
             Destroy(gameObject);
         }
