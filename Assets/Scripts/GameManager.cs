@@ -7,6 +7,7 @@ using Game;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Assets;
+using Assets.Scripts.UI;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -26,7 +27,7 @@ public class GameManager : Singleton<GameManager>
         {
             if (!UIManager.Instance.CloseLatestPopup())
             {
-                // TODO: open main menu
+                MenuUI.Instance.Show();
             }
         }
     }
