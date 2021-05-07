@@ -111,7 +111,7 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
         var groundHit = Physics2D.OverlapCircle(
             transform.position + overlapCircleOffset, 
             overlapCircleRadius,
-            LayerMask.GetMask("Floor")
+            ~LayerMask.GetMask("Player")
         );
         grounded = groundHit != null;
 
