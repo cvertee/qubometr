@@ -22,6 +22,7 @@ namespace Game
         public RuntimeAnimatorController animatorController;
         public Player owner; // TODO: possibly character or IItemHolder etc
         public int price;
+        public AudioClip pickupSound;
 
         public bool isBeingUsed = false;
         public float protectionMultiplier = 0.0f;

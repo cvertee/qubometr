@@ -121,6 +121,7 @@ MonoBehaviour:
   animatorController: {fileID: 0}
   owner: {fileID: 0}
   price: 15
+  pickupSound: {fileID: 8300000, guid: 2529f8afa6991c94890be555c8894067, type: 3}
   isBeingUsed: 0
   protectionMultiplier: 0.5
   imperviousToDamageTime: 0.6
