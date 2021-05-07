@@ -1,3 +1,4 @@
+using System;
 using Assets.Scripts.Game;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,13 +6,19 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-
+    public int amount = 1;
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
         {
-            GameData.Data.coins += 15;
-            GameData.Data.totalCollectedCoins += 15;
+            GameData.Data.coins += amount;
+            GameData.Data.totalCollectedCoins += amount;
             AudioManager.Instance.PlaySound("coin_pickup");
             Destroy(gameObject);
         }
