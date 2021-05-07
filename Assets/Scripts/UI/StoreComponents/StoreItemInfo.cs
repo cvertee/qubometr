@@ -21,7 +21,7 @@ namespace Assets.Scripts.UI.StoreComponents
             buyButton.onClick.AddListener(() =>
                 {
                     var player = FindObjectOfType<Player>();
-                    StoreManager.TryBuyItem(item, player);
+                    StoreManager.Instance.TryBuyItem(item, player);
                 });
         }
     }

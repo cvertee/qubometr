@@ -1,13 +1,14 @@
 ﻿using Assets.Scripts.Game;
 using Game;
 using System.Collections;
+using Assets.Scripts.Core;
 using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class StoreManager : MonoBehaviour
+    public class StoreManager : Singleton<StoreManager>
     {
-        public static void TryBuyItem(Item item, Player player)
+        public void TryBuyItem(Item item, Player player)
         {
             if (GameData.Data.coins < item.price)
             {
@@ -21,6 +22,7 @@ namespace Assets.Scripts
             
             GameManager.Instance.AddItemById(item.id, player);
             AudioManager.Instance.PlaySound("cash");
+        }
         }
     }
 }
