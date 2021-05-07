@@ -264,6 +264,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
     {
         Debug.Log($"Writing {name} to GameData.killedEnemies");
         GameData.Data.killedEnemies.Add(name);
+        GameData.Data.killedEnemiesCount += 1;
 
         Instantiate(Resources.Load("Prefabs/Coin"), transform.position, Quaternion.identity);
         Destroy(gameObject);

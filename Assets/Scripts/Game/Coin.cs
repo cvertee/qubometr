@@ -11,6 +11,7 @@ public class Coin : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             GameData.Data.coins += 15;
+            GameData.Data.totalCollectedCoins += 15;
             AudioManager.Instance.PlaySound("coin_pickup");
             Destroy(gameObject);
         }

@@ -185,6 +185,7 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
         if (currentState != State.Attacking) // TODO: fix this 
         {
             GameData.Data.hp -= totalDamage;
+            GameData.Data.totalDamageReceived += totalDamage;
             
             Debug.Log($"Player: Took {totalDamage} HP");
             

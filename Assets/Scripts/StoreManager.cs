@@ -17,9 +17,10 @@ namespace Assets.Scripts
             }
 
             GameData.Data.coins -= item.price;
+            GameData.Data.totalWastedCoins += item.price;
+            
             GameManager.Instance.AddItemById(item.id, player);
             AudioManager.Instance.PlaySound("cash");
-            // TODO: save data on total coin waste
         }
     }
 }
