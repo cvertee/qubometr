@@ -36,6 +36,7 @@ public class HealthKit : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
         GameData.Data.hp += 10;
         GameData.Data.healthKitsUsed += 1;
+        GameEvents.onHealthRestored.Invoke();
         Destroy(gameObject);
     }
 }

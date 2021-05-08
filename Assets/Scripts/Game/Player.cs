@@ -182,6 +182,8 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
 
         if (totalDamage <= 0.0f)
             totalDamage = 0.0f;
+        else
+            GameEvents.onPlayerReceivedDamage.Invoke();
         
         if (currentState != State.Attacking) // TODO: fix this 
         {

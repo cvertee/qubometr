@@ -67,6 +67,19 @@ namespace Assets.Scripts.UI
             {
                 StoreUI.Instance.Close();
             }
+            
+            if (GUILayout.Button("Raise health restore event"))
+            {
+                GameEvents.onHealthRestored.Invoke();
+            }
+            if (GUILayout.Button("Raise health damage event"))
+            {
+                GameEvents.onPlayerReceivedDamage.Invoke();
+            }
+            if (GUILayout.Button("Raise coin pickup event"))
+            {
+                GameEvents.onCoinPickup.Invoke();
+            }
 #endif
         }
     }
