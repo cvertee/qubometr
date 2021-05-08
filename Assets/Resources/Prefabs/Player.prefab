@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 3658646083811505391}
   - component: {fileID: 3658646083811505390}
   - component: {fileID: 3658646083811505385}
+  - component: {fileID: 3658646083811505389}
   - component: {fileID: 3658646083811505388}
   - component: {fileID: 4059883774087484145}
   - component: {fileID: 4353173840183641963}
-  - component: {fileID: 2517270321060454111}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -102,6 +102,32 @@ MonoBehaviour:
   slashSound: {fileID: 8300000, guid: ae2bd1062a3af1c40844eddd438b08d8, type: 3}
   overlapCircleRadius: 1.31
   overlapCircleOffset: {x: 0.11, y: -3.3, z: 0}
+--- !u!61 &3658646083811505389
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3658646083811505384}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.89, y: 6.68}
+    newSize: {x: 3.89, y: 6.68}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.89, y: 6.68}
+  m_EdgeRadius: 0
 --- !u!50 &3658646083811505388
 Rigidbody2D:
   serializedVersion: 4
@@ -238,19 +264,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!70 &2517270321060454111
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3658646083811505384}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.100669384, y: -0.06991196}
-  m_Size: {x: 2.6286612, y: 6.734314}
-  m_Direction: 0
