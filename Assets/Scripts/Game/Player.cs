@@ -34,6 +34,7 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
     
     private Item primaryWeapon;
     private Item secondaryWeapon;
+    private Item armor;
     private List<Item> items = new List<Item>();
 
     public AudioClip slashSound;
@@ -255,9 +256,27 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
         item.owner = this;
 
         if (item.type == ItemType.Weapon)
+        {
+            if (primaryWeapon != null)
+                Destroy(primaryWeapon.gameObject);
+            
             primaryWeapon = item;
+        }
 
         if (item.type == ItemType.Shield)
+        {
+            if (secondaryWeapon != null)
+                Destroy(secondaryWeapon.gameObject);
+            
             secondaryWeapon = item;
+        }
+
+        if (item.type == ItemType.Armor)
+        {
+            if (armor != null)
+                Destroy(armor.gameObject);
+            
+            armor = item;
+        }
     }
 }
