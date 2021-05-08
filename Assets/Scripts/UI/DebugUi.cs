@@ -53,6 +53,10 @@ namespace Assets.Scripts.UI
             {
                 GameData.Data.hp -= 10;
             }
+            if (GUILayout.Button("Give knife"))
+            {
+                GameManager.Instance.AddItemById("Knife", FindObjectOfType<Player>());
+            }
 
             if (GUILayout.Button("Open example store"))
             {
