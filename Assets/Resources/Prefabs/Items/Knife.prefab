@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1077612512430371590}
   - component: {fileID: 7544335122112867868}
   - component: {fileID: 7059664948949002123}
-  m_Layer: 7
+  m_Layer: 2
   m_Name: Knife
   m_TagString: Weapon
   m_Icon: {fileID: 0}

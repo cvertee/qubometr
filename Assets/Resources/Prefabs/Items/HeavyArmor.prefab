@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5029122294792293317}
   - component: {fileID: 2201530487210600104}
   - component: {fileID: 3965833489527117584}
-  m_Layer: 7
+  m_Layer: 2
   m_Name: HeavyArmor
-  m_TagString: Untagged
+  m_TagString: Armor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

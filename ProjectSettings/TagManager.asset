@@ -9,6 +9,8 @@ TagManager:
   - Weapon
   - Enemy
   - Bullet
+  - Armor
+  - Pickable
   layers:
   - Default
   - TransparentFX

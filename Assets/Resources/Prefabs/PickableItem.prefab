@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8167064951395009469}
   - component: {fileID: 8167064951395009471}
   - component: {fileID: 8167064951395009470}
-  m_Layer: 7
+  m_Layer: 2
   m_Name: PickableItem
-  m_TagString: Untagged
+  m_TagString: Pickable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
