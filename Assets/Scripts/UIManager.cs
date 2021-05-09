@@ -6,6 +6,11 @@ public class UIManager : Singleton<UIManager>
 {
     private Stack<IPopupUIElement> popupUIElements = new Stack<IPopupUIElement>();
 
+    private void Awake()
+    {
+        GameEvents.onCoinPickup.AddListener(ShowCoinPickupAnimation);
+    }
+    
     public void RegisterPopup(IPopupUIElement element)
     {
         popupUIElements.Push(element);
@@ -19,5 +24,11 @@ public class UIManager : Singleton<UIManager>
         var popupUIElement = popupUIElements.Pop();
         popupUIElement.Close();
         return true;
+    }
+
+    public void ShowCoinPickupAnimation()
+    {
+        var coinPickupText = Resources.Load("Prefabs/UI/CoinPickupText");
+        Instantiate(coinPickupText, transform);
     }
 }
