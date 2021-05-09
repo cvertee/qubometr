@@ -1,10 +1,7 @@
-﻿namespace Core
+﻿public enum CharacterState
 {
-    public enum CharacterState
-    {
-        Idle,
-        Follow,
-        Attack,
-        Dying
-    }
+    Idle,
+    Follow,
+    Attack,
+    Dying
 }

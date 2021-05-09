@@ -1,27 +1,20 @@
-﻿using Save;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.UI.Menu
+public class MenuLoadButton : MonoBehaviour
 {
-    public class MenuLoadButton : MonoBehaviour
+    private void OnEnable()
     {
-
-        private void OnEnable()
+        if (SaveSystem.GetSaveData() == null)
         {
-            if (SaveSystem.GetSaveData() == null)
-            {
-                SaveSystem.Save();
-            }
+            SaveSystem.Save();
         }
+    }
 
-        // Use this for initialization
-        private void Awake()
-        {
-            GetComponent<Button>().onClick.AddListener(() => {
-                SaveSystem.Load();
-            });
-        }
+    // Use this for initialization
+    private void Awake()
+    {
+        GetComponent<Button>().onClick.AddListener(() => { SaveSystem.Load(); });
     }
 }

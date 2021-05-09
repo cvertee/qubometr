@@ -1,57 +1,53 @@
 ﻿using System.Collections;
-using Core;
 using UnityEngine;
 
-namespace Game
+public class Shield : Item
 {
-    public class Shield : Item
+    private SpriteRenderer spriteRenderer;
+
+    private float originalProtectionMultiplier;
+    public float imperviousToDamageTime = 0.6f;
+
+    private void Awake()
     {
-        private SpriteRenderer spriteRenderer;
+        originalProtectionMultiplier = protectionMultiplier;
 
-        private float originalProtectionMultiplier;
-        public float imperviousToDamageTime = 0.6f;
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
-        private void Awake()
-        {
-            originalProtectionMultiplier = protectionMultiplier;
-            
-            spriteRenderer = GetComponent<SpriteRenderer>(); 
-            
-            StopUse();
-        }
+        StopUse();
+    }
 
-        public override void Use()
-        {
-            isBeingUsed = true;
-            Show();
-            StartCoroutine(nameof(BlockCoroutine));
-        }
-        private IEnumerator BlockCoroutine()
-        {
-            protectionMultiplier = 1.0f;
-            Debug.Log($"Shield: full protection enabled");
-            yield return new WaitForSeconds(imperviousToDamageTime);
-            Debug.Log($"Shield: full protection disabled");
-            protectionMultiplier = originalProtectionMultiplier;
-        }
+    public override void Use()
+    {
+        isBeingUsed = true;
+        Show();
+        StartCoroutine(nameof(BlockCoroutine));
+    }
 
-        public override void StopUse()
-        {
-            StopCoroutine(nameof(BlockCoroutine));
-            protectionMultiplier = originalProtectionMultiplier;
-            isBeingUsed = false;
-            Hide();
-        }
+    private IEnumerator BlockCoroutine()
+    {
+        protectionMultiplier = 1.0f;
+        Debug.Log($"Shield: full protection enabled");
+        yield return new WaitForSeconds(imperviousToDamageTime);
+        Debug.Log($"Shield: full protection disabled");
+        protectionMultiplier = originalProtectionMultiplier;
+    }
 
-        private void Show()
-        {
-            spriteRenderer.enabled = true;
-        }
+    public override void StopUse()
+    {
+        StopCoroutine(nameof(BlockCoroutine));
+        protectionMultiplier = originalProtectionMultiplier;
+        isBeingUsed = false;
+        Hide();
+    }
 
-        private void Hide()
-        {
-            spriteRenderer.enabled = false;
-        }
+    private void Show()
+    {
+        spriteRenderer.enabled = true;
+    }
 
+    private void Hide()
+    {
+        spriteRenderer.enabled = false;
     }
 }

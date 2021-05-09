@@ -1,18 +1,14 @@
 ﻿using System;
-using Assets.Scripts.Game;
 using UnityEngine;
 using UnityEngine.Video;
 
-namespace UI
+public class VideoWatch : MonoBehaviour
 {
-    public class VideoWatch : MonoBehaviour
+    private void Start()
     {
-        private void Start()
-        {
-            var videoClip = Resources.Load<VideoClip>($"Video/{GameData.Data.videoToLoad}");
-            var videoPlayer = FindObjectOfType<VideoPlayer>();
-            videoPlayer.clip = videoClip;
-            videoPlayer.Play();
-        }
+        var videoClip = Resources.Load<VideoClip>($"Video/{GameData.Data.videoToLoad}");
+        var videoPlayer = FindObjectOfType<VideoPlayer>();
+        videoPlayer.clip = videoClip;
+        videoPlayer.Play();
     }
 }

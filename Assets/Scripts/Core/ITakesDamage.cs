@@ -1,7 +1,4 @@
-﻿namespace Core
+﻿public interface ITakesDamage
 {
-    public interface ITakesDamage
-    {
-        void TakeDamage(float damage);
-    }
+    void TakeDamage(float damage);
 }

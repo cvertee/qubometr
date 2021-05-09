@@ -1,9 +1,5 @@
-using Assets.Scripts.Core;
-using Game;
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Character : MonoBehaviour, IInteractable, ICharacter
 {
@@ -12,7 +8,7 @@ public class Character : MonoBehaviour, IInteractable, ICharacter
 
     public void GetName()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Interact()
@@ -35,6 +31,6 @@ public class Character : MonoBehaviour, IInteractable, ICharacter
 
     public void AddItem(Item item)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

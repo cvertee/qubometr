@@ -1,10 +1,6 @@
-using Assets.Scripts.Core;
-using Assets.Scripts.Game;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Core;
-using Game;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -246,7 +242,7 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
 
     public void GetName()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void AddItem(Item item)

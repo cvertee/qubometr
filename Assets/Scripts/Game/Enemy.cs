@@ -1,14 +1,9 @@
 using System;
-using Assets.Scripts.Game;
 using System.Collections;
-using System.Collections.Generic;
-using Core;
-using UnityEngine;
 using System.Linq;
-using Assets.Scripts.Core;
-using Game;
 using System.Text;
-using Random = System.Random;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
 {
@@ -308,7 +303,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         for (var i = 0; i < 15; i++)
         {
             // TODO: USE POOL!!!!!!!!!!!
-            Instantiate(Resources.Load("Prefabs/Coin"), transform.position + new Vector3(UnityEngine.Random.Range(0, 7), 0), Quaternion.identity);
+            Instantiate(Resources.Load("Prefabs/Coin"), transform.position + new Vector3(Random.Range(0, 7), 0), Quaternion.identity);
         }
         Destroy(gameObject);
     }

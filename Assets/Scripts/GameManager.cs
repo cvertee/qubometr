@@ -1,14 +1,8 @@
-using Assets.Scripts.Core;
-using Assets.Scripts.Game;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Game;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Assets;
-using Assets.Scripts.UI;
-using Save;
 
 public class GameManager : Singleton<GameManager>
 {

@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using Assets;
-using Assets.Scripts.Core;
-using Assets.Scripts.Game;
+
 using UnityEngine;
 using UnityEngine.UI;
 

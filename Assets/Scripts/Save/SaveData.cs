@@ -1,10 +1,5 @@
-using Assets.Scripts.Save;
-using Game;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Save;
-using UnityEngine;
 
 [Serializable]
 public class SaveData

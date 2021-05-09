@@ -3,56 +3,54 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI
+public class PrologueTitles : MonoBehaviour
 {
-    public class PrologueTitles : MonoBehaviour
+    public Text roleText;
+    public Text nameText;
+    public List<TitlesText> titlesTexts;
+
+    private void Start()
     {
-        public Text roleText;
-        public Text nameText;
-        public List<TitlesText> titlesTexts;
+        roleText.text = "";
+        nameText.text = "";
 
-        private void Start()
+        StartCoroutine(TitlesCoroutine());
+    }
+
+    private IEnumerator TitlesCoroutine()
+    {
+        var colorStep = 0.1f;
+        var colorWait = 0.1f;
+
+        foreach (var titlesText in titlesTexts)
         {
-            roleText.text = "";
-            nameText.text = "";
+            roleText.text = titlesText.role;
+            nameText.text = titlesText.titleName;
 
-            StartCoroutine(TitlesCoroutine());
-        }
-
-        private IEnumerator TitlesCoroutine()
-        {
-            var colorStep = 0.1f;
-            var colorWait = 0.1f;
-            
-            foreach (var titlesText in titlesTexts)
+            while (roleText.color.a <= 0.95f)
             {
-                roleText.text = titlesText.role;
-                nameText.text = titlesText.titleName;
-                
-                while (roleText.color.a <= 0.95f)
-                {
-                    var color = roleText.color;
-                    
-                    roleText.color = new Color(color.r, color.g, color.b, color.a += colorStep);
-                    nameText.color = new Color(color.r, color.g, color.b, color.a += colorStep);
-                    yield return new WaitForSeconds(colorWait);
-                }
-                
-                roleText.color = Color.white;
-                nameText.color = Color.white;
+                var color = roleText.color;
 
-                yield return new WaitForSeconds(2f);
-
-                while (roleText.color.a >= 0.01f)
-                {
-                    var color = roleText.color;
-                    
-                    roleText.color = new Color(color.r, color.g, color.b, color.a -= colorStep);
-                    nameText.color = new Color(color.r, color.g, color.b, color.a -= colorStep);
-                    yield return new WaitForSeconds(colorWait);
-                }
+                roleText.color = new Color(color.r, color.g, color.b, color.a += colorStep);
+                nameText.color = new Color(color.r, color.g, color.b, color.a += colorStep);
+                yield return new WaitForSeconds(colorWait);
             }
-            Destroy(gameObject);
+
+            roleText.color = Color.white;
+            nameText.color = Color.white;
+
+            yield return new WaitForSeconds(2f);
+
+            while (roleText.color.a >= 0.01f)
+            {
+                var color = roleText.color;
+
+                roleText.color = new Color(color.r, color.g, color.b, color.a -= colorStep);
+                nameText.color = new Color(color.r, color.g, color.b, color.a -= colorStep);
+                yield return new WaitForSeconds(colorWait);
+            }
         }
+
+        Destroy(gameObject);
     }
 }

@@ -1,28 +1,24 @@
-﻿using Game;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.UI.StoreComponents
+public class StoreItemInfo : MonoBehaviour
 {
-    public class StoreItemInfo : MonoBehaviour
+    public Image itemUiIcon;
+    public StoreBuyButton buyButton;
+    public Text itemNameText;
+    public Text itemPriceText;
+
+    public void Initialize(Item item)
     {
-        public Image itemUiIcon;
-        public StoreBuyButton buyButton;
-        public Text itemNameText;
-        public Text itemPriceText;
+        itemUiIcon.sprite = item.icon;
+        itemNameText.text = item.name; // TODO: use anything else
+        itemPriceText.text = item.price.ToString();
 
-        public void Initialize(Item item)
+        buyButton.onClick.AddListener(() =>
         {
-            itemUiIcon.sprite = item.icon;
-            itemNameText.text = item.name; // TODO: use anything else
-            itemPriceText.text = item.price.ToString();
-
-            buyButton.onClick.AddListener(() =>
-                {
-                    var player = FindObjectOfType<Player>();
-                    StoreManager.Instance.TryBuyItem(item, player);
-                });
-        }
+            var player = FindObjectOfType<Player>();
+            StoreManager.Instance.TryBuyItem(item, player);
+        });
     }
 }

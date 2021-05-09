@@ -4,46 +4,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Core;
 using UnityEngine;
 
-namespace Assets.Scripts.Game
+class ShootingEnemy : Enemy
 {
-    class ShootingEnemy : Enemy
+    public GameObject bullet;
+
+    private void Start()
     {
-        public GameObject bullet;
+    }
 
-        private void Start()
+    protected override void OnAttack()
+    {
+        if (!canAttack)
+            return;
+
+        var playerHit = Physics2D.Raycast(
+            transform.position,
+            moveDirection,
+            attackMaxDistance * attackMaxDistanceMultiplier,
+            LayerMask.GetMask("Player")
+        );
+        if (playerHit.collider == null) // means enemy lost the player
         {
-            
+            state = CharacterState.Follow;
         }
 
-        protected override void OnAttack()
-        {
-            if (!canAttack)
-                return;
-            
-            var playerHit = Physics2D.Raycast(
-                transform.position, 
-                moveDirection, 
-                attackMaxDistance * attackMaxDistanceMultiplier, 
-                LayerMask.GetMask("Player")
-            );
-            if (playerHit.collider == null) // means enemy lost the player
-            {
-                state = CharacterState.Follow;
-            }
-            
-            Instantiate(bullet, transform);
-            
-            StartCoroutine(ShootCooldown());
-        }
+        Instantiate(bullet, transform);
 
-        IEnumerator ShootCooldown()
-        {
-            canAttack = false;
-            yield return new WaitForSeconds(attackCooldownTime * attackCooldownTimeMultiplier);
-            canAttack = true;
-        }
+        StartCoroutine(ShootCooldown());
+    }
+
+    IEnumerator ShootCooldown()
+    {
+        canAttack = false;
+        yield return new WaitForSeconds(attackCooldownTime * attackCooldownTimeMultiplier);
+        canAttack = true;
     }
 }

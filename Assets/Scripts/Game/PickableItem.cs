@@ -1,47 +1,43 @@
-﻿using Assets.Scripts.Core;
-using Game;
-using System.Collections;
+﻿using System;
 using UnityEngine;
 
-namespace Assets.Scripts.Game
+public class PickableItem : MonoBehaviour, IInteractable
 {
-    public class PickableItem : MonoBehaviour, IInteractable
+    public string itemId;
+
+    private AudioClip pickupSound;
+
+    private void Start()
     {
-
-        public string itemId;
-
-        private AudioClip pickupSound;
-        
-        private void Start()
+        if (string.IsNullOrEmpty(itemId))
         {
-            if (string.IsNullOrEmpty(itemId))
-            {
-                Debug.LogWarning($"No itemId for pickable item! | {transform.position} | {name}");
-                Destroy(gameObject); // TODO: use placeholder?
-            }
-
-            var item = Resources.Load<Item>($"Prefabs/Items/{itemId}");
-            if (item == null)
-            {
-                Debug.LogWarning($"Pickable item with {itemId} id does not exist or it's a bug");
-                Destroy(gameObject);
-            }
-
-            GetComponent<SpriteRenderer>().sprite = item.icon;
-
-            pickupSound = item.pickupSound;
+            Debug.LogWarning($"No itemId for pickable item! | {transform.position} | {name}");
+            Destroy(gameObject); // TODO: use placeholder?
         }
-        public void Interact()
+
+        var item = Resources.Load<Item>($"Prefabs/Items/{itemId}");
+        if (item == null)
         {
-            GameManager.Instance.AddItemById(itemId, FindObjectOfType<Player>()); // TODO: replace find object with somethign else
-            AudioManager.Instance.PlayClip(pickupSound);
-            // TODO: play pickup sound
+            Debug.LogWarning($"Pickable item with {itemId} id does not exist or it's a bug");
             Destroy(gameObject);
         }
 
-        public void StopInteract()
-        {
-            throw new System.NotImplementedException();
-        }
+        GetComponent<SpriteRenderer>().sprite = item.icon;
+
+        pickupSound = item.pickupSound;
+    }
+
+    public void Interact()
+    {
+        GameManager.Instance.AddItemById(itemId,
+            FindObjectOfType<Player>()); // TODO: replace find object with somethign else
+        AudioManager.Instance.PlayClip(pickupSound);
+        // TODO: play pickup sound
+        Destroy(gameObject);
+    }
+
+    public void StopInteract()
+    {
+        throw new NotImplementedException();
     }
 }
