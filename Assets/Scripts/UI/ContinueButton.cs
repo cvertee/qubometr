@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class ContinueButton : MonoBehaviour
 {
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         if (SaveSystem.GetSaveData() == null)
         {
@@ -17,7 +17,7 @@ public class ContinueButton : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
     }
 }

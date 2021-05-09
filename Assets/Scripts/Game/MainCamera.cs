@@ -9,13 +9,13 @@ public class MainCamera : MonoBehaviour
     private bool locked = false;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         GameEvents.onPlayerDeath.AddListener(() => Lock());
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (locked)
             return;

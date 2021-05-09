@@ -7,17 +7,14 @@ public class PlayerHealthUi : MonoBehaviour
 {
     private Slider slider;
 
-    [SerializeField]
-    private PlayerHealth playerHealth;
-
     // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
         slider = GetComponent<Slider>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         slider.value = GameData.Data.hp;
     }

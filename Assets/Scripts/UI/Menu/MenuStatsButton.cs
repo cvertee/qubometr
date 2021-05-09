@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class MenuStatsButton : MonoBehaviour
 {
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         GetComponent<Button>().onClick.AddListener(() => { StatsUI.Instance.Show(); });
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
     }
 }

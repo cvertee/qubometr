@@ -11,15 +11,9 @@ public class StatsUI : Singleton<StatsUI>, IPopupUIElement
     public Text statsText;
     
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         Close();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void Show()

@@ -5,7 +5,7 @@ public class MenuUI : Singleton<MenuUI>, IPopupUIElement
 {
     public GameObject menuContainer;
 
-    void Awake()
+    private void Awake()
     {
         Close();
     }

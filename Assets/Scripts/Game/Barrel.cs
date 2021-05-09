@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Barrel : MonoBehaviour, ITakesDamage
 {
-    [SerializeField] int coinAmount = 15;
-    [SerializeField] float hp;
+    [SerializeField] private int coinAmount = 15;
+    [SerializeField] private float hp;
 
     public void TakeDamage(float damage)
     {

@@ -41,7 +41,7 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
     [SerializeField] private float overlapCircleRadius;
     [SerializeField] private Vector3 overlapCircleOffset;
 
-    void Awake()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
@@ -99,7 +99,7 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
              secondaryWeapon?.StopUse();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (currentState == State.Locked)
             return;

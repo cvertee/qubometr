@@ -5,7 +5,7 @@ public class AnimatedImage : MonoBehaviour
     private Animator animator;
 
     // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
 

@@ -5,7 +5,7 @@ using UnityEngine.Video;
 public class IntroBehaviour : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         FindObjectOfType<VideoPlayer>().loopPointReached += IntroBehaviour_loopPointReached;
     }
@@ -16,7 +16,7 @@ public class IntroBehaviour : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {

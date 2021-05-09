@@ -35,7 +35,7 @@ class ShootingEnemy : Enemy
         StartCoroutine(ShootCooldown());
     }
 
-    IEnumerator ShootCooldown()
+    private IEnumerator ShootCooldown()
     {
         canAttack = false;
         yield return new WaitForSeconds(attackCooldownTime * attackCooldownTimeMultiplier);
