@@ -11,16 +11,19 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
     private BoxCollider2D collider;
     
     public float hp = 10;
-    private float currentMoveSpeed = 0.0f;
+    
     public float moveSpeed = 10.0f;
     private float moveSpeedMultiplier = 1.0f;
-    // TODO: decide if should use public or [...] protected 
+    private float currentMoveSpeed = 0.0f;
+    
     public float attackCooldownTime = 0.5f;
     public float attackCooldownTimeMultiplier = 1.0f;
     public float attackMinDistance = 3.0f;
     public float attackMaxDistance = 3.0f;
     public float attackMaxDistanceMultiplier = 1.0f;
+    
     public float collisionDamageCooldownTime = 1.0f; // Time in which box collider of enemy is disabled
+    
     public float jumpForce = 40.0f;
     
     public Vector3 wallDetectionBoxSize;
@@ -29,20 +32,19 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
     [SerializeField] private float overlapCircleRadius;
     [SerializeField] private Vector3 overlapCircleOffset;
     
-    // TODO: jump multiplier?
-    protected Vector3 moveDirection = Vector3.right;
-    private float aiTickTime = 0.1f;
+    private Vector3 moveDirection = Vector3.right;
+    
+    private const float AITickTime = 0.1f;
     [SerializeField] private float sightDistance = 10.0f;
-    private float sightDistanceFollow;
-    private float sightDistanceForWall = 2.0f;
-    private float sightDistanceForPlayerTooNear = 0.4f;
-    //private float sightDistanceFollowMultiplier = 1.5f;
-    protected CharacterState state = CharacterState.Idle;
-    protected bool canAttack = true;
+    private const float SightDistanceFollow = SightDistanceForWall * 10.0f;
+    private const float SightDistanceForWall = 2.0f;
+    private const float SightDistanceForPlayerTooNear = 0.4f;
+
+    private CharacterState state = CharacterState.Idle;
+    private bool canAttack = true;
     private bool grounded = false;
     private Item usableItem;
     
-
     private void Awake()
     {
         if (GameData.Data.killedEnemies.Any(x => x == name))
@@ -61,7 +63,6 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
 
     private void Start()
     {
-        sightDistanceFollow = sightDistance * 10.0f;
         StartCoroutine(AIUpdate());
     }
 
@@ -100,7 +101,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         while (true)
         {
             AIStateCheck();
-            yield return new WaitForSecondsRealtime(aiTickTime);
+            yield return new WaitForSecondsRealtime(AITickTime);
         }
     }
     private void AIStateCheck()
@@ -126,29 +127,14 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
     {
         if (!collider.enabled)
             return;
-        
-        // TODO: false until `double collision` (sword AND enemy) is fixed or replaced with something else
-        if (false)
-        {
-            collision.GetComponent<ITakesDamage>()
-                .TakeDamage(10.0f); // TODO: use variable
-
-            //StartCoroutine(CollisionDamageCooldown());
-        }
     }
 
     private void OnDrawGizmos()
     {
         var position = transform.position;
         
-        //Gizmos.DrawRay(transform.position, Vector3.right);
         Gizmos.DrawLine(position, position + new Vector3(sightDistance * moveDirection.x, 0));
         Gizmos.DrawLine(position, position + new Vector3(sightDistance * -moveDirection.x, 0));
-        
-        if (grounded)
-        {
-            Debug.DrawRay(transform.position, new Vector3(0f, 1f), Color.cyan);
-        }
     }
 
     private void OnDrawGizmosSelected()
@@ -170,12 +156,13 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         GUI.Label(new Rect(pos.x, pos.y, 400, 400), sb.ToString());
     }
 
-    // Stands and waits for player at two sides
+    /// <summary>
+    /// Stands and waits for player at two sides
+    /// </summary>
     protected virtual void OnIdle()
     {
         currentMoveSpeed = 0.0f;
-        //rb.velocity = Vector2.zero; // Stop move
-        
+
         var playerHitRight = Physics2D.Raycast(
             transform.position, 
             Vector2.right, 
@@ -195,6 +182,10 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
             Debug.Log($"Player detected by {name}. Starting to follow him");
         }
     }
+    
+    /// <summary>
+    /// Follows player
+    /// </summary>
     protected virtual void OnFollow()
     {
         currentMoveSpeed = moveSpeed;
@@ -203,13 +194,13 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         var playerRightCast = Physics2D.Raycast(
             position, 
             Vector2.right,
-            sightDistanceFollow, 
+            SightDistanceFollow, 
             LayerMask.GetMask("Player")
         );
         var playerLeftCast = Physics2D.Raycast(
             position, 
             Vector2.left,
-            sightDistanceFollow, 
+            SightDistanceFollow, 
             LayerMask.GetMask("Player")
         );
         var playerNearCast = Physics2D.Raycast(
@@ -223,7 +214,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
             wallDetectionBoxSize,
             0f,
             moveDirection,
-            sightDistanceForWall,
+            SightDistanceForWall,
             LayerMask.GetMask("Floor")
         );
 
@@ -245,6 +236,9 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         }
     }
 
+    /// <summary>
+    /// Attacks player
+    /// </summary>
     protected virtual void OnAttack()
     {
         if (canAttack && usableItem != null)
@@ -264,13 +258,13 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         var playerTooNearLeftCast = Physics2D.Raycast(
             position,
             Vector2.left,
-            sightDistanceForPlayerTooNear,
+            SightDistanceForPlayerTooNear,
             LayerMask.GetMask("Player")
         );
         var playerTooNearRightCast = Physics2D.Raycast(
             position,
             Vector2.left,
-            sightDistanceForPlayerTooNear,
+            SightDistanceForPlayerTooNear,
             LayerMask.GetMask("Player")
         );
 
@@ -280,6 +274,9 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         }
     }
 
+    /// <summary>
+    /// Blocks ability to attack for some time
+    /// </summary>
     private IEnumerator AttackCooldown()
     {
         canAttack = false;
@@ -294,7 +291,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         hp -= damage; //TODO: use damage var
     }
 
-    void Die()
+    private void Die()
     {
         Debug.Log($"Writing {name} to GameData.killedEnemies");
         GameData.Data.killedEnemies.Add(name);
@@ -310,7 +307,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
     
     private void Jump()
     {
-        rb.AddForce(new Vector2(0, jumpForce ), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
     }
 
     private IEnumerator CollisionDamageCooldown()
@@ -322,14 +319,8 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         collider.enabled = true;
     }
 
-    public void GetName()
-    {
-        throw new NotImplementedException();
-    }
-
     public void AddItem(Item item)
     {
         usableItem = Instantiate(item, transform);
-        
     }
 }
