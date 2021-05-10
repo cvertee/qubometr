@@ -21,7 +21,7 @@ public static class SaveSystem
         var playerPos = new SerializableVector3(player.transform.position);
         GameData.Data.playerPosition = playerPos;
 
-        var json = JsonConvert.SerializeObject(GameData.Data);
+        var json = JsonUtility.ToJson(GameData.Data);
         Debug.Log($"Saving json to {SAVE_FILE} | {json}");
 
         if (!File.Exists(SAVE_FILE))
@@ -53,6 +53,6 @@ public static class SaveSystem
             return null;
 
         var json = File.ReadAllText(SAVE_FILE);
-        return JsonConvert.DeserializeObject<SaveData>(json);
+        return JsonUtility.FromJson<SaveData>(json);
     }
 }
