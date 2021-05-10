@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class PickableItem : MonoBehaviour, IInteractable
+public class PickableItem : PickableItemBase
 {
     public string itemId;
 
@@ -27,17 +27,12 @@ public class PickableItem : MonoBehaviour, IInteractable
         pickupSound = item.pickupSound;
     }
 
-    public void Interact()
+    protected override void OnPickup()
     {
         GameManager.Instance.AddItemById(itemId,
             FindObjectOfType<Player>()); // TODO: replace find object with somethign else
         AudioManager.Instance.PlayClip(pickupSound);
         // TODO: play pickup sound
-        Destroy(gameObject);
-    }
-
-    public void StopInteract()
-    {
-        throw new NotImplementedException();
+        DestroySave();
     }
 }

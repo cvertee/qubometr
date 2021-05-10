@@ -1,20 +1,17 @@
 using System.Collections;
 using UnityEngine;
 
-public class HealthKit : MonoBehaviour
+public class HealthKit : PickableItemBase
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnPickup()
     {
-        if (collision.CompareTag("Player"))
-        {
-            if (GameData.Data.hp >= 50) // TODO: fix
-                return;
+        if (GameData.Data.hp >= 50) // TODO: fix
+            return;
 
-            GetComponent<SpriteRenderer>().enabled = false; // hide
-            GetComponent<BoxCollider2D>().enabled = false; // to prevent several sounds playing
-            AudioManager.Instance.PlaySound("estus");
-            StartCoroutine(HealCoroutine());
-        }
+        GetComponent<SpriteRenderer>().enabled = false; // hide
+        GetComponent<BoxCollider2D>().enabled = false; // to prevent several sounds playing
+        AudioManager.Instance.PlaySound("estus");
+        StartCoroutine(HealCoroutine());
     }
 
     private IEnumerator HealCoroutine()
@@ -23,6 +20,6 @@ public class HealthKit : MonoBehaviour
         GameData.Data.hp += 10;
         GameData.Data.healthKitsUsed += 1;
         GameEvents.onHealthRestored.Invoke();
-        Destroy(gameObject);
+        DestroySave();
     }
 }

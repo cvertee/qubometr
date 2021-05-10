@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Barrel : MonoBehaviour, ITakesDamage
+public class Barrel : DestroyerBase, ITakesDamage
 {
     [SerializeField] private int coinAmount = 15;
     [SerializeField] private float hp;
@@ -19,7 +19,7 @@ public class Barrel : MonoBehaviour, ITakesDamage
                     transform.position + new Vector3(Random.Range(0, 7), 0), Quaternion.identity);
             }
 
-            Destroy(gameObject);
+            DestroySave();
             return;
         }
 
