@@ -1,4 +1,5 @@
-﻿using UnityEngine.SceneManagement;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public static class GameData
 {
@@ -22,5 +23,11 @@ public static class GameData
         }
 
         set { data = value; }
+    }
+
+    public static void AddKey(Key key)
+    {
+        Debug.Log($"Key {key.id} was added");
+        Data.pickedUpKeys.Add(key);
     }
 }

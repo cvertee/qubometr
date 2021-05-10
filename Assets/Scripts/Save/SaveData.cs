@@ -11,6 +11,7 @@ public class SaveData
     public List<string> killedEnemies = new List<string>();
     public List<string> playerItemIds = new List<string>();
     public SerializableVector3 playerPosition;
+    public List<Key> pickedUpKeys = new List<Key>();
     
     // 
     // STATS
