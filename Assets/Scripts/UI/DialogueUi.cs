@@ -16,6 +16,12 @@ public class DialogueUi : MonoBehaviour
     {
         foreach(var text in texts)
         {
+            if (text.StartsWith("!"))
+            {
+                CommandExecutor.Instance.ExecuteRawCommand(text);
+                continue;
+            }
+            
             textObject.text = text;
             yield return new WaitForSeconds(2.0f);
         }
