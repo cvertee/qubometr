@@ -7,12 +7,6 @@ public class KeyPickup : PickableItemBase
 {
     public Key key;
 
-    // private void Awake()
-    // {
-    //     if (GameData.Data.pickedUpKeys.Any(x => x.id == key.id))
-    //         Destroy(gameObject);
-    // }
-    
     protected override void OnPickup()
     {
         GameData.AddKey(key);
