@@ -27,7 +27,7 @@ public static class GameData
 
     public static void AddKey(Key key)
     {
-        Debug.Log($"Key {key.id} was added");
+        Debug.Log($"Key {key.name} was added");
         Data.pickedUpKeys.Add(key);
     }
 }
