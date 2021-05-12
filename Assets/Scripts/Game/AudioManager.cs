@@ -3,13 +3,17 @@
 public class AudioManager : Singleton<AudioManager>
 {
     private AudioSource audioSource;
+    private AudioSource musicAudioSource;
 
     private void Awake()
     {
         var newAudioSource = new GameObject();
+        var newMusicAudioSource = new GameObject();
         newAudioSource.transform.SetParent(transform);
+        newMusicAudioSource.transform.SetParent(transform);
 
         audioSource = newAudioSource.AddComponent<AudioSource>();
+        musicAudioSource = newMusicAudioSource.AddComponent<AudioSource>();
     }
 
     private void Start()
@@ -41,5 +45,17 @@ public class AudioManager : Singleton<AudioManager>
     {
         audioSource.clip = clip;
         audioSource.Play();
+    }
+
+    public void PlayMusic(string name)
+    {
+        
+    }
+    
+    public void PlayMusic(AudioClip clip, bool loop = false)
+    {
+        musicAudioSource.clip = clip;
+        musicAudioSource.loop = loop;
+        musicAudioSource.Play();
     }
 }
