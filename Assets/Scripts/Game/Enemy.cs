@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
     private BoxCollider2D collider;
     
     public float hp = 10;
+
+    public bool playsAlertSound = true;
     
     public float moveSpeed = 10.0f;
     private float moveSpeedMultiplier = 1.0f;
@@ -32,11 +34,11 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
     [SerializeField] private float overlapCircleRadius;
     [SerializeField] private Vector3 overlapCircleOffset;
     
-    private Vector3 moveDirection = Vector3.right;
+    public Vector3 moveDirection = Vector3.right;
     
     private const float AITickTime = 0.1f;
     [SerializeField] private float sightDistance = 10.0f;
-    private const float SightDistanceFollow = SightDistanceForWall * 10.0f;
+    private float sightDistanceFollow;
     private const float SightDistanceForWall = 2.0f;
     private const float SightDistanceForPlayerTooNear = 0.4f;
 
@@ -47,6 +49,8 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
     
     private void Awake()
     {
+        sightDistanceFollow = sightDistance * 5.0f;
+        
         if (GameData.Data.killedEnemies.Any(x => x == name))
         {
             Destroy(gameObject);
@@ -178,7 +182,9 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         if (playerHitRight.collider != null || playerHitLeft.collider != null)
         {
             state = CharacterState.Follow;
-            GameEvents.onEnemyAlert.Invoke();
+            
+            if (playsAlertSound)
+                GameEvents.onEnemyAlert.Invoke();
             Debug.Log($"Player detected by {name}. Starting to follow him");
         }
     }
@@ -194,13 +200,13 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         var playerRightCast = Physics2D.Raycast(
             position, 
             Vector2.right,
-            SightDistanceFollow, 
+            sightDistanceFollow, 
             LayerMask.GetMask("Player")
         );
         var playerLeftCast = Physics2D.Raycast(
             position, 
             Vector2.left,
-            SightDistanceFollow, 
+            sightDistanceFollow, 
             LayerMask.GetMask("Player")
         );
         var playerNearCast = Physics2D.Raycast(
