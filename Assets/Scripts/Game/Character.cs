@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Character : MonoBehaviour, IInteractable, ICharacter
 {
-    public string dialogueId;
     public DialogueSO dialogue;
     public GameObject dialogueBox;
 
