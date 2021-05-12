@@ -28,14 +28,11 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void StartDialogue(string dialogueId, GameObject container)
+    public void StartDialogue(DialogueSO dialogueSo, GameObject container)
     {
-        Debug.Log($"Starting dialogue [{dialogueId}]");
-        var lines = Resources.Load<TextAsset>($"Dialogues/{dialogueId}")
-            .text
-            .Split('\n');
+        Debug.Log($"Starting dialogue [{dialogueSo.name}]");
 
-        FindObjectOfType<DialogueUi>().ShowDialogueTexts(lines, container);
+        FindObjectOfType<DialogueUi>().ShowDialogueTexts(dialogueSo.lines, container);
     }
 
     public void StopCurrentDialogue()

@@ -4,6 +4,7 @@ using UnityEngine;
 public class Character : MonoBehaviour, IInteractable, ICharacter
 {
     public string dialogueId;
+    public DialogueSO dialogue;
     public GameObject dialogueBox;
 
     public void GetName()
@@ -13,7 +14,7 @@ public class Character : MonoBehaviour, IInteractable, ICharacter
 
     public void Interact()
     {
-        StartDialogue(dialogueId);
+        StartDialogue(dialogue);
     }
 
     public void StopInteract()
@@ -21,12 +22,9 @@ public class Character : MonoBehaviour, IInteractable, ICharacter
         GameManager.Instance.StopCurrentDialogue();
     }
 
-    public void StartDialogue(string id)
+    public void StartDialogue(DialogueSO dialogueSo)
     {
-        if (!string.IsNullOrEmpty(id))
-        {
-            GameManager.Instance.StartDialogue(id, dialogueBox);
-        }
+        GameManager.Instance.StartDialogue(dialogueSo, dialogueBox);
     }
 
     public void AddItem(Item item)

@@ -762,7 +762,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3275476814239191988, guid: 45678d5c4a0153b4a8dc7ae9ca3e81fd, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4109794337459880926, guid: 45678d5c4a0153b4a8dc7ae9ca3e81fd, type: 3}
       propertyPath: m_AnchorMax.y
@@ -795,6 +795,10 @@ PrefabInstance:
     - target: {fileID: 4181349664514911462, guid: 45678d5c4a0153b4a8dc7ae9ca3e81fd, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4394296776598934530, guid: 45678d5c4a0153b4a8dc7ae9ca3e81fd, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4570360542435080754, guid: 45678d5c4a0153b4a8dc7ae9ca3e81fd, type: 3}
       propertyPath: m_AnchorMax.y
@@ -7974,6 +7978,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1982900434}
     m_Modifications:
     - target: {fileID: 2842565204545019168, guid: 34e6fcc366150234abafa31f6b539388, type: 3}
+      propertyPath: dialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: 2cbef7bdf3c43224e8e2025b4c7e39c7, type: 2}
+    - target: {fileID: 2842565204545019168, guid: 34e6fcc366150234abafa31f6b539388, type: 3}
       propertyPath: dialogueId
       value: estus2
       objectReference: {fileID: 0}
@@ -8602,6 +8610,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1982900434}
     m_Modifications:
+    - target: {fileID: 2842565204545019168, guid: 34e6fcc366150234abafa31f6b539388, type: 3}
+      propertyPath: dialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: 8758a583073c53441a33676e66acfb76, type: 2}
     - target: {fileID: 2842565204545019168, guid: 34e6fcc366150234abafa31f6b539388, type: 3}
       propertyPath: dialogueId
       value: guide1
@@ -9732,6 +9744,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1982900434}
     m_Modifications:
+    - target: {fileID: 2842565204545019168, guid: 34e6fcc366150234abafa31f6b539388, type: 3}
+      propertyPath: dialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: 3213b3cba288b234e9dded329f93c1b0, type: 2}
     - target: {fileID: 2842565204545019168, guid: 34e6fcc366150234abafa31f6b539388, type: 3}
       propertyPath: dialogueId
       value: help
