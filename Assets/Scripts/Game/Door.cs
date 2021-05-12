@@ -54,6 +54,7 @@ public class Door : MonoBehaviour, IInteractable
             
             case DoorType.LoadsScene:
                 SceneManager.LoadScene(sceneName);
+                GameData.Data.playerPosition = null;
                 break;
             
             case DoorType.None:
