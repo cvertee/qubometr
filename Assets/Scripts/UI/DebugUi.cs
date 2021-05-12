@@ -51,6 +51,14 @@ public class DebugUi : MonoBehaviour
         {
             GameManager.Instance.AddItemById("Knife", FindObjectOfType<Player>());
         }
+        if (GUILayout.Button("Give sword"))
+        {
+            GameManager.Instance.AddItemById("Sword", FindObjectOfType<Player>());
+        }
+        if (GUILayout.Button("Give shield"))
+        {
+            GameManager.Instance.AddItemById("ShieldPlaceholder", FindObjectOfType<Player>());
+        }
 
         if (GUILayout.Button("Open example store"))
         {
