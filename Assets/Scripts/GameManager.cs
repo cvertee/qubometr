@@ -66,4 +66,13 @@ public class GameManager : Singleton<GameManager>
     {
         return FindObjectOfType<Player>();
     }
+
+    public void StartBossFight(Enemy boss)
+    {
+        var bossUI = FindObjectOfType<BossUI>();
+        var bossInfo = boss.GetComponent<Boss>().bossInfo;
+        bossUI.Initialize(bossInfo, boss);
+        
+        AudioManager.Instance.PlayMusic(bossInfo.music);
+    }
 }
