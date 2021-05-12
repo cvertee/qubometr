@@ -5,13 +5,21 @@ public class MainCamera : MonoBehaviour
     public Transform target;
     public Vector3 offset = new Vector3(0f, 0f, -10f);
 
+    private Camera camComponent;
     private Vector3 velocity = Vector3.zero;
     private bool locked = false;
+    private float originalSize;
+    private float size;
+    private bool sizeMustBeChanged = false;
 
     // Start is called before the first frame update
     private void Start()
     {
+        camComponent = GetComponent<Camera>();
+        originalSize = camComponent.orthographicSize;
         GameEvents.onPlayerDeath.AddListener(() => Lock());
+        GameEvents.onCameraAreaEnter.AddListener(SetSize);
+        GameEvents.onCameraAreaExit.AddListener(ResetSize);
     }
 
     // Update is called once per frame
@@ -19,6 +27,11 @@ public class MainCamera : MonoBehaviour
     {
         if (locked)
             return;
+
+        if (sizeMustBeChanged)
+            camComponent.orthographicSize = Mathf.Lerp(camComponent.orthographicSize, size, 0.1f);
+        else
+            camComponent.orthographicSize = Mathf.Lerp(camComponent.orthographicSize, originalSize, 0.1f);
 
         transform.position = Vector3.Lerp(transform.position, target.position, 0.125f);
         transform.position += offset;
@@ -32,5 +45,16 @@ public class MainCamera : MonoBehaviour
     public void Unlock()
     {
         locked = false;
+    }
+
+    private void SetSize(float size)
+    {
+        this.size = size;
+        sizeMustBeChanged = true;
+    }
+
+    private void ResetSize()
+    {
+        sizeMustBeChanged = false;
     }
 }
