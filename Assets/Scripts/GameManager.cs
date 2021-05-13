@@ -14,6 +14,8 @@ public class GameManager : Singleton<GameManager>
 
         GameEvents.onEnemyAlert.AddListener(() => AudioManager.Instance.PlaySound("alert"));
         GameEvents.onPlayerDeath.AddListener(() => SaveSystem.Load());
+
+        SceneManager.sceneLoaded += (scene, mode) => GameEvents.onLocationStart.Invoke();
     }
 
     // Update is called once per frame

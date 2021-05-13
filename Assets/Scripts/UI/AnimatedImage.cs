@@ -12,5 +12,7 @@ public class AnimatedImage : MonoBehaviour
         GameEvents.onHealthRestored.AddListener(() => animator.Play("HealthRestored"));
         GameEvents.onPlayerReceivedDamage.AddListener(() => animator.Play("DamageReceived"));
         GameEvents.onCoinPickup.AddListener(() => animator.Play("CoinPickup"));
+        GameEvents.onLocationStart.AddListener(() => animator.Play("BlackFadeOut"));
+        GameEvents.onLocationChangeRequested.AddListener(() => animator.Play("BlackFadeIn"));
     }
 }

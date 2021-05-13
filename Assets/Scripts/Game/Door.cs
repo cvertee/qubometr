@@ -53,8 +53,9 @@ public class Door : MonoBehaviour, IInteractable
                 break;
             
             case DoorType.LoadsScene:
-                SceneManager.LoadScene(sceneName);
+                GameEvents.onLocationChangeRequested.Invoke();
                 GameData.Data.playerPosition = null;
+                StartCoroutine(LoadSceneTimeout());
                 break;
             
             case DoorType.None:
@@ -64,6 +65,12 @@ public class Door : MonoBehaviour, IInteractable
             default:
                 break;
         }
+    }
+
+    private IEnumerator LoadSceneTimeout()
+    {
+        yield return new WaitForSeconds(0.25f);
+        SceneManager.LoadScene(sceneName);
     }
 
     public void StopInteract()
