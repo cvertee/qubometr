@@ -13,7 +13,7 @@ public class DestroyerBase : MonoBehaviour
         }
     }
     
-    protected void DestroySave()
+    public void DestroySave()
     {
         GameData.Data.destroyedItems.Add(name);
         Destroy(gameObject);
