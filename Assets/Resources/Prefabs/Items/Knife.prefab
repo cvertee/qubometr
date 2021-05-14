@@ -151,6 +151,6 @@ MonoBehaviour:
   pickupSound: {fileID: 8300000, guid: df0d92e7a137aaf4db9c2709c1e049dd, type: 3}
   isBeingUsed: 0
   protectionMultiplier: 0
-  damage: 5
+  damage: 10
   attackNames:
   - Attack
