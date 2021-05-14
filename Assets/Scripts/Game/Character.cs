@@ -6,9 +6,10 @@ public class Character : MonoBehaviour, IInteractable, ICharacter
     public DialogueSO dialogue;
     public GameObject dialogueBox;
 
-    public void GetName()
+    private void Start()
     {
-        throw new NotImplementedException();
+        if (dialogue == null)
+            Debug.Log($"Character: no dialogue", this);
     }
 
     public void Interact()
