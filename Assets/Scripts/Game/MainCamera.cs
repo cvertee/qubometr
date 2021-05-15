@@ -25,7 +25,7 @@ public class MainCamera : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if (locked)
+        if (locked || target == null)
             return;
 
         if (sizeMustBeChanged)
