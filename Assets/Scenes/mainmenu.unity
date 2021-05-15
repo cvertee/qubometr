@@ -250,7 +250,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 33
+    m_FontSize: 57
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3
@@ -261,8 +261,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0421\u042E\u0416\u0415\u0422\u041D\u042B\u0419 \u0418\u041C\u041C\u0415\u0420\u0421\u0418\u0412\u041D\u042B\u0419
-    \u041F\u041B\u0410\u0422\u0424\u041E\u0420\u041C\u0415\u0420"
+  m_Text: Geometry Gear Solid
 --- !u!222 &267052657
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1157,7 +1156,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1319647837
 RectTransform:
   m_ObjectHideFlags: 0
