@@ -77,4 +77,9 @@ public class GameManager : Singleton<GameManager>
         
         AudioManager.Instance.PlayMusic(bossInfo.music);
     }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }
