@@ -5,6 +5,8 @@ public class HealthKit : PickableItemBase
 {
     protected override void OnPickup()
     {
+        if (GameData.Data.hp >= 50) // TODO: fix
+            return;
 
         GetComponent<SpriteRenderer>().enabled = false; // hide
         GetComponent<BoxCollider2D>().enabled = false; // to prevent several sounds playing
