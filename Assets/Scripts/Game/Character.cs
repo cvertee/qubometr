@@ -27,6 +27,11 @@ public class Character : MonoBehaviour, IInteractable, ICharacter
         GameManager.Instance.StartDialogue(dialogueSo, dialogueBox);
     }
 
+    public void SetDialogue(DialogueSO dialogueSo)
+    {
+        dialogue = dialogueSo;
+    }
+
     public void AddItem(Item item)
     {
         throw new NotImplementedException();
