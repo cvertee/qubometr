@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3658646083811505391}
   - component: {fileID: 3658646083811505390}
   - component: {fileID: 3658646083811505385}
-  - component: {fileID: 3658646083811505389}
+  - component: {fileID: 7129753167619185619}
   - component: {fileID: 3658646083811505388}
   - component: {fileID: 4059883774087484145}
   - component: {fileID: 4353173840183641963}
@@ -102,8 +102,8 @@ MonoBehaviour:
   slashSound: {fileID: 8300000, guid: ae2bd1062a3af1c40844eddd438b08d8, type: 3}
   overlapCircleRadius: 1.31
   overlapCircleOffset: {x: 0.11, y: -3.3, z: 0}
---- !u!61 &3658646083811505389
-BoxCollider2D:
+--- !u!70 &7129753167619185619
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -115,19 +115,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.89, y: 6.68}
-    newSize: {x: 3.89, y: 6.68}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 3.89, y: 6.68}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.09091067, y: -0.06611252}
+  m_Size: {x: 2.6981788, y: 6.7434616}
+  m_Direction: 0
 --- !u!50 &3658646083811505388
 Rigidbody2D:
   serializedVersion: 4
