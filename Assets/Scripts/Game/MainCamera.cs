@@ -4,6 +4,7 @@ public class MainCamera : MonoBehaviour
 {
     public Transform target;
     public Vector3 offset = new Vector3(0f, 0f, -10f);
+    public CameraInfoSO cameraInfo;
 
     private Camera camComponent;
     private Vector3 velocity = Vector3.zero;
@@ -34,7 +35,7 @@ public class MainCamera : MonoBehaviour
             camComponent.orthographicSize = Mathf.Lerp(camComponent.orthographicSize, originalSize, 0.1f);
 
         transform.position = Vector3.Lerp(transform.position, target.position, 0.125f);
-        transform.position += offset;
+        transform.position += cameraInfo.offset;
     }
 
     public void Lock()
