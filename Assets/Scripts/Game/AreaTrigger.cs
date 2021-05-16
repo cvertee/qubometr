@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class AreaTrigger : MonoBehaviour
+public class AreaTrigger : DestroyerBase
 {
     public UnityEvent onEnter;
 
