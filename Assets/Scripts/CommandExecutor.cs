@@ -29,6 +29,12 @@ public class CommandExecutor : Singleton<CommandExecutor>
                 GameData.AddKey(key);
                 AudioManager.Instance.PlaySound("keyPickup");
                 break;
+            case "!giveItem":
+                var itemName = args[0];
+                var player = FindObjectOfType<Player>(); // TODO: no searching for player
+                GameManager.Instance.AddItemById(itemName, player);
+                AudioManager.Instance.PlaySound("keyPickup"); // TODO: replace
+                break;
         }
     }
 }
