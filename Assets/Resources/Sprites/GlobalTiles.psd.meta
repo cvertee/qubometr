@@ -14,6 +14,12 @@ TextureImporter:
   - first:
       213: -2657529041163725226
     second: GlobalTiles_3
+  - first:
+      213: -1511927791366359344
+    second: GlobalTiles_4
+  - first:
+      213: 8886420918657824877
+    second: GlobalTiles_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -182,6 +188,48 @@ TextureImporter:
       bones: []
       spriteID: 656d621da6f8e1bd0800000000000000
       internalID: -2657529041163725226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d6319d2fad840be0800000000000000
+      internalID: -1511927791366359344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6833354eb8e25b70800000000000000
+      internalID: 8886420918657824877
       vertices: []
       indices: 
       edges: []
