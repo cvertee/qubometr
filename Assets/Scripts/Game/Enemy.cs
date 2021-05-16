@@ -3,12 +3,15 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
 {
     private Rigidbody2D rb;
     private BoxCollider2D collider;
+
+    public UnityEvent onDeath;
     
     public float hp = 10;
 
@@ -304,6 +307,8 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         Debug.Log($"Writing {name} to GameData.killedEnemies");
         GameData.Data.killedEnemies.Add(name);
         GameData.Data.killedEnemiesCount += 1;
+        
+        onDeath?.Invoke();
 
         for (var i = 0; i < 15; i++)
         {
