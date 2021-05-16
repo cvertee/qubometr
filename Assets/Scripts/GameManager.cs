@@ -82,4 +82,9 @@ public class GameManager : Singleton<GameManager>
     {
         Application.Quit();
     }
+
+    public void AddAchievement(AchievementSO achievement)
+    {
+        Debug.Log($"Got achievement {achievement.displayName}");
+    }
 }
