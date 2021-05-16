@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   offset: {x: 0, y: 0, z: -10}
+  cameraInfo: {fileID: 11400000, guid: efe12470446894f42b51ed46eb0a4360, type: 2}
 --- !u!95 &7393694883661560824
 Animator:
   serializedVersion: 3

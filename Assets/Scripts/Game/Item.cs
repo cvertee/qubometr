@@ -19,6 +19,7 @@ public class Item : MonoBehaviour
     public Player owner; // TODO: possibly character or IItemHolder etc
     public int price;
     public AudioClip pickupSound;
+    public string displayName = "NO_NAME";
 
     public bool isBeingUsed = false;
     public float protectionMultiplier = 0.0f;
