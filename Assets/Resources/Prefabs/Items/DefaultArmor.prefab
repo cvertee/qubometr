@@ -122,5 +122,6 @@ MonoBehaviour:
   owner: {fileID: 0}
   price: 15
   pickupSound: {fileID: 8300000, guid: d2e611492dba9e140942350514d53523, type: 3}
+  displayName: "\u041A\u043E\u0436\u0430\u043D\u0430\u044F \u0431\u0440\u043E\u043D\u044F"
   isBeingUsed: 1
   protectionMultiplier: 0.1
