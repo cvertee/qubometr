@@ -97,6 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 
+  requiredKey: {fileID: 0}
+  interactionType: 2
 --- !u!61 &8540709586410670889
 BoxCollider2D:
   m_ObjectHideFlags: 0

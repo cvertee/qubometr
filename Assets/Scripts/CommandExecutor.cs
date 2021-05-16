@@ -35,6 +35,11 @@ public class CommandExecutor : Singleton<CommandExecutor>
                 GameManager.Instance.AddItemById(itemName, player);
                 AudioManager.Instance.PlaySound("keyPickup"); // TODO: replace
                 break;
+            case "!activateTrigger":
+                var objectName = args[0];
+                var foundObject = FindObjectsOfType<AreaTrigger>().FirstOrDefault(x => x.name == objectName);
+                foundObject.GetComponent<BoxCollider2D>().enabled = true;
+                break;
         }
     }
 }

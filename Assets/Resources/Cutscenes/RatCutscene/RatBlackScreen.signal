@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a8b0f2efd1f5a6489784a78e6678914, type: 3}
-  m_Name: WarStartA
+  m_Script: {fileID: 11500000, guid: d6fa2d92fc1b3f34da284357edf89c3b, type: 3}
+  m_Name: RatBlackScreen
   m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0.62, z: -10}

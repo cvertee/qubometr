@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/intro.unity
     guid: 06ccd36b110cc1440b23b420cad3f4a4
   - enabled: 1
+    path: Assets/Scenes/warStart.unity
+    guid: fc9b1e142bd9518438cae0b3fd4c4d9a
+  - enabled: 1
     path: Assets/Scenes/battlefield.unity
     guid: 8010e315954861042a56b5b68c25e179
   - enabled: 0

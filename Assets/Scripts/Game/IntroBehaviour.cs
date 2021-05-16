@@ -12,7 +12,7 @@ public class IntroBehaviour : MonoBehaviour
 
     private void IntroBehaviour_loopPointReached(VideoPlayer source)
     {
-        SceneManager.LoadScene("battlefield");
+        SceneManager.LoadScene("warStart");
     }
 
     // Update is called once per frame

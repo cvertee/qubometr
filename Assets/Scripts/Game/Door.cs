@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour, IInteractable
@@ -17,7 +18,18 @@ public class Door : MonoBehaviour, IInteractable
     public string sceneName;
     public Key requiredKey;
     public DoorType interactionType = DoorType.None;
-    
+
+    private void Start()
+    {
+        
+    }
+
+    private void Update()
+    {
+        
+    }
+
+
     public void Interact()
     {
         if (string.IsNullOrEmpty(sceneName) && interactionType == DoorType.LoadsScene)
