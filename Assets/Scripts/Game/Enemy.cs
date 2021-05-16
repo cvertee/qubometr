@@ -151,6 +151,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
 
     private void OnGUI()
     {
+        #if DEBUG
         var cam = Camera.main;
         var pos = cam.WorldToScreenPoint(transform.position);
         var sb = new StringBuilder();
@@ -158,6 +159,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         sb.AppendLine($"state={state}");
 
         GUI.Label(new Rect(pos.x, pos.y, 400, 400), sb.ToString());
+        #endif
     }
 
     /// <summary>
