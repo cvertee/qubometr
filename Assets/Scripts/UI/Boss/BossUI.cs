@@ -25,6 +25,14 @@ public class BossUI : MonoBehaviour
         isEnabled = true;
     }
 
+    public void Disable()
+    {
+        bossHp.gameObject.SetActive(false);
+        bossName.gameObject.SetActive(false);
+
+        isEnabled = false;
+    }
+
     private void Update()
     {
         if (!isEnabled)
