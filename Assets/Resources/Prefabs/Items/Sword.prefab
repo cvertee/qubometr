@@ -147,7 +147,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: f8f775236273cd14c9778d5913280b91, type: 3}
   animatorController: {fileID: 9100000, guid: a3b75295c4c132a44a9e2fb1d96ef30b, type: 2}
   owner: {fileID: 0}
-  price: 45
+  price: 75
   pickupSound: {fileID: 8300000, guid: df0d92e7a137aaf4db9c2709c1e049dd, type: 3}
   displayName: "\u041C\u0435\u0447 \u0432\u044B\u043C\u0435\u0440\u0448\u0438\u0445
     \u0442\u0440\u0435\u0443\u0433\u043E\u043B\u044C\u043D\u0438\u043A\u043E\u0432"

@@ -120,7 +120,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   animatorController: {fileID: 0}
   owner: {fileID: 0}
-  price: 50
+  price: 100
   pickupSound: {fileID: 8300000, guid: 2529f8afa6991c94890be555c8894067, type: 3}
   displayName: "\u041E\u0431\u044B\u0447\u043D\u044B\u0439 \u0449\u0438\u0442"
   isBeingUsed: 0
