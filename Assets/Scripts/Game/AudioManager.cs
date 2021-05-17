@@ -58,4 +58,9 @@ public class AudioManager : Singleton<AudioManager>
         musicAudioSource.loop = loop;
         musicAudioSource.Play();
     }
+
+    public void StopMusic()
+    {
+        musicAudioSource.Stop();
+    }
 }
