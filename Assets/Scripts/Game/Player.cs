@@ -191,7 +191,8 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
             if (currentState == State.Blocking)
                 return; // TODO: shield particles
             
-            Instantiate(Resources.Load("Prefabs/BloodParticle"), transform.position, Quaternion.identity);
+            if (totalDamage > 0.0f)
+                Instantiate(Resources.Load("Prefabs/BloodParticle"), transform.position, Quaternion.identity);
         }
     }
 
