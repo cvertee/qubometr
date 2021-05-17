@@ -220,7 +220,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c850a93b5eb487f4d91d1194967c3ab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
   hp: 20
+  playsAlertSound: 0
   moveSpeed: 950
   attackCooldownTime: 1
   attackCooldownTimeMultiplier: 1
@@ -233,6 +237,7 @@ MonoBehaviour:
   wallDetectionBoxOffset: {x: 0, y: 0, z: 0}
   overlapCircleRadius: 0.77
   overlapCircleOffset: {x: 0, y: -2.89, z: 0}
+  moveDirection: {x: 1, y: 0, z: 0}
   sightDistance: 10
 --- !u!50 &6035777751491804244
 Rigidbody2D:
