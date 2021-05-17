@@ -4,7 +4,9 @@ using UnityEngine;
 public class Bullet : MonoBehaviour, ITakesDamage
 {
     public Vector3 direction = Vector3.left;
+    public float damage = 10.0f;
     public float speed = 20.0f;
+    public GameObject owner;
 
     protected float lifeTime = 2.5f;
 
@@ -20,7 +22,19 @@ public class Bullet : MonoBehaviour, ITakesDamage
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Die();
+        var damageable = collision.gameObject.GetComponent<ITakesDamage>();
+        if (damageable != null && owner != collision.gameObject)
+        {
+            damageable.TakeDamage(damage);
+            Die();
+        }
+        else if (!collision.gameObject.CompareTag("Enemy"))
+        {
+            Die();
+        }
+        
+        
+        //Die();
     }
     
 
@@ -37,7 +51,7 @@ public class Bullet : MonoBehaviour, ITakesDamage
 
     private void Die()
     {
-        Instantiate(Resources.Load("Prefabs/ExplosionParticle"), transform.position, Quaternion.identity);
+        //Instantiate(Resources.Load("Prefabs/ExplosionParticle"), transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }
