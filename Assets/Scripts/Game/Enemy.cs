@@ -70,13 +70,15 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
 
     private void Start()
     {
-        StartCoroutine(AIUpdate());
+        //StartCoroutine(AIUpdate());
     }
 
     private void Update()
     {
         if (hp <= 0)
             Die();
+        
+        AIStateCheck();
 
         if (moveDirection == Vector3.left)
         {
