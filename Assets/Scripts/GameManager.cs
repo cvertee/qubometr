@@ -75,7 +75,15 @@ public class GameManager : Singleton<GameManager>
         var bossInfo = boss.GetComponent<Boss>().bossInfo;
         bossUI.Initialize(bossInfo, boss);
         
-        AudioManager.Instance.PlayMusic(bossInfo.music);
+        AudioManager.Instance.PlayMusic(bossInfo.music, loop: true);
+    }
+
+    public void StopBossFight()
+    {
+        var bossUI = FindObjectOfType<BossUI>();
+        bossUI.Disable();
+
+        AudioManager.Instance.StopMusic();
     }
 
     public void Exit()
