@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: "\u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u0422\u0438\u0433\u0440"
   health: 200
-  music: {fileID: 8300000, guid: 6a7f845daf2f32240abe2121c339aad2, type: 3}
+  music: {fileID: 8300000, guid: 26da5daa4819e85408865d942146a9c0, type: 3}
