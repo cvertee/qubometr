@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/castle.unity
     guid: d00fee21b70f939419469f6d832320f0
+  - enabled: 1
+    path: Assets/Scenes/comingSoon.unity
+    guid: 81657d440f5d7304ca545b082a9999aa
   m_configObjects: {}
