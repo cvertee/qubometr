@@ -27,7 +27,7 @@ public class StatsUI : Singleton<StatsUI>, IPopupUIElement
         sb.AppendLine($"Потрачено монет: {data.totalWastedCoins}");
         sb.AppendLine($"Собрано монет: {data.totalCollectedCoins}");
         sb.AppendLine($"Всего урона получено: {data.totalDamageReceived}");
-        sb.AppendLine($"Игровое время: {data.gameTimeMs / 1000} секунд");
+        //sb.AppendLine($"Игровое время: {data.gameTimeMs / 1000} секунд");
         sb.AppendLine($"Количество уничтоженных противников: {data.killedEnemiesCount}");
         sb.AppendLine($"Количество выпитых целебных зелий: {data.healthKitsUsed}");
 
