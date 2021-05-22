@@ -1,11 +1,21 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public static class SaveSystem
 {
-    public static string SAVE_FILE = Application.persistentDataPath + "/save.sav"; // TODO: probably several profiles!
+    private static string currentProfile;
+    public static string GetCurrentProfile() => currentProfile;
+    public static void SetCurrentProfile(string value)
+    {
+        Debug.Log($"Setting current profile to {value} (previous {currentProfile})");
+        currentProfile = value;
+    }
+
+    private static string fullPath => $"{Application.persistentDataPath}/{GetCurrentProfile()}_save.sav";
 
     public static void EmptyAllData()
     {
@@ -15,28 +25,22 @@ public static class SaveSystem
     
     public static void Save()
     {
-        //var saveData = new SaveData
-        //{
-        //    sceneName = GameData.Instance.sceneName,
-        //    hp = GameData.Instance.HP,
-        //    coins = GameData.Instance.coins
-        //};
-        //saveData.InitPlayerPosition(GameData.Instance.GetPlayer().transform.position);
-
         var player = GameManager.Instance.GetPlayer();
         var playerPos = new SerializableVector3(player.transform.position);
         GameData.Data.playerPosition = playerPos;
 
-        var json = JsonUtility.ToJson(GameData.Data);
-        Debug.Log($"Saving json to {SAVE_FILE} | {json}");
+        GameData.Data.profile = currentProfile;
 
-        if (!File.Exists(SAVE_FILE))
+        var json = JsonUtility.ToJson(GameData.Data);
+        Debug.Log($"Saving json to {fullPath} | {json}");
+
+        if (!File.Exists(fullPath))
         {
-            var handle = File.Create(SAVE_FILE);
+            var handle = File.Create(fullPath);
             handle.Close();
         }
 
-        File.WriteAllText(SAVE_FILE, json);
+        File.WriteAllText(fullPath, json);
     }
 
     public static void Load()
@@ -55,10 +59,31 @@ public static class SaveSystem
 
     public static SaveData GetSaveData()
     {
-        if (!File.Exists(SAVE_FILE))
+        if (!File.Exists(fullPath))
             return null;
 
-        var json = File.ReadAllText(SAVE_FILE);
+        var json = File.ReadAllText(fullPath);
+        return JsonUtility.FromJson<SaveData>(json);
+    }
+
+    public static List<SaveData> GetAllSaves()
+    {
+        var result = new List<SaveData>();
+        var savePaths = Directory.GetFiles(Application.persistentDataPath).Where(x => x.Contains(".sav")).ToList();
+
+        foreach (var savePath in savePaths)
+        {
+            var saveData = LoadSaveAtPath(savePath);
+            if (saveData != null)
+                result.Add(saveData);
+        }
+
+        return result;
+    }
+
+    private static SaveData LoadSaveAtPath(string fullPathToSave)
+    {
+        var json = File.ReadAllText(fullPathToSave);
         return JsonUtility.FromJson<SaveData>(json);
     }
 }

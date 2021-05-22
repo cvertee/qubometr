@@ -7,13 +7,13 @@ public class ContinueButton : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        if (SaveSystem.GetSaveData() == null)
+        if (SaveSystem.GetAllSaves().Count <= 0)
         {
             Destroy(gameObject);
             return;
         }
 
-        GetComponent<Button>().onClick.AddListener(() => SaveSystem.Load());
+        GetComponent<Button>().onClick.AddListener(() => ProfileSelectMenu.Show());
     }
 
     // Update is called once per frame

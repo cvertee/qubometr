@@ -6,10 +6,10 @@ public class MenuLoadButton : MonoBehaviour
 {
     private void OnEnable()
     {
-        if (SaveSystem.GetSaveData() == null)
-        {
-            SaveSystem.Save();
-        }
+        // if (SaveSystem.GetSaveData() == null)
+        // {
+        //     SaveSystem.Save();
+        // }
     }
 
     // Use this for initialization

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 [Serializable]
 public class SaveData
 {
+    public string profile;
     public float hp;
     public int coins;
     public string sceneName;
