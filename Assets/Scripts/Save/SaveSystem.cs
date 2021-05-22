@@ -28,25 +28,14 @@ public static class SaveSystem
         var player = GameManager.Instance.GetPlayer();
         var playerPos = new SerializableVector3(player.transform.position);
         GameData.Data.playerPosition = playerPos;
-
         GameData.Data.profile = currentProfile;
-
-        var json = JsonUtility.ToJson(GameData.Data);
-        Debug.Log($"Saving json to {fullPath} | {json}");
-
-        if (!File.Exists(fullPath))
-        {
-            var handle = File.Create(fullPath);
-            handle.Close();
-        }
-
-        File.WriteAllText(fullPath, json);
+        
+        WriteSave(GameData.Data);
     }
 
     public static void Load()
     {
         var saveData = GetSaveData();
-
         if (saveData == null)
         {
             Debug.LogWarning("SaveSystem.Load: No save file");
@@ -61,9 +50,8 @@ public static class SaveSystem
     {
         if (!File.Exists(fullPath))
             return null;
-
-        var json = File.ReadAllText(fullPath);
-        return JsonUtility.FromJson<SaveData>(json);
+        
+        return LoadSaveAtPath(fullPath);
     }
 
     public static List<SaveData> GetAllSaves()
@@ -85,5 +73,19 @@ public static class SaveSystem
     {
         var json = File.ReadAllText(fullPathToSave);
         return JsonUtility.FromJson<SaveData>(json);
+    }
+
+    private static void WriteSave(SaveData saveData)
+    {
+        var json = JsonUtility.ToJson(saveData);
+        Debug.Log($"Saving json to {fullPath} | {json}");
+
+        if (!File.Exists(fullPath))
+        {
+            var handle = File.Create(fullPath);
+            handle.Close();
+        }
+        
+        File.WriteAllText(fullPath, json);
     }
 }
