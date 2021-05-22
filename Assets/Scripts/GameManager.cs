@@ -50,6 +50,7 @@ public class GameManager : Singleton<GameManager>
 
     public void LoadScene(string sceneName)
     {
+        GameData.Data.playerPosition = null;
         SceneManager.LoadScene(sceneName);
     }
 
