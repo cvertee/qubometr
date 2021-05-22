@@ -7,6 +7,12 @@ public static class SaveSystem
 {
     public static string SAVE_FILE = Application.persistentDataPath + "/save.sav"; // TODO: probably several profiles!
 
+    public static void EmptyAllData()
+    {
+        GameData.Data = null;
+        currentProfile = null;
+    }
+    
     public static void Save()
     {
         //var saveData = new SaveData
