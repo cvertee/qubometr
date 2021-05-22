@@ -71,8 +71,15 @@ public static class SaveSystem
 
     private static SaveData LoadSaveAtPath(string fullPathToSave)
     {
-        var json = File.ReadAllText(fullPathToSave);
-        return JsonUtility.FromJson<SaveData>(json);
+        try
+        {
+            var json = File.ReadAllText(fullPathToSave);
+            return JsonUtility.FromJson<SaveData>(json);
+        }
+        catch
+        {
+            return null;
+        }
     }
 
     private static void WriteSave(SaveData saveData)
