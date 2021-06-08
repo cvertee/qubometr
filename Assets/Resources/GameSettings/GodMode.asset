@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 68614fbcd610ad94fb8ff61d52de2b26, type: 3}
-  m_Name: DevMode
+  m_Name: GodMode
   m_EditorClassIdentifier: 
-  aiTickTime: 0
-  damageMultiplierToEnemies: 0
+  aiTickTime: 0.1
+  damageMultiplierToEnemies: 100
   damageReceiveMultiplier: 0
-  imperviousToDamageTimeMultiplier: 0
-  dialogueTimeSeconds: 2
+  imperviousToDamageTimeMultiplier: 999
+  dialogueTimeSeconds: 0.25
+  priceMultiplier: 0

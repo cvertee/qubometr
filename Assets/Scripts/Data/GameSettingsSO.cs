@@ -10,4 +10,5 @@ public class GameSettingsSO : ScriptableObject
     public float damageReceiveMultiplier;
     public float imperviousToDamageTimeMultiplier;
     public float dialogueTimeSeconds = 2.0f;
+    public float priceMultiplier = 1.0f;
 }

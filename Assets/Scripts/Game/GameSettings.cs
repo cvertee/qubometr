@@ -9,7 +9,7 @@ public class GameSettings : Singleton<GameSettings>
     public static float GlobalDamageReceiveMultiplier => Instance.gameSettings.damageReceiveMultiplier;
     public static float GlobalShieldImperviousTimeMultiplier => Instance.gameSettings.imperviousToDamageTimeMultiplier;
     public static float GlobalDialogueTime => Instance.gameSettings.dialogueTimeSeconds;
-    //public static float GlobalPriceMultiplier => Instance.gameSettings.priceMultiplier;
+    public static float GlobalPriceMultiplier => Instance.gameSettings.priceMultiplier;
 
     GameSettingsSO gameSettings;
 

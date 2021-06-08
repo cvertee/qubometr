@@ -17,3 +17,4 @@ MonoBehaviour:
   damageReceiveMultiplier: 0.25
   imperviousToDamageTimeMultiplier: 1.2
   dialogueTimeSeconds: 1
+  priceMultiplier: 0.75
