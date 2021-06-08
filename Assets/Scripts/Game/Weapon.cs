@@ -9,7 +9,7 @@ public class Weapon : Item
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var damageable = collision.GetComponent<ITakesDamage>();
-        damageable?.TakeDamage(damage); // TODO: replace?
+        damageable?.TakeDamage(damage * GameSettings.GlobalDamageToEnemiesMutliplier); // TODO: replace?
     }
 
     private void Attack()

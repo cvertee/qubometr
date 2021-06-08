@@ -23,7 +23,7 @@ public class DialogueUi : MonoBehaviour
             }
             
             textObject.text = text;
-            yield return new WaitForSeconds(2.0f);
+            yield return new WaitForSeconds(GameSettings.GlobalDialogueTime);
         }
         yield return new WaitForSeconds(1.0f);
         Destroy(textObject.gameObject);

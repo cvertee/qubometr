@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour, ITakesDamage
         var damageable = collision.gameObject.GetComponent<ITakesDamage>();
         if (damageable != null && owner != collision.gameObject)
         {
-            damageable.TakeDamage(damage);
+            damageable.TakeDamage(damage * GameSettings.GlobalDamageToEnemiesMutliplier);
             Die();
         }
         else if (!collision.gameObject.CompareTag("Enemy"))

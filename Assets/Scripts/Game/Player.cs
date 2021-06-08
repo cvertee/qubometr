@@ -164,7 +164,8 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
 
     public void TakeDamage(float damage)
     {
-        var totalDamage = damage * takeDamageMultiplier;
+        var totalDamage = damage / GameSettings.GlobalDamageToEnemiesMutliplier; // restore the original damage
+        totalDamage *= GameSettings.GlobalDamageReceiveMultiplier;
 
         foreach (var item in items)
         {

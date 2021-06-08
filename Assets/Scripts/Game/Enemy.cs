@@ -38,8 +38,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
     [SerializeField] private Vector3 overlapCircleOffset;
     
     public Vector3 moveDirection = Vector3.right;
-    
-    private const float AITickTime = 0.1f;
+
     [SerializeField] private float sightDistance = 10.0f;
     private float sightDistanceFollow;
     private const float SightDistanceForWall = 2.0f;
@@ -110,7 +109,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         while (true)
         {
             AIStateCheck();
-            yield return new WaitForSecondsRealtime(AITickTime);
+            yield return new WaitForSecondsRealtime(GameSettings.GlobalAiTickTime);
         }
     }
     private void AIStateCheck()
