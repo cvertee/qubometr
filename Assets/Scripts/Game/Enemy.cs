@@ -69,7 +69,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
 
     private void Start()
     {
-        //StartCoroutine(AIUpdate());
+        StartCoroutine(AIUpdate());
     }
 
     private void Update()
@@ -77,7 +77,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         if (hp <= 0)
             Die();
         
-        AIStateCheck();
+        //AIStateCheck();
 
         if (moveDirection == Vector3.left)
         {
