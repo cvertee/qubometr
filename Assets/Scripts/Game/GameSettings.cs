@@ -14,6 +14,6 @@ public class GameSettings : Singleton<GameSettings>
 
     private void Awake() 
     {
-        gameSettings = Resources.Load<GameSettingsSO>("GameSettings/EasyMode");
+        gameSettings = Resources.Load<GameSettingsSO>("GameSettings/DefaultSettings");
     }
 }
