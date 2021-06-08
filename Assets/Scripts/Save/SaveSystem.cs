@@ -15,7 +15,9 @@ public static class SaveSystem
         currentProfile = value;
     }
 
-    private static string fullPath => $"{Application.persistentDataPath}/{GetCurrentProfile()}_save.sav";
+    private static string fullPath => FullProfilePath(currentProfile);
+    private static string FullProfilePath(string profile) 
+        => $"{Application.persistentDataPath}/{profile}_save.sav";
 
     public static void EmptyAllData()
     {
@@ -46,6 +48,11 @@ public static class SaveSystem
         SceneManager.LoadScene(saveData.sceneName, LoadSceneMode.Single);
     }
 
+    public static void RemoveProfile(string profile)
+    {
+        File.Delete(FullProfilePath(profile));
+    }
+    
     public static SaveData GetSaveData()
     {
         if (!File.Exists(fullPath))
