@@ -1,6 +1,7 @@
 ﻿using UnityEngine.Events;
 
 public class FloatEvent : UnityEvent<float> {}
+public class GameSettingEvent : UnityEvent<string> {}
 
 public static class GameEvents
 {
@@ -13,4 +14,5 @@ public static class GameEvents
     public static FloatEvent onCameraAreaEnter = new FloatEvent();
     public static UnityEvent onCameraAreaExit = new UnityEvent();
     public static UnityEvent onLocationChangeRequested = new UnityEvent();
+    public static GameSettingEvent onGameSettingChanged = new GameSettingEvent();
 }

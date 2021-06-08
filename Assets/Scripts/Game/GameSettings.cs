@@ -9,11 +9,20 @@ public class GameSettings : Singleton<GameSettings>
     public static float GlobalDamageReceiveMultiplier => Instance.gameSettings.damageReceiveMultiplier;
     public static float GlobalShieldImperviousTimeMultiplier => Instance.gameSettings.imperviousToDamageTimeMultiplier;
     public static float GlobalDialogueTime => Instance.gameSettings.dialogueTimeSeconds;
+    //public static float GlobalPriceMultiplier => Instance.gameSettings.priceMultiplier;
 
     GameSettingsSO gameSettings;
 
-    private void Awake() 
+    private void Awake()
     {
-        gameSettings = Resources.Load<GameSettingsSO>("GameSettings/DefaultSettings");
+        GameEvents.onGameSettingChanged.AddListener((setting) =>
+        {
+            Debug.Log($"[GameSettings] Changing setting to {setting}");
+            gameSettings = LoadSetting(setting);
+        });
+
+        GameEvents.onGameSettingChanged.Invoke("DefaultSettings");
     }
+
+    private GameSettingsSO LoadSetting(string settingName) => Resources.Load<GameSettingsSO>($"GameSettings/{settingName}");
 }

@@ -85,6 +85,19 @@ public class DebugUi : MonoBehaviour
         {
             GameEvents.onCoinPickup.Invoke();
         }
+
+        if (GUILayout.Button("GODMODE"))
+        {
+            GameEvents.onGameSettingChanged.Invoke("GodMode");
+        }
+        if (GUILayout.Button("EASYMODE"))
+        {
+            GameEvents.onGameSettingChanged.Invoke("EasyMode");
+        }
+        if (GUILayout.Button("DefaultMode"))
+        {
+            GameEvents.onGameSettingChanged.Invoke("DefaultSettings");
+        }
 #endif
     }
 }
