@@ -98,6 +98,13 @@ public class DebugUi : MonoBehaviour
         {
             GameEvents.onGameSettingChanged.Invoke("DefaultSettings");
         }
+        if (GUILayout.Button("TP to closest store"))
+        {
+            var player = FindObjectOfType<Player>();
+            var stores = FindObjectsOfType<Store>();
+
+            player.transform.position = stores[0].transform.position; // TODO: find closest
+        }
 #endif
     }
 }
