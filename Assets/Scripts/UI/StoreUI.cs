@@ -17,6 +17,11 @@ public class StoreUI : Singleton<StoreUI>, IPopupUIElement
     {
         UIManager.Instance.RegisterPopup(this);
         itemsContainer.SetActive(true);
+        
+        foreach(Transform child in itemsContainer.transform)
+            Destroy(child.gameObject);
+
+        storeItemInfoComponents.Clear();
 
         foreach (var item in items)
         {
