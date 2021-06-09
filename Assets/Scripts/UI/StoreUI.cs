@@ -18,10 +18,9 @@ public class StoreUI : Singleton<StoreUI>, IPopupUIElement
         UIManager.Instance.RegisterPopup(this);
         itemsContainer.SetActive(true);
         
+        // Destroy all children in items container to prevent duplications
         foreach(Transform child in itemsContainer.transform)
             Destroy(child.gameObject);
-
-        storeItemInfoComponents.Clear();
 
         foreach (var item in items)
         {
@@ -34,14 +33,7 @@ public class StoreUI : Singleton<StoreUI>, IPopupUIElement
 
     public void Close()
     {
-        // Clear list of displayed items
-        for (var i = 0; i < storeItemInfoComponents.Count; i++) // FIX?: Foreach won't work
-        {
-            var storeItemInfo = storeItemInfoComponents[i];
-            Destroy(storeItemInfo.gameObject);
-            storeItemInfoComponents.Remove(storeItemInfo);
-        }
-
+        storeItemInfoComponents.Clear();
         itemsContainer.SetActive(false);
     }
 }
