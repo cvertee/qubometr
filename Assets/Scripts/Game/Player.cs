@@ -52,6 +52,10 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
             GameManager.Instance.AddItemById("ShieldPlaceholder", this);
             GameManager.Instance.AddItemById("DefaultArmor", this);
         }
+
+        // TODO: use something else like onPlayerLockRequested???
+        GameEvents.onPopupUiElementShowed.AddListener(() => currentState = State.Locked);
+        GameEvents.onPopupUiElementsEnded.AddListener(() => currentState = State.Any);
     }
 
     private void Start()

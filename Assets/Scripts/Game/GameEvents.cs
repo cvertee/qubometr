@@ -15,4 +15,6 @@ public static class GameEvents
     public static UnityEvent onCameraAreaExit = new UnityEvent();
     public static UnityEvent onLocationChangeRequested = new UnityEvent();
     public static GameSettingEvent onGameSettingChanged = new GameSettingEvent();
+    public static UnityEvent onPopupUiElementShowed = new UnityEvent();
+    public static UnityEvent onPopupUiElementsEnded = new UnityEvent();
 }

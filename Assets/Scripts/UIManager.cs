@@ -14,15 +14,26 @@ public class UIManager : Singleton<UIManager>
     public void RegisterPopup(IPopupUIElement element)
     {
         popupUIElements.Push(element);
+        GameEvents.onPopupUiElementShowed.Invoke();
     }
 
     public bool CloseLatestPopup()
     {
+        // If there aren't any popup ui elements
         if (popupUIElements.Count <= 0)
+        {
+            GameEvents.onPopupUiElementsEnded.Invoke();
             return false;
+        }
 
         var popupUIElement = popupUIElements.Pop();
         popupUIElement.Close();
+        
+        // means last popup ui element was used
+        if (popupUIElements.Count <= 0)
+        {
+            GameEvents.onPopupUiElementsEnded.Invoke();
+        }
         return true;
     }
 
