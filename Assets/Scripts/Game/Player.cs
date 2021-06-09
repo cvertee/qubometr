@@ -73,30 +73,7 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
         if (currentState == State.Locked)
             return;
 
-        var horizontal = Input.GetAxis("Horizontal");
-        if (horizontal < 0.0f)
-        {
-            FlipByDegrees(180f);
-        }
-        else if (horizontal > 0.0f)
-        {
-            FlipByDegrees(360f);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Jump();
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            interactable?.Interact();
-        }
-        if (Input.GetMouseButtonDown(0))
-            primaryWeapon?.Use();
-        if (Input.GetMouseButtonDown(1))
-             secondaryWeapon?.Use();
-        if (Input.GetMouseButtonUp(1))
-             secondaryWeapon?.StopUse();
+        FetchInput();
     }
 
     private void FixedUpdate()
@@ -144,6 +121,37 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
         {
             Debug.DrawRay(transform.position, new Vector3(0f, 1f), Color.cyan);
         }
+    }
+
+    private void FetchInput() 
+    {
+        if (currentState == State.Locked)
+            return;
+
+        var horizontal = Input.GetAxis("Horizontal");
+        if (horizontal < 0.0f)
+        {
+            FlipByDegrees(180f);
+        }
+        else if (horizontal > 0.0f)
+        {
+            FlipByDegrees(360f);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump();
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            interactable?.Interact();
+        }
+        if (Input.GetMouseButtonDown(0))
+            primaryWeapon?.Use();
+        if (Input.GetMouseButtonDown(1))
+             secondaryWeapon?.Use();
+        if (Input.GetMouseButtonUp(1))
+             secondaryWeapon?.StopUse();
     }
 
     private void FlipByDegrees(float degrees)
