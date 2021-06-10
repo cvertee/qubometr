@@ -105,6 +105,10 @@ public class DebugUi : MonoBehaviour
 
             player.transform.position = stores[0].transform.position; // TODO: find closest
         }
+        if (GUILayout.Button("Play sound delayed (0.5 sec)"))
+        {
+            GameEvents.onDelayedActionRequested.Invoke(0.5f, () => GameEvents.onAudioNamePlayRequested.Invoke("cash"));
+        }
 #endif
     }
 }

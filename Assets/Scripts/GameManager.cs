@@ -30,6 +30,10 @@ public class GameManager : Singleton<GameManager>
 
             AudioManager.Instance.PlaySound(audioName);
         });
+        GameEvents.onDelayedActionRequested.AddListener((time, action) => 
+        {
+            StartDelayedAction(time, action);
+        });
     }
 
     // Start is called before the first frame update
