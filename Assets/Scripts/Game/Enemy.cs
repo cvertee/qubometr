@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
 {
     private Rigidbody2D rb;
-    private BoxCollider2D collider;
+    private BoxCollider2D boxCollider2D;
 
     public UnityEvent onDeath;
     
@@ -59,7 +59,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         }
 
         rb = GetComponent<Rigidbody2D>();
-        collider = GetComponent<BoxCollider2D>();
+        boxCollider2D = GetComponent<BoxCollider2D>();
 
         if ((usableItem = GetComponentInChildren<Weapon>()) == null) // means enemy doesn't have any weapons
         {
@@ -133,7 +133,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collider.enabled)
+        if (!boxCollider2D.enabled)
             return;
     }
 
@@ -328,9 +328,9 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
     {
         Debug.Log($"Collision damage cooldown for {collisionDamageCooldownTime} seconds...");
        
-        collider.enabled = false;
+        boxCollider2D.enabled = false;
         yield return new WaitForSeconds(collisionDamageCooldownTime);
-        collider.enabled = true;
+        boxCollider2D.enabled = true;
     }
 
     public void AddItem(Item item)
