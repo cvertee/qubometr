@@ -39,12 +39,12 @@ public class DebugUi : MonoBehaviour
 
         if (GUILayout.Button("999 hp"))
         {
-            GameData.Data.hp = 999;
+            GameData.IncreaseHealth(999.0f);
         }
 
         if (GUILayout.Button("-10 hp"))
         {
-            GameData.Data.hp -= 10;
+            GameData.DecreaseHealth(10f);
         }
 
         if (GUILayout.Button("Give knife"))

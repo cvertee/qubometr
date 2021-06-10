@@ -16,6 +16,7 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
         Any
     }
 
+    private float hp = 0f;
     private float speed = 1000f;
     private float speedMultiplier = 1.25f;
     private bool grounded = false;
@@ -43,6 +44,7 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
 
     private void Awake()
     {
+        hp = GameData.GetHealth();
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
 
@@ -56,6 +58,8 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
         // TODO: use something else like onPlayerLockRequested???
         GameEvents.onPopupUiElementShowed.AddListener(() => currentState = State.Locked);
         GameEvents.onPopupUiElementsEnded.AddListener(() => currentState = State.Any);
+
+        GameEvents.onPlayerHealthModified.AddListener((health) => hp = health);
     }
 
     private void Start()
@@ -71,7 +75,7 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
 
     private void Update()
     {
-        if (GameData.Data.hp <= 0)
+        if (hp <= 0)
             Die();
 
         if (currentState == State.Locked)
@@ -196,8 +200,7 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
         
         if (currentState != State.Attacking) // TODO: fix this 
         {
-            GameData.Data.hp -= totalDamage;
-            GameData.Data.totalDamageReceived += totalDamage;
+            hp = GameData.DecreaseHealth(totalDamage);
             
             Debug.Log($"Player: Took {totalDamage} HP");
             

@@ -6,6 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
+    private void Awake()
+    {
+        GameEvents.onHealthKitUseStart.AddListener(() =>
+        {
+            AudioManager.Instance.PlaySound("estus");
+        });
+        GameEvents.onHealthKitUseEnd.AddListener(() =>
+        {
+            GameData.IncreaseHealth(10f);
+            GameData.Data.healthKitsUsed += 1;
+        });
+    }
+
     // Start is called before the first frame update
     private void Start()
     {

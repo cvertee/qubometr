@@ -8,6 +8,9 @@ public static class GameEvents
     public static UnityEvent onLocationStart = new UnityEvent();
     public static UnityEvent onPlayerDeath = new UnityEvent();
     public static UnityEvent onEnemyAlert = new UnityEvent();
+    public static FloatEvent onPlayerHealthModified = new FloatEvent();
+    public static UnityEvent onHealthKitUseStart = new UnityEvent();
+    public static UnityEvent onHealthKitUseEnd = new UnityEvent();
     public static UnityEvent onHealthRestored = new UnityEvent();
     public static UnityEvent onPlayerReceivedDamage = new UnityEvent();
     public static UnityEvent onCoinPickup = new UnityEvent();
