@@ -837,7 +837,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3275476814239191988, guid: 45678d5c4a0153b4a8dc7ae9ca3e81fd, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4109794337459880926, guid: 45678d5c4a0153b4a8dc7ae9ca3e81fd, type: 3}
       propertyPath: m_AnchorMax.y
@@ -9756,6 +9756,10 @@ PrefabInstance:
       propertyPath: itemId
       value: sword
       objectReference: {fileID: 0}
+    - target: {fileID: 8167064951395009471, guid: 5ee36af603f438149bf02901c02fea7f, type: 3}
+      propertyPath: itemObject
+      value: 
+      objectReference: {fileID: 844578117677028132, guid: 7a583a350a7675c40940997da634ab78, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ee36af603f438149bf02901c02fea7f, type: 3}
 --- !u!4 &1834002656 stripped
