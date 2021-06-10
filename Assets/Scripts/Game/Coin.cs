@@ -16,7 +16,7 @@ public class Coin : MonoBehaviour
             GameData.Data.coins += amount;
             GameData.Data.totalCollectedCoins += amount;
             GameEvents.onCoinPickup.Invoke();
-            AudioManager.Instance.PlaySound("coin_pickup");
+            GameEvents.onAudioNamePlayRequested.Invoke("coin_pickup");
             Destroy(gameObject);
         }
     }

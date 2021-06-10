@@ -298,7 +298,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
 
     public void TakeDamage(float damage)
     {
-        AudioManager.Instance.PlaySound("slashkut"); // OnDamage.Invoke() ?
+        GameEvents.onAudioNamePlayRequested.Invoke("slashkut"); // OnDamage.Invoke() ?
         Instantiate(Resources.Load("Prefabs/BloodParticle"), transform.position, Quaternion.identity);
         hp -= damage; //TODO: use damage var
     }

@@ -1,7 +1,10 @@
-﻿using UnityEngine.Events;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class FloatEvent : UnityEvent<float> {}
 public class GameSettingEvent : UnityEvent<string> {}
+public class AudioClipEvent : UnityEvent<AudioClip> {}
+public class AudioStringEvent : UnityEvent<string> {}
 
 public static class GameEvents
 {
@@ -20,4 +23,6 @@ public static class GameEvents
     public static GameSettingEvent onGameSettingChanged = new GameSettingEvent();
     public static UnityEvent onPopupUiElementShowed = new UnityEvent();
     public static UnityEvent onPopupUiElementsEnded = new UnityEvent();
+    public static AudioClipEvent onAudioClipPlayRequested = new AudioClipEvent();
+    public static AudioStringEvent onAudioNamePlayRequested = new AudioStringEvent();
 }

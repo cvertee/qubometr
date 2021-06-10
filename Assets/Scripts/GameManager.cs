@@ -10,12 +10,24 @@ public class GameManager : Singleton<GameManager>
     {
         GameEvents.onHealthKitUseStart.AddListener(() =>
         {
-            AudioManager.Instance.PlaySound("estus");
+            GameEvents.onAudioNamePlayRequested.Invoke("estus");
         });
         GameEvents.onHealthKitUseEnd.AddListener(() =>
         {
             GameData.IncreaseHealth(10f);
             GameData.Data.healthKitsUsed += 1;
+        });
+        GameEvents.onAudioClipPlayRequested.AddListener(clip => 
+        {
+            Debug.Log($"Playing raw audio clip `{clip.name}`");
+
+            AudioManager.Instance.PlayClip(clip);
+        });
+        GameEvents.onAudioNamePlayRequested.AddListener(audioName => 
+        {
+            Debug.Log($"Playing audio clip by name `{audioName}`");
+
+            AudioManager.Instance.PlaySound(audioName);
         });
     }
 
@@ -25,7 +37,7 @@ public class GameManager : Singleton<GameManager>
         GameData.Data.sceneName = SceneManager.GetActiveScene().name;
         //Application.targetFrameRate = Screen.currentResolution.refreshRate;
 
-        GameEvents.onEnemyAlert.AddListener(() => AudioManager.Instance.PlaySound("alert"));
+        GameEvents.onEnemyAlert.AddListener(() => GameEvents.onAudioNamePlayRequested.Invoke("alert"));
         GameEvents.onPlayerDeath.AddListener(() => SaveSystem.Load());
 
         SceneManager.sceneLoaded += (scene, mode) => GameEvents.onLocationStart.Invoke();
@@ -67,10 +79,15 @@ public class GameManager : Singleton<GameManager>
         SceneManager.LoadScene(sceneName);
     }
 
+    public void AddItem(Item item, ICharacter character)
+    {
+        character.AddItem(item);
+    }
+
     public void AddItemById(string id, ICharacter character)
     {
         var item = GetItemObjectById(id);
-        character.AddItem(item);
+        AddItem(item, character);
     }
 
     public Item GetItemObjectById(string id)

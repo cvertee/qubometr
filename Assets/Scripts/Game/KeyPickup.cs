@@ -9,7 +9,7 @@ public class KeyPickup : PickableItemBase
 
     protected override void OnPickup()
     {
-        AudioManager.Instance.PlaySound("keyPickup");
+        GameEvents.onAudioNamePlayRequested.Invoke("keyPickup");
         GameData.AddKey(key);
         DestroySave();
     }
