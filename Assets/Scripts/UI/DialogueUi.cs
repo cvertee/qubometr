@@ -8,7 +8,7 @@ public class DialogueUi : MonoBehaviour
     public void ShowDialogueTexts(string[] texts, GameObject container)
     {
         var dialogueTextGameObject = (GameObject)Instantiate(Resources.Load("Prefabs/UI/DialogueText"), container.transform.position, Quaternion.identity);
-        dialogueTextGameObject.transform.parent = transform;
+        dialogueTextGameObject.transform.SetParent(transform);
         StartCoroutine(DialogueCoroutine(texts, dialogueTextGameObject.GetComponent<Text>()));
     }
 
