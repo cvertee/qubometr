@@ -18,3 +18,4 @@ MonoBehaviour:
   imperviousToDamageTimeMultiplier: 999
   dialogueTimeSeconds: 0.25
   priceMultiplier: 0
+  healthKitMultiplier: 10

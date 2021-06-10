@@ -15,7 +15,7 @@ public class GameManager : Singleton<GameManager>
         });
         GameEvents.onHealthKitUseEnd.AddListener(() =>
         {
-            GameData.IncreaseHealth(10f);
+            GameData.IncreaseHealth(10f * GameSettings.GlobalHealthKitMultiplier);
             GameData.Data.healthKitsUsed += 1;
         });
         GameEvents.onAudioClipPlayRequested.AddListener(clip => 
