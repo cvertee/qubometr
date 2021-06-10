@@ -19,6 +19,9 @@ public class Barrel : DestroyerBase, ITakesDamage
                     transform.position + new Vector3(Random.Range(0, 7), 0), Quaternion.identity);
             }
 
+            var barrelParts = Instantiate<GameObject>(Resources.Load<GameObject>("Prefabs/BarrelDestroyed"), transform.position, Quaternion.identity);
+            barrelParts.transform.position = transform.position;
+            barrelParts.transform.localScale = transform.localScale;
             DestroySave();
             return;
         }
