@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PickableItem : PickableItemBase
 {
-    public string itemId; // DO NOT USE. Deprecated.
     public Item itemObject;
 
     private AudioClip pickupSound;
