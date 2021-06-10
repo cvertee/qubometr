@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -125,5 +126,18 @@ public class GameManager : Singleton<GameManager>
     public void AddAchievement(AchievementSO achievement)
     {
         Debug.Log($"Got achievement {achievement.displayName}");
+    }
+
+    private void StartDelayedAction(float time, Action action) 
+    {
+        Debug.Log($"Started delayed action - {time} seconds");
+
+        StartCoroutine(DelayedActionCoroutine(time, action));
+    }
+    private IEnumerator DelayedActionCoroutine(float time, Action action)
+    {
+        yield return new WaitForSeconds(time);
+        action.Invoke();
+        Debug.Log($"Delayed action complete");
     }
 }

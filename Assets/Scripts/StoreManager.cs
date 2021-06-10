@@ -19,12 +19,6 @@ public class StoreManager : Singleton<StoreManager>
 
         GameManager.Instance.AddItemById(item.id, player);
         GameEvents.onAudioNamePlayRequested.Invoke("cash");
-        StartCoroutine(SoundTimeout(item.pickupSound, 0.4f));
-    }
-
-    private IEnumerator SoundTimeout(AudioClip sound, float t)
-    {
-        yield return new WaitForSeconds(t);
-        GameEvents.onAudioClipPlayRequested.Invoke(sound);
+        GameEvents.onDelayedActionRequested.Invoke(0.4f, () => GameEvents.onAudioClipPlayRequested.Invoke(item.pickupSound));
     }
 }
