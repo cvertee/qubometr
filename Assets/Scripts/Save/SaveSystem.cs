@@ -64,7 +64,7 @@ public static class SaveSystem
     public static List<SaveData> GetAllSaves()
     {
         var result = new List<SaveData>();
-        var savePaths = Directory.GetFiles(Application.persistentDataPath).Where(x => x.Contains(".sav")).ToList();
+        var savePaths = Directory.GetFiles(Application.persistentDataPath).Where(x => x.EndsWith(".sav") && !x.EndsWith("\\_save.sav")).ToList();
 
         foreach (var savePath in savePaths)
         {
