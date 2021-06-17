@@ -11,7 +11,7 @@ public class Barrel : DestroyerBase, ITakesDamage
 
         if (hp <= 0)
         {
-            GameEvents.onAudioNamePlayRequested.Invoke(AudioResource.BarrelBreak);
+            Sound.Play(AudioResource.BarrelBreak);
             for (var i = 0; i < coinAmount; i++)
             {
                 // TODO: USE POOL!!!!!!!!!!!
@@ -26,6 +26,6 @@ public class Barrel : DestroyerBase, ITakesDamage
             return;
         }
 
-        GameEvents.onAudioNamePlayRequested.Invoke(AudioResource.BarrelHit);
+        Sound.Play(AudioResource.BarrelHit);
     }
 }

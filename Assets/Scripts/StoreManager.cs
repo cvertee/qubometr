@@ -18,7 +18,7 @@ public class StoreManager : Singleton<StoreManager>
         GameData.Data.totalWastedCoins += totalPrice;
 
         GameManager.Instance.AddItemById(item.id, player);
-        GameEvents.onAudioNamePlayRequested.Invoke(AudioResource.StoreBuy);
-        GameEvents.onDelayedActionRequested.Invoke(0.4f, () => GameEvents.onAudioClipPlayRequested.Invoke(item.pickupSound));
+        Sound.Play(AudioResource.StoreBuy);
+        GameEvents.onDelayedActionRequested.Invoke(0.4f, () => Sound.Play(item.pickupSound));
     }
 }

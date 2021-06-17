@@ -107,7 +107,7 @@ public class DebugUi : MonoBehaviour
         }
         if (GUILayout.Button("Play sound delayed (0.5 sec)"))
         {
-            GameEvents.onDelayedActionRequested.Invoke(0.5f, () => GameEvents.onAudioNamePlayRequested.Invoke(AudioResource.StoreBuy));
+            GameEvents.onDelayedActionRequested.Invoke(0.5f, () => Sound.Play(AudioResource.StoreBuy));
         }
 #endif
     }
