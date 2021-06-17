@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class DebugUi : MonoBehaviour
 {
@@ -108,6 +109,10 @@ public class DebugUi : MonoBehaviour
         if (GUILayout.Button("Play sound delayed (0.5 sec)"))
         {
             GameEvents.onDelayedActionRequested.Invoke(0.5f, () => Sound.Play(AudioResource.StoreBuy));
+        }
+        if (GUILayout.Button("Test SaveSystem"))
+        {
+            SaveSystemTest.Start();
         }
 #endif
     }
