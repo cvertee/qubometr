@@ -20,4 +20,15 @@ public class SerializableVector3
     {
         return new Vector3(x, y, z);
     }
+
+    public override bool Equals(object obj)
+    {
+        if (obj == null || GetType() != obj.GetType())
+        {
+            return false;
+        }
+        
+        var svec3 = obj as SerializableVector3;
+        return svec3.x == x && svec3.y == y && svec3.z == z;
+    }
 }
