@@ -48,6 +48,12 @@ public static class SaveSystem
         SceneManager.LoadScene(saveData.sceneName, LoadSceneMode.Single);
     }
 
+    public static void Remove() 
+    {
+        Debug.Log("SaveSystem.Remove: Removing save file");
+        RemoveProfile(currentProfile);
+    }
+
     public static void RemoveProfile(string profile)
     {
         File.Delete(FullProfilePath(profile));
