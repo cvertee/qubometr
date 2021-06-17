@@ -27,13 +27,13 @@ public class CommandExecutor : Singleton<CommandExecutor>
                 var keyName = args[0];
                 var key = Resources.Load<Key>($"Items/Keys/{keyName}");
                 GameData.AddKey(key);
-                GameEvents.onAudioNamePlayRequested.Invoke("keyPickup");
+                GameEvents.onAudioNamePlayRequested.Invoke(AudioResource.KeyPickup);
                 break;
             case "!giveItem":
                 var itemName = args[0];
                 var player = FindObjectOfType<Player>(); // TODO: no searching for player
                 GameManager.Instance.AddItemById(itemName, player);
-                GameEvents.onAudioNamePlayRequested.Invoke("keyPickup"); // TODO: replace
+                GameEvents.onAudioNamePlayRequested.Invoke(AudioResource.KeyPickup); // TODO: replace
                 break;
             case "!activateTrigger":
                 var objectName = args[0];

@@ -44,7 +44,7 @@ public class Door : MonoBehaviour, IInteractable
             if (!GameData.Data.pickedUpKeys.Any(x => x == requiredKey))
             {
                 Debug.Log($"Door: No key! (requires {requiredKey.name})");
-                GameEvents.onAudioNamePlayRequested.Invoke("doorLocked");
+                GameEvents.onAudioNamePlayRequested.Invoke(AudioResource.DoorLocked);
                 return;
             }
             else
