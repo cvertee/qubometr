@@ -22,13 +22,13 @@ public class GameManager : Singleton<GameManager>
         });
         GameEvents.onAudioClipPlayRequested.AddListener(clip => 
         {
-            //Debug.Log($"Playing raw audio clip `{clip.name}`");
+            Debug.Log($"Playing raw audio clip `{clip.name}`");
 
             AudioManager.Instance.PlayClip(clip);
         });
         GameEvents.onAudioNamePlayRequested.AddListener(audioName => 
         {
-            //Debug.Log($"Playing audio clip by name `{audioName}`");
+            Debug.Log($"Playing audio clip by name `{audioName}`");
 
             AudioManager.Instance.PlaySound(audioName);
         });
