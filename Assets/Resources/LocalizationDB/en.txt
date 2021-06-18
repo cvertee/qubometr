@@ -1,12 +1,22 @@
+==== STORE ====
 #StoreBuyButtonText	Buy
+==== MENU ====
 #MenuSaveButton	Save
 #MenuLoadButton	Load
 #MenuStatsButton	Stats
 #MenuExitButton	Exit
+==== PROFILE ====
 #ProfileEnterNamePrompt	ENTER NAME
 #ProfileSaveButtonText	Save
+==== STATS ====
 #StatMoneyWaste	Total coins wasted
 #StatMoneyCollected	Total coins collected
 #StatDamageReceieved	Total damage receieved
 #StatKilledEnemyCount	Killed enemies count
 #StatHealthKitsUsed	Total health kits used
+==== ITEMS ====
+#LeatherArmor	Leather Armor
+#MetallicArmor	Metallic Armor
+#KnifeItem	Knife
+#ShieldPlaceholder	Shield (placeholder)
+#SwordItem	Sword

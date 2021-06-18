@@ -12,7 +12,7 @@ public class StoreItemInfo : MonoBehaviour
     public void Initialize(Item item)
     {
         itemUiIcon.sprite = item.icon;
-        itemNameText.text = item.displayName; // TODO: use anything else
+        itemNameText.text = LocalizationUtil.IdToLocalized(item.displayName);
         itemPriceText.text = (item.price * GameSettings.GlobalPriceMultiplier).ToString();
 
         buyButton.onClick.AddListener(() =>
