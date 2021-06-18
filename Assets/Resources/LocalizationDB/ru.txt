@@ -1,0 +1,5 @@
+#StoreBuyButtonText	Купить
+#MenuSaveButton	Save
+#MenuLoadButton	Load
+#MenuStatsButton	Stats
+#MenuExitButton	Exit

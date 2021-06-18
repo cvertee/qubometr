@@ -1,0 +1,7 @@
+#StoreBuyButtonText	Buy
+#MenuSaveButton	Save
+#MenuLoadButton	Load
+#MenuStatsButton	Stats
+#MenuExitButton	Exit
+#ProfileEnterNamePrompt	ENTER NAME
+#ProfileSaveButtonText Save

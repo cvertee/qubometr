@@ -9,6 +9,8 @@ public class GameManager : Singleton<GameManager>
 {
     private void Awake()
     {
+        LocalizationUtil.Init();
+
         GameEvents.onHealthKitUseStart.AddListener(() =>
         {
             Sound.Play(AudioResource.HealthKitUse);
