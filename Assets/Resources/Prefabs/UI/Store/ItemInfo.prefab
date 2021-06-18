@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6410291601313918728}
   - component: {fileID: 6207500229138666462}
   - component: {fileID: 4323421185128444547}
-  - component: {fileID: 8542128718888769214}
   m_Layer: 5
   m_Name: BuyItem
   m_TagString: Untagged
@@ -138,19 +137,6 @@ MonoBehaviour:
   onClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8542128718888769214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1172637966056947513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdff9c53880b59940b1505bcb4f4a14a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: '#StoreBuyButtonText'
 --- !u!1 &1907272648317400383
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,6 +319,7 @@ GameObject:
   - component: {fileID: 7885782500695515281}
   - component: {fileID: 1770090028311154831}
   - component: {fileID: 1962671729467492466}
+  - component: {fileID: 5288859764058276802}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -401,6 +388,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u041A\u0443\u043F\u0438\u0442\u044C"
+--- !u!114 &5288859764058276802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4025169547319013786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdff9c53880b59940b1505bcb4f4a14a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: '#StoreBuyButtonText'
 --- !u!1 &5357942399843530621
 GameObject:
   m_ObjectHideFlags: 0
