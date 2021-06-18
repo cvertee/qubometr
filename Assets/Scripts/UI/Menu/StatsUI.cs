@@ -24,12 +24,12 @@ public class StatsUI : Singleton<StatsUI>, IPopupUIElement
         var data = GameData.Data;
         var sb = new StringBuilder();
 
-        sb.AppendLine($"Потрачено монет: {data.totalWastedCoins}");
-        sb.AppendLine($"Собрано монет: {data.totalCollectedCoins}");
-        sb.AppendLine($"Всего урона получено: {data.totalDamageReceived}");
+        sb.AppendLine($"{LocalizationUtil.IdToLocalized("#StatMoneyWaste")}: {data.totalWastedCoins}");
+        sb.AppendLine($"{LocalizationUtil.IdToLocalized("#StatMoneyCollected")}: {data.totalCollectedCoins}");
+        sb.AppendLine($"{LocalizationUtil.IdToLocalized("#StatDamageReceieved")}: {data.totalDamageReceived}");
         //sb.AppendLine($"Игровое время: {data.gameTimeMs / 1000} секунд");
-        sb.AppendLine($"Количество уничтоженных противников: {data.killedEnemiesCount}");
-        sb.AppendLine($"Количество выпитых целебных зелий: {data.healthKitsUsed}");
+        sb.AppendLine($"{LocalizationUtil.IdToLocalized("#StatKilledEnemyCount")}: {data.killedEnemiesCount}");
+        sb.AppendLine($"{LocalizationUtil.IdToLocalized("#StatHealthKitsUsed")}: {data.healthKitsUsed}");
 
         statsText.text = sb.ToString();
     }

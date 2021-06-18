@@ -4,4 +4,9 @@
 #MenuStatsButton	Stats
 #MenuExitButton	Exit
 #ProfileEnterNamePrompt	ENTER NAME
-#ProfileSaveButtonText Save
+#ProfileSaveButtonText	Save
+#StatMoneyWaste	Total coins wasted
+#StatMoneyCollected	Total coins collected
+#StatDamageReceieved	Total damage receieved
+#StatKilledEnemyCount	Killed enemies count
+#StatHealthKitsUsed	Total health kits used
