@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Linq;
 using System.Text;
+using Game;
 using UnityEngine;
 using UnityEngine.Events;
 using Zenject;
@@ -52,14 +53,17 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
     
     private AudioManager audioManager;
     private GameManager gameManager;
+    private CoinSpawner coinSpawner;
 
     [Inject]
     public void Init(
         AudioManager audioManager,
-        GameManager gameManager)
+        GameManager gameManager,
+        CoinSpawner coinSpawner)
     {
         this.audioManager = audioManager;
         this.gameManager = gameManager;
+        this.coinSpawner = coinSpawner;
     }
     
     private void Awake()
@@ -326,8 +330,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
 
         for (var i = 0; i < 15; i++)
         {
-            // TODO: USE POOL!!!!!!!!!!!
-            Instantiate(Resources.Load("Prefabs/Coin"), transform.position + new Vector3(Random.Range(0, 7), 0), Quaternion.identity);
+            coinSpawner.Spawn(transform.position);
         }
         Destroy(gameObject);
     }
