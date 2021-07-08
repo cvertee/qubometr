@@ -22,7 +22,7 @@ public class GameManager : Singleton<GameManager>
 
         GameEvents.onHealthKitUseStart.AddListener(() =>
         {
-            Sound.Play(AudioResource.HealthKitUse);
+            audioManager.PlaySound(AudioResource.HealthKitUse);
         });
         GameEvents.onHealthKitUseEnd.AddListener(() =>
         {
@@ -53,7 +53,7 @@ public class GameManager : Singleton<GameManager>
         GameData.Data.sceneName = SceneManager.GetActiveScene().name;
         //Application.targetFrameRate = Screen.currentResolution.refreshRate;
 
-        GameEvents.onEnemyAlert.AddListener(() => Sound.Play(AudioResource.EnemyAlert));
+        GameEvents.onEnemyAlert.AddListener(() => audioManager.PlaySound(AudioResource.EnemyAlert));
         GameEvents.onPlayerDeath.AddListener(() => SaveSystem.Load());
 
         SceneManager.sceneLoaded += (scene, mode) => GameEvents.onLocationStart.Invoke();

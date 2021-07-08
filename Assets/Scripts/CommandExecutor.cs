@@ -3,9 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Zenject;
 
 public class CommandExecutor : Singleton<CommandExecutor>
 {
+    private AudioManager audioManager;
+
+    [Inject]
+    public void Init(AudioManager audioManager)
+    {
+        this.audioManager = audioManager;
+    }
+    
     public void ExecuteRawCommand(string rawCommand)
     {
         Debug.Log($"CE: attempt to exec {rawCommand}");
@@ -27,13 +36,13 @@ public class CommandExecutor : Singleton<CommandExecutor>
                 var keyName = args[0];
                 var key = Resources.Load<Key>($"Items/Keys/{keyName}");
                 GameData.AddKey(key);
-                Sound.Play(AudioResource.KeyPickup);
+                audioManager.PlaySound(AudioResource.KeyPickup);
                 break;
             case "!giveItem":
                 var itemName = args[0];
                 var player = FindObjectOfType<Player>(); // TODO: no searching for player
                 GameManager.Instance.AddItemById(itemName, player);
-                Sound.Play(AudioResource.KeyPickup); // TODO: replace
+                audioManager.PlaySound(AudioResource.KeyPickup); // TODO: replace
                 break;
             case "!activateTrigger":
                 var objectName = args[0];

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
@@ -48,6 +49,14 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
     private bool canAttack = true;
     private bool grounded = false;
     private Item usableItem;
+    
+    private AudioManager audioManager;
+
+    [Inject]
+    public void Init(AudioManager audioManager)
+    {
+        this.audioManager = audioManager;
+    }
     
     private void Awake()
     {
@@ -298,7 +307,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
 
     public void TakeDamage(float damage)
     {
-        Sound.Play(AudioResource.SwordSlash); // OnDamage.Invoke() ?
+        audioManager.PlaySound(AudioResource.SwordSlash); // OnDamage.Invoke() ?
         Instantiate(Resources.Load("Prefabs/BloodParticle"), transform.position, Quaternion.identity);
         hp -= damage; //TODO: use damage var
     }

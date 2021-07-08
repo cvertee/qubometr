@@ -1,8 +1,17 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Zenject;
 
 public class StoreManager : Singleton<StoreManager>
 {
+    private AudioManager audioManager;
+
+    [Inject]
+    public void Init(AudioManager audioManager)
+    {
+        this.audioManager = audioManager;
+    }
+    
     public void TryBuyItem(Item item, Player player)
     {
         var totalPrice = (int)(item.price * GameSettings.GlobalPriceMultiplier);
@@ -18,7 +27,7 @@ public class StoreManager : Singleton<StoreManager>
         GameData.Data.totalWastedCoins += totalPrice;
 
         GameManager.Instance.AddItemById(item.id, player);
-        Sound.Play(AudioResource.StoreBuy);
-        GameEvents.onDelayedActionRequested.Invoke(0.4f, () => Sound.Play(item.pickupSound));
+        audioManager.PlaySound(AudioResource.StoreBuy);
+        GameEvents.onDelayedActionRequested.Invoke(0.4f, () => audioManager.PlayClip(item.pickupSound));
     }
 }

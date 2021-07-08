@@ -1,11 +1,20 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using Zenject;
 
 public class DebugUi : MonoBehaviour
 {
     private bool isShown = false;
 
+    private AudioManager audioManager;
+
+    [Inject]
+    public void Init(AudioManager audioManager)
+    {
+        this.audioManager = audioManager;
+    }
+    
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.Tab))
@@ -108,7 +117,7 @@ public class DebugUi : MonoBehaviour
         }
         if (GUILayout.Button("Play sound delayed (0.5 sec)"))
         {
-            GameEvents.onDelayedActionRequested.Invoke(0.5f, () => Sound.Play(AudioResource.StoreBuy));
+            GameEvents.onDelayedActionRequested.Invoke(0.5f, () => audioManager.PlaySound(AudioResource.StoreBuy));
         }
         if (GUILayout.Button("Test SaveSystem"))
         {

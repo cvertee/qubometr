@@ -21,6 +21,12 @@ public class Door : MonoBehaviour, IInteractable
     public DoorType interactionType = DoorType.None;
 
     private AudioManager audioManager;
+
+    [Inject]
+    public void Init(AudioManager audioManager)
+    {
+        this.audioManager = audioManager;
+    }
     
     private void Start()
     {
@@ -47,7 +53,7 @@ public class Door : MonoBehaviour, IInteractable
             if (!GameData.Data.pickedUpKeys.Any(x => x == requiredKey))
             {
                 Debug.Log($"Door: No key! (requires {requiredKey.name})");
-                Sound.Play(AudioResource.DoorLocked);
+                audioManager.PlaySound(AudioResource.DoorLocked);
                 return;
             }
             else
