@@ -1,8 +1,17 @@
 using UnityEngine;
+using Zenject;
 
 public class Coin : MonoBehaviour
 {
     public int amount = 1;
+
+    private AudioManager audioManager;
+
+    [Inject]
+    public void Init(AudioManager audioManager)
+    {
+        this.audioManager = audioManager;
+    }
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,8 +25,12 @@ public class Coin : MonoBehaviour
             GameData.Data.coins += amount;
             GameData.Data.totalCollectedCoins += amount;
             GameEvents.onCoinPickup.Invoke();
-            Sound.Play(AudioResource.CoinPickup);
+            audioManager.PlaySound(AudioResource.CoinPickup);
             Destroy(gameObject);
         }
+    }
+
+    public class Factory : PlaceholderFactory<AudioManager, Coin>
+    {
     }
 }

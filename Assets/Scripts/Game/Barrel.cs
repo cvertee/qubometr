@@ -1,3 +1,4 @@
+using Game;
 using UnityEngine;
 using Zenject;
 
@@ -7,11 +8,15 @@ public class Barrel : DestroyerBase, ITakesDamage
     [SerializeField] private float hp;
 
     private AudioManager audioManager;
+    private CoinSpawner coinSpawner;
     
     [Inject]
-    public void Init(AudioManager audioManager)
+    public void Init(
+        AudioManager audioManager, 
+        CoinSpawner coinSpawner)
     {
         this.audioManager = audioManager;
+        this.coinSpawner = coinSpawner;
     }
     
     public void TakeDamage(float damage)
@@ -23,9 +28,7 @@ public class Barrel : DestroyerBase, ITakesDamage
             audioManager.PlaySound(AudioResource.BarrelBreak);
             for (var i = 0; i < coinAmount; i++)
             {
-                // TODO: USE POOL!!!!!!!!!!!
-                Instantiate(Resources.Load("Prefabs/Coin"),
-                    transform.position + new Vector3(Random.Range(0, 7), 0), Quaternion.identity);
+                coinSpawner.Spawn(transform.position);
             }
 
             var barrelParts = Instantiate<GameObject>(Resources.Load<GameObject>("Prefabs/BarrelDestroyed"), transform.position, Quaternion.identity);
