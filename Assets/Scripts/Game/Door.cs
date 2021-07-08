@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 public class Door : MonoBehaviour, IInteractable
 {
@@ -19,6 +20,8 @@ public class Door : MonoBehaviour, IInteractable
     public Key requiredKey;
     public DoorType interactionType = DoorType.None;
 
+    private AudioManager audioManager;
+    
     private void Start()
     {
         
@@ -49,7 +52,7 @@ public class Door : MonoBehaviour, IInteractable
             }
             else
             {
-                AudioManager.Instance.PlaySound("doorUnlocked", shouldPlayInAudioSource: true);
+                audioManager.PlaySound("doorUnlocked", shouldPlayInAudioSource: true);
             }
         }
 

@@ -1,17 +1,26 @@
 using UnityEngine;
+using Zenject;
 
 public class Barrel : DestroyerBase, ITakesDamage
 {
     [SerializeField] private int coinAmount = 15;
     [SerializeField] private float hp;
 
+    private AudioManager audioManager;
+    
+    [Inject]
+    public void Init(AudioManager audioManager)
+    {
+        this.audioManager = audioManager;
+    }
+    
     public void TakeDamage(float damage)
     {
         hp -= damage;
 
         if (hp <= 0)
         {
-            Sound.Play(AudioResource.BarrelBreak);
+            audioManager.PlaySound(AudioResource.BarrelBreak);
             for (var i = 0; i < coinAmount; i++)
             {
                 // TODO: USE POOL!!!!!!!!!!!
@@ -26,6 +35,6 @@ public class Barrel : DestroyerBase, ITakesDamage
             return;
         }
 
-        Sound.Play(AudioResource.BarrelHit);
+        audioManager.PlaySound(AudioResource.BarrelHit);
     }
 }

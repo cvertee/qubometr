@@ -4,9 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 public class GameManager : Singleton<GameManager>
 {
+    private AudioManager audioManager;
+
+    [Inject]
+    private void Init(AudioManager audioManager)
+    {
+        this.audioManager = audioManager;
+    }
+    
     private void Awake()
     {
         LocalizationUtil.Init();
@@ -24,13 +33,13 @@ public class GameManager : Singleton<GameManager>
         {
             Debug.Log($"Playing raw audio clip `{clip.name}`");
 
-            AudioManager.Instance.PlayClip(clip);
+            audioManager.PlayClip(clip);
         });
         GameEvents.onAudioNamePlayRequested.AddListener(audioName => 
         {
             Debug.Log($"Playing audio clip by name `{audioName}`");
 
-            AudioManager.Instance.PlaySound(audioName);
+            audioManager.PlaySound(audioName);
         });
         GameEvents.onDelayedActionRequested.AddListener((time, action) => 
         {
@@ -113,7 +122,7 @@ public class GameManager : Singleton<GameManager>
         var bossInfo = boss.GetComponent<Boss>().bossInfo;
         bossUI.Initialize(bossInfo, boss);
         
-        AudioManager.Instance.PlayMusic(bossInfo.music, loop: true);
+        audioManager.PlayMusic(bossInfo.music, loop: true);
     }
 
     public void StopBossFight()
@@ -121,7 +130,7 @@ public class GameManager : Singleton<GameManager>
         var bossUI = FindObjectOfType<BossUI>();
         bossUI.Disable();
 
-        AudioManager.Instance.StopMusic();
+        audioManager.StopMusic();
     }
 
     public void Exit()
