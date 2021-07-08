@@ -1,10 +1,19 @@
 using System;
 using UnityEngine;
+using Zenject;
 
 public class Character : MonoBehaviour, IInteractable, ICharacter
 {
     public DialogueSO dialogue;
     public GameObject dialogueBox;
+
+    private GameManager gameManager;
+
+    [Inject]
+    public void Init(GameManager gameManager)
+    {
+        this.gameManager = gameManager;
+    }
 
     private void Start()
     {
@@ -19,12 +28,12 @@ public class Character : MonoBehaviour, IInteractable, ICharacter
 
     public void StopInteract()
     {
-        GameManager.Instance.StopCurrentDialogue();
+        gameManager.StopCurrentDialogue();
     }
 
     public void StartDialogue(DialogueSO dialogueSo)
     {
-        GameManager.Instance.StartDialogue(dialogueSo, dialogueBox);
+        gameManager.StartDialogue(dialogueSo, dialogueBox);
     }
 
     public void SetDialogue(DialogueSO dialogueSo)

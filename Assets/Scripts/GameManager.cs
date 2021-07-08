@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : MonoBehaviour
 {
     private AudioManager audioManager;
 

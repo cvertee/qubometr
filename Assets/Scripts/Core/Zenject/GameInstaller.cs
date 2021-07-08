@@ -6,6 +6,7 @@ public class GameInstaller : MonoInstaller
 {
     public AudioManager audioManagerPrefab;
     public Coin coinPrefab;
+    public GameManager gameManagerInstance;
     
     public override void InstallBindings()
     {
@@ -14,5 +15,6 @@ public class GameInstaller : MonoInstaller
         Container.Bind<AudioManager>().FromInstance(audioManager).AsSingle();
         Container.Bind<CoinSpawner>().FromNew().AsSingle();
         Container.BindFactory<AudioManager, Coin, Coin.Factory>().FromComponentInNewPrefab(coinPrefab);
+        Container.Bind<GameManager>().FromInstance(gameManagerInstance);
     }
 }

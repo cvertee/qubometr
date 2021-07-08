@@ -51,11 +51,15 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
     private Item usableItem;
     
     private AudioManager audioManager;
+    private GameManager gameManager;
 
     [Inject]
-    public void Init(AudioManager audioManager)
+    public void Init(
+        AudioManager audioManager,
+        GameManager gameManager)
     {
         this.audioManager = audioManager;
+        this.gameManager = gameManager;
     }
     
     private void Awake()
@@ -72,7 +76,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
 
         if ((usableItem = GetComponentInChildren<Weapon>()) == null) // means enemy doesn't have any weapons
         {
-            GameManager.Instance.AddItemById("Knife", this);
+            gameManager.AddItemById("Knife", this);
         }
     }
 

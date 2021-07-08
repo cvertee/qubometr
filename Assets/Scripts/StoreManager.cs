@@ -5,11 +5,15 @@ using Zenject;
 public class StoreManager : Singleton<StoreManager>
 {
     private AudioManager audioManager;
+    private GameManager gameManager;
 
     [Inject]
-    public void Init(AudioManager audioManager)
+    public void Init(
+        AudioManager audioManager,
+        GameManager gameManager)
     {
         this.audioManager = audioManager;
+        this.gameManager = gameManager;
     }
     
     public void TryBuyItem(Item item, Player player)
@@ -26,7 +30,7 @@ public class StoreManager : Singleton<StoreManager>
         GameData.Data.coins -= totalPrice;
         GameData.Data.totalWastedCoins += totalPrice;
 
-        GameManager.Instance.AddItemById(item.id, player);
+        gameManager.AddItemById(item.id, player);
         audioManager.PlaySound(AudioResource.StoreBuy);
         GameEvents.onDelayedActionRequested.Invoke(0.4f, () => audioManager.PlayClip(item.pickupSound));
     }

@@ -27,9 +27,10 @@ public static class SaveSystem
     
     public static void Save()
     {
-        var player = GameManager.Instance.GetPlayer();
-        var playerPos = new SerializableVector3(player.transform.position);
-        GameData.Data.playerPosition = playerPos;
+        // TODO: fix
+        //var player = GameManager.Instance.GetPlayer();
+        //var playerPos = new SerializableVector3(player.transform.position);
+        //GameData.Data.playerPosition = playerPos;
         GameData.Data.profile = currentProfile;
         
         WriteSave(GameData.Data);

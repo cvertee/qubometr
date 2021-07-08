@@ -8,11 +8,15 @@ using Zenject;
 public class CommandExecutor : Singleton<CommandExecutor>
 {
     private AudioManager audioManager;
+    private GameManager gameManager;
 
     [Inject]
-    public void Init(AudioManager audioManager)
+    public void Init(
+        AudioManager audioManager,
+        GameManager gameManager)
     {
         this.audioManager = audioManager;
+        this.gameManager = gameManager;
     }
     
     public void ExecuteRawCommand(string rawCommand)
@@ -41,7 +45,7 @@ public class CommandExecutor : Singleton<CommandExecutor>
             case "!giveItem":
                 var itemName = args[0];
                 var player = FindObjectOfType<Player>(); // TODO: no searching for player
-                GameManager.Instance.AddItemById(itemName, player);
+                gameManager.AddItemById(itemName, player);
                 audioManager.PlaySound(AudioResource.KeyPickup); // TODO: replace
                 break;
             case "!activateTrigger":

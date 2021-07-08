@@ -7,11 +7,12 @@ using UnityEngine.SceneManagement;
 
 public static class SaveSystemTest
 {
+    // TODO: fix
     public static void Start()
     {
         const string TEST_PROFILE_NAME = "TEST";
         var SavePath = $"{Application.persistentDataPath}/{TEST_PROFILE_NAME}_save.sav";
-        var player = GameManager.Instance.GetPlayer();
+        //var player = GameManager.Instance.GetPlayer();
         var sceneName = SceneManager.GetActiveScene().name;
         var coinsCount = GameData.Data.coins;
 
@@ -27,7 +28,7 @@ public static class SaveSystemTest
 
         // Load current save from file and start comparing fields
         var save = SaveSystem.GetSaveData();
-        var currentPosition = new SerializableVector3(player.transform.position);
+        //var currentPosition = new SerializableVector3(player.transform.position);
         // Assert.IsTrue(save.playerPosition == currentPosition, "Wrong saved player location"); // TODO: float == fix
         Assert.IsTrue(save.sceneName == sceneName, "Wrong saved scene");
         Assert.IsTrue(save.coins == coinsCount, "Wrong saved coins");

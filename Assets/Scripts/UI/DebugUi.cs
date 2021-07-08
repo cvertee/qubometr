@@ -8,11 +8,15 @@ public class DebugUi : MonoBehaviour
     private bool isShown = false;
 
     private AudioManager audioManager;
+    private GameManager gameManager;
 
     [Inject]
-    public void Init(AudioManager audioManager)
+    public void Init(
+        AudioManager audioManager,
+        GameManager gameManager)
     {
         this.audioManager = audioManager;
+        this.gameManager = gameManager;
     }
     
     private void Update()
@@ -59,20 +63,20 @@ public class DebugUi : MonoBehaviour
 
         if (GUILayout.Button("Give knife"))
         {
-            GameManager.Instance.AddItemById("Knife", FindObjectOfType<Player>());
+            gameManager.AddItemById("Knife", FindObjectOfType<Player>());
         }
         if (GUILayout.Button("Give sword"))
         {
-            GameManager.Instance.AddItemById("Sword", FindObjectOfType<Player>());
+            gameManager.AddItemById("Sword", FindObjectOfType<Player>());
         }
         if (GUILayout.Button("Give shield"))
         {
-            GameManager.Instance.AddItemById("ShieldPlaceholder", FindObjectOfType<Player>());
+            gameManager.AddItemById("ShieldPlaceholder", FindObjectOfType<Player>());
         }
 
         if (GUILayout.Button("Open example store"))
         {
-            var item = GameManager.Instance.GetItemObjectById("HeavyArmor");
+            var item = gameManager.GetItemObjectById("HeavyArmor");
             StoreUI.Instance.Show(new List<Item> {item.GetComponent<Item>()});
         }
 

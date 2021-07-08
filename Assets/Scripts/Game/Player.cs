@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 public class Player : MonoBehaviour, ITakesDamage, ICharacter
 {
@@ -42,6 +43,14 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
     [SerializeField] private float overlapCircleRadius;
     [SerializeField] private Vector3 overlapCircleOffset;
 
+    private GameManager gameManager;
+
+    [Inject]
+    public void Init(GameManager gameManager)
+    {
+        this.gameManager = gameManager;
+    }
+    
     private void Awake()
     {
         hp = GameData.GetHealth();
@@ -50,9 +59,9 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
 
         if (SceneManager.GetActiveScene().name == "Dev")
         {
-            GameManager.Instance.AddItemById("Knife", this);
-            GameManager.Instance.AddItemById("ShieldPlaceholder", this);
-            GameManager.Instance.AddItemById("DefaultArmor", this);
+            gameManager.AddItemById("Knife", this);
+            gameManager.AddItemById("ShieldPlaceholder", this);
+            gameManager.AddItemById("DefaultArmor", this);
         }
 
         // TODO: use something else like onPlayerLockRequested???
@@ -69,7 +78,7 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
 
         foreach (var itemId in GameData.Data.playerItemIds.ToArray())
         {
-            GameManager.Instance.AddItemById(itemId, this);
+            gameManager.AddItemById(itemId, this);
         }
     }
 

@@ -7,6 +7,13 @@ public class PickableItem : PickableItemBase
 
     private AudioClip pickupSound;
 
+    private GameManager gameManager;
+
+    private void Init(GameManager gameManager)
+    {
+        this.gameManager = gameManager;
+    }
+
     private void Start()
     {
         if (itemObject == null)
@@ -22,7 +29,7 @@ public class PickableItem : PickableItemBase
 
     protected override void OnPickup()
     {
-        GameManager.Instance.AddItem(
+        gameManager.AddItem(
             itemObject,
             FindObjectOfType<Player>()
         );
