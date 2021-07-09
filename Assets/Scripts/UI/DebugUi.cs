@@ -80,7 +80,7 @@ public class DebugUi : MonoBehaviour
         if (GUILayout.Button("Open example store"))
         {
             var item = gameManager.GetItemObjectById("HeavyArmor");
-            storeUI.Show(new List<Item> {item.GetComponent<Item>()});
+            storeUI.Show(new List<ItemSO> { item.data });
         }
 
         if (GUILayout.Button("Close store"))

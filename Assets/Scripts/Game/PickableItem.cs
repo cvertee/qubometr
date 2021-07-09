@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PickableItem : PickableItemBase
 {
-    public Item itemObject;
+    public ItemSO itemObject;
 
     private AudioClip pickupSound;
 
@@ -29,8 +29,8 @@ public class PickableItem : PickableItemBase
 
     protected override void OnPickup()
     {
-        gameManager.AddItem(
-            itemObject,
+        gameManager.AddItemById(
+            itemObject.name,
             FindObjectOfType<Player>()
         );
         

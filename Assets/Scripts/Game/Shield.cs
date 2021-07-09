@@ -10,7 +10,7 @@ public class Shield : Item
 
     private void Awake()
     {
-        originalProtectionMultiplier = protectionMultiplier;
+        originalProtectionMultiplier = data.protectionMultiplier;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -19,25 +19,25 @@ public class Shield : Item
 
     public override void Use()
     {
-        isBeingUsed = true;
+        data.isBeingUsed = true;
         Show();
         StartCoroutine(nameof(BlockCoroutine));
     }
 
     private IEnumerator BlockCoroutine()
     {
-        protectionMultiplier = 1.0f;
+        data.protectionMultiplier = 1.0f;
         Debug.Log($"Shield: full protection enabled");
         yield return new WaitForSeconds(imperviousToDamageTime);
         Debug.Log($"Shield: full protection disabled");
-        protectionMultiplier = originalProtectionMultiplier;
+        data.protectionMultiplier = originalProtectionMultiplier;
     }
 
     public override void StopUse()
     {
         StopCoroutine(nameof(BlockCoroutine));
-        protectionMultiplier = originalProtectionMultiplier;
-        isBeingUsed = false;
+        data.protectionMultiplier = originalProtectionMultiplier;
+        data.isBeingUsed = false;
         Hide();
     }
 

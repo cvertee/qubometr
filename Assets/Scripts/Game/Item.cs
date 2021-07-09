@@ -1,44 +1,42 @@
 ﻿using System;
 using UnityEngine;
+using Zenject;
 
-public enum ItemType
-{
-    Weapon,
-    Shield,
-    Armor,
-    Unknown
-}
 
 [RequireComponent(typeof(Animator))]
 public class Item : MonoBehaviour
 {
-    public string id;
-    public ItemType type;
-    public Sprite icon;
-    public RuntimeAnimatorController animatorController;
-    public Player owner; // TODO: possibly character or IItemHolder etc
-    public int price;
-    public AudioClip pickupSound;
-    public string displayName = "NO_NAME";
+    public ItemSO data;
 
-    public bool isBeingUsed = false;
-    public float protectionMultiplier = 0.0f;
-
+    private SpriteRenderer spriteRenderer;
     protected Animator animator;
 
     private void Awake()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        animator.runtimeAnimatorController = animatorController;
+    }
+    
+    public void Initialize(ItemSO data)
+    {
+        this.data = data;
+        
+        spriteRenderer.sprite = data.icon;
+        animator.runtimeAnimatorController = data.animatorController;
     }
 
     public virtual void Use()
     {
-        throw new NotImplementedException();
+        
     }
 
     public virtual void StopUse()
     {
-        throw new NotImplementedException();
+        
+    }
+
+    public class Factory : PlaceholderFactory<Item>
+    {
+        
     }
 }

@@ -57,13 +57,6 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
 
-        if (SceneManager.GetActiveScene().name == "Dev")
-        {
-            gameManager.AddItemById("Knife", this);
-            gameManager.AddItemById("ShieldPlaceholder", this);
-            gameManager.AddItemById("DefaultArmor", this);
-        }
-
         // TODO: use something else like onPlayerLockRequested???
         GameEvents.onPopupUiElementShowed.AddListener(() => currentState = State.Locked);
         GameEvents.onPopupUiElementsEnded.AddListener(() => currentState = State.Any);
@@ -75,6 +68,13 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
     {
         if (GameData.Data.playerPosition != null)
             transform.position = GameData.Data.playerPosition.ToNormalVector3();
+        
+        if (SceneManager.GetActiveScene().name == "Dev")
+        {
+            gameManager.AddItemById("Knife", this);
+            gameManager.AddItemById("ShieldPlaceholder", this);
+            gameManager.AddItemById("DefaultArmor", this);
+        }
 
         foreach (var itemId in GameData.Data.playerItemIds.ToArray())
         {
@@ -194,12 +194,12 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
 
         foreach (var item in items)
         {
-            if (!item.isBeingUsed)
+            if (!item.data.isBeingUsed)
                 continue;
             
             // probably no need for checking whether it's armor or shield
             // because default items like weapon will have no protection 
-            totalDamage -= totalDamage * item.protectionMultiplier;
+            totalDamage -= totalDamage * item.data.protectionMultiplier;
         }
 
         if (totalDamage <= 0.0f)
@@ -275,11 +275,11 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
     {
         item = Instantiate<Item>(item, transform);
         items.Add(item);
-        GameData.Data.playerItemIds.Add(item.id);
+        GameData.Data.playerItemIds.Add(item.name);
 
-        item.owner = this;
+        // item.owner = this;
 
-        if (item.type == ItemType.Weapon)
+        if (item.data.type == ItemType.Weapon)
         {
             if (primaryWeapon != null)
                 Destroy(primaryWeapon.gameObject);
@@ -287,7 +287,7 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
             primaryWeapon = item;
         }
 
-        if (item.type == ItemType.Shield)
+        if (item.data.type == ItemType.Shield)
         {
             if (secondaryWeapon != null)
                 Destroy(secondaryWeapon.gameObject);
@@ -295,7 +295,7 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
             secondaryWeapon = item;
         }
 
-        if (item.type == ItemType.Armor)
+        if (item.data.type == ItemType.Armor)
         {
             if (armor != null)
                 Destroy(armor.gameObject);

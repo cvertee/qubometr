@@ -16,7 +16,7 @@ public class StoreManager : MonoBehaviour
         this.gameManager = gameManager;
     }
     
-    public void TryBuyItem(Item item, Player player)
+    public void TryBuyItem(ItemSO item, Player player)
     {
         var totalPrice = (int)(item.price * GameSettings.GlobalPriceMultiplier);
 
@@ -30,7 +30,7 @@ public class StoreManager : MonoBehaviour
         GameData.Data.coins -= totalPrice;
         GameData.Data.totalWastedCoins += totalPrice;
 
-        gameManager.AddItemById(item.id, player);
+        gameManager.AddItemById(item.name, player);
         audioManager.PlaySound(AudioResource.StoreBuy);
         GameEvents.onDelayedActionRequested.Invoke(0.4f, () => audioManager.PlayClip(item.pickupSound));
     }

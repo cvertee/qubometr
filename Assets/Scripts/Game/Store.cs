@@ -6,6 +6,8 @@ public class Store : MonoBehaviour, IInteractable
 {
     public List<Item> items;
 
+    public List<ItemSO> items_;
+
     private StoreUI storeUI;
 
     [Inject]
@@ -21,7 +23,7 @@ public class Store : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        storeUI.Show(items);
+        storeUI.Show(items_);
     }
 
     public void StopInteract()

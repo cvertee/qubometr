@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82e4298db5826804d89e54169176ca7f, type: 3}
+  m_Name: DefaultArmor
+  m_EditorClassIdentifier: 
+  type: 2
+  icon: {fileID: 21300000, guid: bb5d0278c80c29b4f8ce1d9254a13ab0, type: 3}
+  animatorController: {fileID: 0}
+  price: 30
+  pickupSound: {fileID: 8300000, guid: d2e611492dba9e140942350514d53523, type: 3}
+  displayName: '#LeatherArmor'
+  isBeingUsed: 1
+  protectionMultiplier: 0.1

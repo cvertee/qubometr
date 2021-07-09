@@ -26,7 +26,7 @@ public class StoreUI : MonoBehaviour, IPopupUIElement
         Close();
     }
 
-    public void Show(List<Item> items)
+    public void Show(List<ItemSO> items)
     {
         UIManager.Instance.RegisterPopup(this);
         itemsContainer.SetActive(true);

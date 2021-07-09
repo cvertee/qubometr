@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 482b63c5120c43818bcc59a25d039be1, type: 3}
+  m_Name: Sword
+  m_EditorClassIdentifier: 
+  type: 0
+  icon: {fileID: 21300000, guid: f8f775236273cd14c9778d5913280b91, type: 3}
+  animatorController: {fileID: 9100000, guid: a3b75295c4c132a44a9e2fb1d96ef30b, type: 2}
+  price: 75
+  pickupSound: {fileID: 8300000, guid: df0d92e7a137aaf4db9c2709c1e049dd, type: 3}
+  displayName: '#SwordItem'
+  isBeingUsed: 0
+  protectionMultiplier: 0
+  damage: 20
+  attackNames:
+  - Attack

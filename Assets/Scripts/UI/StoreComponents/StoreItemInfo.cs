@@ -18,7 +18,7 @@ public class StoreItemInfo : MonoBehaviour
         this.storeManager = storeManager;
     }
 
-    public void Initialize(Item item)
+    public void Initialize(ItemSO item)
     {
         itemUiIcon.sprite = item.icon;
         itemNameText.text = LocalizationUtil.IdToLocalized(item.displayName);

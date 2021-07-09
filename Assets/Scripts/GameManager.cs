@@ -9,15 +9,18 @@ using Zenject;
 public class GameManager : MonoBehaviour
 {
     private AudioManager audioManager;
+    private Item.Factory itemFactory;
 
     [Inject]
-    private void Init(AudioManager audioManager)
+    private void Init(AudioManager audioManager, Item.Factory itemFactory)
     {
         this.audioManager = audioManager;
+        this.itemFactory = itemFactory;
     }
     
     private void Awake()
     {
+        Debug.Log("Gamemanager awake", this);
         LocalizationUtil.Init();
 
         GameEvents.onHealthKitUseStart.AddListener(() =>
@@ -50,6 +53,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        Debug.Log("Gamemanager start", this);
         GameData.Data.sceneName = SceneManager.GetActiveScene().name;
         //Application.targetFrameRate = Screen.currentResolution.refreshRate;
 
@@ -108,7 +112,11 @@ public class GameManager : MonoBehaviour
 
     public Item GetItemObjectById(string id)
     {
-        return Resources.Load<Item>($"Prefabs/Items/{id}");
+        var itemSo = Resources.Load<ItemSO>($"Items/{id}");
+        var item = itemFactory.Create();
+        item.Initialize(itemSo);
+        
+        return item;
     }
 
     public Player GetPlayer()

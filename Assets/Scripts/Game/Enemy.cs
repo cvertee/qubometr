@@ -77,16 +77,16 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
 
         rb = GetComponent<Rigidbody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
-
-        if ((usableItem = GetComponentInChildren<Weapon>()) == null) // means enemy doesn't have any weapons
-        {
-            gameManager.AddItemById("Knife", this);
-        }
     }
 
     private void Start()
     {
         StartCoroutine(AIUpdate());
+        
+        if ((usableItem = GetComponentInChildren<Weapon>()) == null) // means enemy doesn't have any weapons
+        {
+            gameManager.AddItemById("Knife", this);
+        }
     }
 
     private void Update()
