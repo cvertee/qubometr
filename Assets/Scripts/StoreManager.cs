@@ -2,7 +2,7 @@
 using UnityEngine;
 using Zenject;
 
-public class StoreManager : Singleton<StoreManager>
+public class StoreManager : MonoBehaviour
 {
     private AudioManager audioManager;
     private GameManager gameManager;

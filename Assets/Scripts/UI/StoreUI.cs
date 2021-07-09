@@ -1,13 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
-public class StoreUI : Singleton<StoreUI>, IPopupUIElement
+public class StoreUI : MonoBehaviour, IPopupUIElement
 {
     public GameObject itemsContainer;
 
     private List<StoreItemInfo> storeItemInfoComponents = new List<StoreItemInfo>();
 
+    private StoreManager storeManager;
+    private StoreItemInfo.Factory storeItemInfoFactory;
+
+    [Inject]
+    public void Init(
+        StoreManager storeManager, 
+        StoreItemInfo.Factory storeItemInfoFactory)
+    {
+        this.storeManager = storeManager;
+        this.storeItemInfoFactory = storeItemInfoFactory;
+    }
+    
     private void Awake()
     {
         Close();
@@ -25,8 +38,10 @@ public class StoreUI : Singleton<StoreUI>, IPopupUIElement
         foreach (var item in items)
         {
             var itemInfoComponent = Resources.Load<StoreItemInfo>("Prefabs/UI/Store/ItemInfo");
-            var itemInfo = Instantiate<StoreItemInfo>(itemInfoComponent, itemsContainer.transform);
+            var itemInfo = storeItemInfoFactory.Create(storeManager);
+            itemInfo.transform.SetParent(itemsContainer.transform);
             itemInfo.Initialize(item);
+            
             storeItemInfoComponents.Add(itemInfo);
         }
     }

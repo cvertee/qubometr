@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Store : MonoBehaviour, IInteractable
 {
@@ -7,6 +8,12 @@ public class Store : MonoBehaviour, IInteractable
 
     private StoreUI storeUI;
 
+    [Inject]
+    public void Init(StoreUI storeUI)
+    {
+        this.storeUI = storeUI;
+    }
+    
     private void Start()
     {
         storeUI = FindObjectOfType<StoreUI>();
@@ -14,11 +21,11 @@ public class Store : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        StoreUI.Instance.Show(items);
+        storeUI.Show(items);
     }
 
     public void StopInteract()
     {
-        StoreUI.Instance.Close();
+        storeUI.Close();
     }
 }

@@ -9,14 +9,17 @@ public class DebugUi : MonoBehaviour
 
     private AudioManager audioManager;
     private GameManager gameManager;
+    private StoreUI storeUI;
 
     [Inject]
     public void Init(
         AudioManager audioManager,
-        GameManager gameManager)
+        GameManager gameManager,
+        StoreUI storeUI)
     {
         this.audioManager = audioManager;
         this.gameManager = gameManager;
+        this.storeUI = storeUI;
     }
     
     private void Update()
@@ -77,12 +80,12 @@ public class DebugUi : MonoBehaviour
         if (GUILayout.Button("Open example store"))
         {
             var item = gameManager.GetItemObjectById("HeavyArmor");
-            StoreUI.Instance.Show(new List<Item> {item.GetComponent<Item>()});
+            storeUI.Show(new List<Item> {item.GetComponent<Item>()});
         }
 
         if (GUILayout.Button("Close store"))
         {
-            StoreUI.Instance.Close();
+            storeUI.Close();
         }
 
         if (GUILayout.Button("Raise health restore event"))
