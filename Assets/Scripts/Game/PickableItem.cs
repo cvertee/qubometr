@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Zenject;
 
 public class PickableItem : PickableItemBase
 {
@@ -8,7 +9,8 @@ public class PickableItem : PickableItemBase
     private AudioClip pickupSound;
 
     private GameManager gameManager;
-
+    
+    [Inject]
     private void Init(GameManager gameManager)
     {
         this.gameManager = gameManager;
@@ -36,6 +38,6 @@ public class PickableItem : PickableItemBase
         
         GameEvents.onAudioClipPlayRequested.Invoke(pickupSound);
         
-        DestroySave();
+        destroyer.DestroySave();
     }
 }

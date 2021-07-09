@@ -19,6 +19,6 @@ public class HealthKit : PickableItemBase
     {
         yield return new WaitForSeconds(0.8f);
         GameEvents.onHealthKitUseEnd.Invoke();
-        DestroySave();
+        destroyer.DestroySave();
     }
 }

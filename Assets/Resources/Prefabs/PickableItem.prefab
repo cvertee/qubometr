@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8167064951395009469}
   - component: {fileID: 8167064951395009471}
   - component: {fileID: 8167064951395009470}
+  - component: {fileID: 5342969271949219438}
   m_Layer: 2
   m_Name: PickableItem
   m_TagString: Pickable
@@ -96,7 +97,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d701c4051b63b64d9e8b4acc61ae1e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 
+  onPickup:
+    m_PersistentCalls:
+      m_Calls: []
+  itemObject: {fileID: 0}
 --- !u!61 &8167064951395009470
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -123,3 +127,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10, y: 4}
   m_EdgeRadius: 0
+--- !u!114 &5342969271949219438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8167064951395009442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b275c4c7280620245bb9571b5ce5e4d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

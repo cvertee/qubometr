@@ -1,15 +1,17 @@
+using System;
 using Game;
 using UnityEngine;
 using Zenject;
 
-public class Barrel : DestroyerBase, ITakesDamage
+public class Barrel : MonoBehaviour, ITakesDamage
 {
     [SerializeField] private int coinAmount = 15;
     [SerializeField] private float hp;
+    private DestroyerBase destroyer;
 
     private AudioManager audioManager;
     private CoinSpawner coinSpawner;
-    
+
     [Inject]
     public void Init(
         AudioManager audioManager, 
@@ -18,7 +20,12 @@ public class Barrel : DestroyerBase, ITakesDamage
         this.audioManager = audioManager;
         this.coinSpawner = coinSpawner;
     }
-    
+
+    private void Awake()
+    {
+        destroyer = GetComponent<DestroyerBase>();
+    }
+
     public void TakeDamage(float damage)
     {
         hp -= damage;
@@ -34,7 +41,7 @@ public class Barrel : DestroyerBase, ITakesDamage
             var barrelParts = Instantiate<GameObject>(Resources.Load<GameObject>("Prefabs/BarrelDestroyed"), transform.position, Quaternion.identity);
             barrelParts.transform.position = transform.position;
             barrelParts.transform.localScale = transform.localScale;
-            DestroySave();
+            destroyer.DestroySave();
             return;
         }
 

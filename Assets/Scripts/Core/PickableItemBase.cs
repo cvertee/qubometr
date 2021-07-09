@@ -3,9 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PickableItemBase : DestroyerBase, IInteractable
+public class PickableItemBase : MonoBehaviour, IInteractable
 {
     public UnityEvent onPickup;
+
+    protected DestroyerBase destroyer;
+
+    private void Awake()
+    {
+        destroyer = GetComponent<DestroyerBase>();
+    }
     
     public void Interact()
     {
