@@ -10,11 +10,16 @@ public class GameManager : MonoBehaviour
 {
     private AudioManager audioManager;
     private Item.Factory itemFactory;
+    private GameSettingsSO gameSettings;
 
     [Inject]
-    private void Init(AudioManager audioManager, Item.Factory itemFactory)
+    private void Init(
+        AudioManager audioManager,
+        Item.Factory itemFactory,
+        GameSettingsSO gameSettings)
     {
         this.audioManager = audioManager;
+        this.gameSettings = gameSettings;
         this.itemFactory = itemFactory;
     }
     
@@ -29,7 +34,7 @@ public class GameManager : MonoBehaviour
         });
         GameEvents.onHealthKitUseEnd.AddListener(() =>
         {
-            GameData.IncreaseHealth(10f * GameSettings.GlobalHealthKitMultiplier);
+            GameData.IncreaseHealth(10f * gameSettings.healthKitMultiplier);
             GameData.Data.healthKitsUsed += 1;
         });
         GameEvents.onAudioClipPlayRequested.AddListener(clip => 

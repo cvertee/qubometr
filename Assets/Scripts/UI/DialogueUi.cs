@@ -7,11 +7,14 @@ using Zenject;
 public class DialogueUi : MonoBehaviour
 {
     private CommandExecutor commandExecutor;
-    
-    [Inject]
-    public void Init(CommandExecutor commandExecutor)
+    private GameSettingsSO gameSettings;
+
+    public void Init(
+        CommandExecutor commandExecutor,
+        GameSettingsSO gameSettings)
     {
         this.commandExecutor = commandExecutor;
+        this.gameSettings = gameSettings;
     }
     
     public void ShowDialogueTexts(string[] texts, GameObject container)
@@ -32,7 +35,7 @@ public class DialogueUi : MonoBehaviour
             }
             
             textObject.text = text;
-            yield return new WaitForSeconds(GameSettings.GlobalDialogueTime);
+            yield return new WaitForSeconds(gameSettings.dialogueTimeSeconds);
         }
         yield return new WaitForSeconds(1.0f);
         Destroy(textObject.gameObject);

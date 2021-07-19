@@ -11,18 +11,22 @@ public class StoreItemInfo : MonoBehaviour
     public Text itemPriceText;
 
     private StoreManager storeManager;
+    private GameSettingsSO gameSettings;
     
     [Inject]
-    public void Init(StoreManager storeManager)
+    public void Init(
+        StoreManager storeManager,
+        GameSettingsSO gameSettings)
     {
         this.storeManager = storeManager;
+        this.gameSettings = gameSettings;
     }
 
     public void Initialize(ItemSO item)
     {
         itemUiIcon.sprite = item.icon;
         itemNameText.text = LocalizationUtil.IdToLocalized(item.displayName);
-        itemPriceText.text = (item.price * GameSettings.GlobalPriceMultiplier).ToString();
+        itemPriceText.text = (item.price * gameSettings.priceMultiplier).ToString();
 
         buyButton.onClick.AddListener(() =>
         {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
@@ -44,11 +45,15 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
     [SerializeField] private Vector3 overlapCircleOffset;
 
     private GameManager gameManager;
+    private GameSettingsSO gameSettings;
 
     [Inject]
-    public void Init(GameManager gameManager)
+    public void Init(
+        GameManager gameManager, 
+        GameSettingsSO gameSettings)
     {
         this.gameManager = gameManager;
+        this.gameSettings = gameSettings;
     }
     
     private void Awake()
@@ -189,8 +194,8 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
 
     public void TakeDamage(float damage)
     {
-        var totalDamage = damage / GameSettings.GlobalDamageToEnemiesMutliplier; // restore the original damage
-        totalDamage *= GameSettings.GlobalDamageReceiveMultiplier;
+        var totalDamage = damage / gameSettings.damageMultiplierToEnemies; // restore the original damage
+        totalDamage *= gameSettings.damageReceiveMultiplier;
 
         foreach (var item in items)
         {

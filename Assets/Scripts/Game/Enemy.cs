@@ -54,16 +54,19 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
     private AudioManager audioManager;
     private GameManager gameManager;
     private CoinSpawner coinSpawner;
+    private GameSettingsSO gameSettings;
 
     [Inject]
     public void Init(
         AudioManager audioManager,
         GameManager gameManager,
-        CoinSpawner coinSpawner)
+        CoinSpawner coinSpawner,
+        GameSettingsSO gameSettings)
     {
         this.audioManager = audioManager;
         this.gameManager = gameManager;
         this.coinSpawner = coinSpawner;
+        this.gameSettings = gameSettings;
     }
     
     private void Awake()
@@ -126,7 +129,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         while (true)
         {
             AIStateCheck();
-            yield return new WaitForSecondsRealtime(GameSettings.GlobalAiTickTime);
+            yield return new WaitForSecondsRealtime(gameSettings.aiTickTime);
         }
     }
     private void AIStateCheck()

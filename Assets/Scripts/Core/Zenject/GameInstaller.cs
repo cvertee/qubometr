@@ -11,7 +11,7 @@ public class GameInstaller : MonoInstaller
     public StoreManager storeManagerInstance;
     public StoreItemInfo storeItemInfoPrefab;
     public CommandExecutor commandExecutorInstance;
-    
+    public GameSettingsSO defaultGameSettings;
     public override void InstallBindings()
     {
         var audioManager = Container.InstantiatePrefabForComponent<AudioManager>(audioManagerPrefab);
@@ -26,5 +26,6 @@ public class GameInstaller : MonoInstaller
             .BindFactory<StoreManager, StoreItemInfo, StoreItemInfo.Factory>()
             .FromComponentInNewPrefab(storeItemInfoPrefab);
         Container.Bind<CommandExecutor>().FromInstance(commandExecutorInstance);
+        Container.Bind<GameSettingsSO>().FromInstance(defaultGameSettings);
     }
 }

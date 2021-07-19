@@ -87,6 +87,7 @@ MonoBehaviour:
   storeManagerInstance: {fileID: 7607921005365454121}
   storeItemInfoPrefab: {fileID: 132022077257797719, guid: 5c7d6939c8fb31644b1cadf78f9ea49a, type: 3}
   commandExecutorInstance: {fileID: 7483756584798769240}
+  defaultGameSettings: {fileID: 11400000, guid: 845a82f82ba6d0140983b1501990a67d, type: 2}
 --- !u!114 &7607921005365454121
 MonoBehaviour:
   m_ObjectHideFlags: 0

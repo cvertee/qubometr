@@ -6,19 +6,22 @@ public class StoreManager : MonoBehaviour
 {
     private AudioManager audioManager;
     private GameManager gameManager;
+    private GameSettingsSO gameSettings;
 
     [Inject]
     public void Init(
         AudioManager audioManager,
-        GameManager gameManager)
+        GameManager gameManager,
+        GameSettingsSO gameSettings)
     {
         this.audioManager = audioManager;
         this.gameManager = gameManager;
+        this.gameSettings = gameSettings;
     }
     
     public void TryBuyItem(ItemSO item, Player player)
     {
-        var totalPrice = (int)(item.price * GameSettings.GlobalPriceMultiplier);
+        var totalPrice = (int)(item.price * gameSettings.priceMultiplier);
 
         if (GameData.Data.coins < totalPrice)
         {

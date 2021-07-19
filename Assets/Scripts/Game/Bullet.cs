@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Zenject;
 
 public class Bullet : MonoBehaviour, ITakesDamage
 {
@@ -9,6 +10,14 @@ public class Bullet : MonoBehaviour, ITakesDamage
     public GameObject owner;
 
     protected float lifeTime = 2.5f;
+
+    private GameSettingsSO gameSettings;
+
+    [Inject]
+    public void Init(GameSettingsSO gameSettings)
+    {
+        this.gameSettings = gameSettings;
+    }
 
     private void Start()
     {
@@ -25,7 +34,7 @@ public class Bullet : MonoBehaviour, ITakesDamage
         var damageable = collision.gameObject.GetComponent<ITakesDamage>();
         if (damageable != null && owner != collision.gameObject)
         {
-            damageable.TakeDamage(damage * GameSettings.GlobalDamageToEnemiesMutliplier);
+            damageable.TakeDamage(damage * gameSettings.damageMultiplierToEnemies);
             Die();
         }
         else if (!collision.gameObject.CompareTag("Enemy"))

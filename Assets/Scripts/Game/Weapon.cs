@@ -1,15 +1,24 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Weapon : Item
 {
     [SerializeField] private float damage = 0.0f;
     [SerializeField] private List<string> attackNames;
 
+    private GameSettingsSO gameSettings;
+
+    [Inject]
+    public void Init(GameSettingsSO gameSettings)
+    {
+        this.gameSettings = gameSettings;
+    }
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var damageable = collision.GetComponent<ITakesDamage>();
-        damageable?.TakeDamage(damage * GameSettings.GlobalDamageToEnemiesMutliplier); // TODO: replace?
+        damageable?.TakeDamage(damage * gameSettings.damageMultiplierToEnemies);
     }
 
     private void Attack()
