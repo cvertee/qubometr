@@ -10,6 +10,7 @@ public class GameInstaller : MonoInstaller
     public GameManager gameManagerInstance;
     public StoreManager storeManagerInstance;
     public StoreItemInfo storeItemInfoPrefab;
+    public CommandExecutor commandExecutorInstance;
     
     public override void InstallBindings()
     {
@@ -24,5 +25,6 @@ public class GameInstaller : MonoInstaller
         Container
             .BindFactory<StoreManager, StoreItemInfo, StoreItemInfo.Factory>()
             .FromComponentInNewPrefab(storeItemInfoPrefab);
+        Container.Bind<CommandExecutor>().FromInstance(commandExecutorInstance);
     }
 }

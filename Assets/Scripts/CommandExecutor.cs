@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using Zenject;
 
-public class CommandExecutor : Singleton<CommandExecutor>
+public class CommandExecutor : MonoBehaviour
 {
     private AudioManager audioManager;
     private GameManager gameManager;

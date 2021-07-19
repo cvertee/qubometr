@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7607921005365454100}
   - component: {fileID: 7607921005365454121}
   - component: {fileID: 7607921005365454120}
+  - component: {fileID: 7483756584798769240}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -85,6 +86,7 @@ MonoBehaviour:
   gameManagerInstance: {fileID: 7607921005365454120}
   storeManagerInstance: {fileID: 7607921005365454121}
   storeItemInfoPrefab: {fileID: 132022077257797719, guid: 5c7d6939c8fb31644b1cadf78f9ea49a, type: 3}
+  commandExecutorInstance: {fileID: 7483756584798769240}
 --- !u!114 &7607921005365454121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,5 +109,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60677307d23460e43bdc69e14764096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7483756584798769240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7607921005365454101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef94510fd6ae277408634f67a8b89c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

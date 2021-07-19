@@ -2,9 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class DialogueUi : MonoBehaviour
 {
+    private CommandExecutor commandExecutor;
+    
+    [Inject]
+    public void Init(CommandExecutor commandExecutor)
+    {
+        this.commandExecutor = commandExecutor;
+    }
+    
     public void ShowDialogueTexts(string[] texts, GameObject container)
     {
         var dialogueTextGameObject = (GameObject)Instantiate(Resources.Load("Prefabs/UI/DialogueText"), container.transform.position, Quaternion.identity);
@@ -18,7 +27,7 @@ public class DialogueUi : MonoBehaviour
         {
             if (text.StartsWith("!"))
             {
-                CommandExecutor.Instance.ExecuteRawCommand(text);
+                commandExecutor.ExecuteRawCommand(text);
                 continue;
             }
             
