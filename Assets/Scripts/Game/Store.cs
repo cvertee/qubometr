@@ -15,11 +15,6 @@ public class Store : MonoBehaviour, IInteractable
     {
         this.storeUI = storeUI;
     }
-    
-    private void Start()
-    {
-        storeUI = FindObjectOfType<StoreUI>();
-    }
 
     public void Interact()
     {
