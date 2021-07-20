@@ -38,7 +38,7 @@ public class Barrel : MonoBehaviour, ITakesDamage
                 coinSpawner.Spawn(transform.position);
             }
 
-            var barrelParts = Instantiate<GameObject>(Resources.Load<GameObject>("Prefabs/BarrelDestroyed"), transform.position, Quaternion.identity);
+            var barrelParts = Instantiate<GameObject>(Resources.Load<GameObject>("Prefabs/Props/BarrelDestroyed"), transform.position, Quaternion.identity);
             barrelParts.transform.position = transform.position;
             barrelParts.transform.localScale = transform.localScale;
             destroyer.DestroySave();
