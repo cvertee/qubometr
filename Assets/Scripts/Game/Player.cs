@@ -263,22 +263,10 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
         GameEvents.onPlayerDeath.Invoke();
     }
 
-    public void AddItem(GameObject itemGO)
-    {
-        var item = Instantiate(itemGO, transform)
-            .GetComponent<Item>();
-        
-        
-    }
-
-    public void GetName()
-    {
-        throw new NotImplementedException();
-    }
-
     public void AddItem(Item item)
     {
-        item = Instantiate<Item>(item, transform);
+        // item = Instantiate<Item>(item, transform);
+        item.transform.SetParent(transform);
         items.Add(item);
         GameData.Data.playerItemIds.Add(item.name);
 

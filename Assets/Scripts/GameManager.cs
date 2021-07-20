@@ -118,7 +118,7 @@ public class GameManager : MonoBehaviour
     public Item GetItemObjectById(string id)
     {
         var itemSo = Resources.Load<ItemSO>($"Items/{id}");
-        var item = itemFactory.Create();
+        var item = itemFactory.Create(gameSettings);
         item.Initialize(itemSo);
         
         return item;

@@ -10,6 +10,13 @@ public class Item : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     protected Animator animator;
+    protected GameSettingsSO gameSettings;
+
+    [Inject]
+    public void Init(GameSettingsSO gameSettings)
+    {
+        this.gameSettings = gameSettings;
+    }
 
     private void Awake()
     {
@@ -35,7 +42,7 @@ public class Item : MonoBehaviour
         
     }
 
-    public class Factory : PlaceholderFactory<Item>
+    public class Factory : PlaceholderFactory<GameSettingsSO, Item>
     {
         
     }

@@ -16,7 +16,7 @@ public class GameInstaller : MonoInstaller
     {
         var audioManager = Container.InstantiatePrefabForComponent<AudioManager>(audioManagerPrefab);
 
-        Container.BindFactory<Item, Item.Factory>().FromComponentInNewPrefab(itemPrefab);
+        Container.BindFactory<GameSettingsSO, Item, Item.Factory>().FromComponentInNewPrefab(itemPrefab);
         Container.Bind<AudioManager>().FromInstance(audioManager).AsSingle();
         Container.Bind<CoinSpawner>().FromNew().AsSingle();
         Container.BindFactory<AudioManager, Coin, Coin.Factory>().FromComponentInNewPrefab(coinPrefab);

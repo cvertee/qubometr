@@ -6,14 +6,6 @@ public class Weapon : Item
 {
     [SerializeField] private float damage = 0.0f;
     [SerializeField] private List<string> attackNames;
-
-    private GameSettingsSO gameSettings;
-
-    [Inject]
-    public void Init(GameSettingsSO gameSettings)
-    {
-        this.gameSettings = gameSettings;
-    }
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
