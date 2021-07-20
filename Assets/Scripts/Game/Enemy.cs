@@ -354,6 +354,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
 
     public void AddItem(Item item)
     {
-        usableItem = Instantiate(item, transform);
+        item.transform.SetParent(transform);
+        usableItem = item;
     }
 }
