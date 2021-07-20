@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Linq;
 using System.Text;
+using Core;
 using Game;
 using UnityEngine;
 using UnityEngine.Events;
@@ -55,18 +56,21 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
     private GameManager gameManager;
     private CoinSpawner coinSpawner;
     private GameSettingsSO gameSettings;
+    private IParticleEmitter particleEmitter;
 
     [Inject]
     public void Init(
         AudioManager audioManager,
         GameManager gameManager,
         CoinSpawner coinSpawner,
-        GameSettingsSO gameSettings)
+        GameSettingsSO gameSettings,
+        IParticleEmitter particleEmitter)
     {
         this.audioManager = audioManager;
         this.gameManager = gameManager;
         this.coinSpawner = coinSpawner;
         this.gameSettings = gameSettings;
+        this.particleEmitter = particleEmitter;
     }
     
     private void Awake()
@@ -319,7 +323,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
     public void TakeDamage(float damage)
     {
         audioManager.PlaySound(AudioResource.SwordSlash); // OnDamage.Invoke() ?
-        Instantiate(Resources.Load("Prefabs/BloodParticle"), transform.position, Quaternion.identity);
+        particleEmitter.Emit("blood", transform.position);
         hp -= damage; //TODO: use damage var
     }
 

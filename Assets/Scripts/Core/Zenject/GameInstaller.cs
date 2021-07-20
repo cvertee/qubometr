@@ -1,3 +1,5 @@
+using Core;
+using Data;
 using Game;
 using UnityEngine;
 using Zenject;
@@ -12,6 +14,8 @@ public class GameInstaller : MonoInstaller
     public StoreItemInfo storeItemInfoPrefab;
     public CommandExecutor commandExecutorInstance;
     public GameSettingsSO defaultGameSettings;
+    public ParticleEmitterSO particleEmitterInstance;
+    
     public override void InstallBindings()
     {
         var audioManager = Container.InstantiatePrefabForComponent<AudioManager>(audioManagerPrefab);
@@ -27,5 +31,6 @@ public class GameInstaller : MonoInstaller
             .FromComponentInNewPrefab(storeItemInfoPrefab);
         Container.Bind<CommandExecutor>().FromInstance(commandExecutorInstance);
         Container.Bind<GameSettingsSO>().FromInstance(defaultGameSettings);
+        Container.Bind<IParticleEmitter>().To<ParticleEmitterSO>().FromInstance(particleEmitterInstance);
     }
 }
