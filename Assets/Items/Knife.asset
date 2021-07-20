@@ -17,7 +17,14 @@ MonoBehaviour:
   animatorController: {fileID: 9100000, guid: 169da342cf83eaf4eab4fefe440cdad1, type: 2}
   price: 30
   pickupSound: {fileID: 8300000, guid: df0d92e7a137aaf4db9c2709c1e049dd, type: 3}
-  displayName: '#KnifeItem'
+  displayName:
+    m_TableReference:
+      m_TableCollectionName: GUID:001f52e09361f7b438cf9b59da5d33e0
+    m_TableEntryReference:
+      m_KeyId: 85358649344
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 1
   isBeingUsed: 0
   protectionMultiplier: 0
   damage: 10
