@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using Game;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -46,14 +47,17 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
 
     private GameManager gameManager;
     private GameSettingsSO gameSettings;
+    private IParticleEmitter particleEmitter;
 
     [Inject]
     public void Init(
         GameManager gameManager, 
-        GameSettingsSO gameSettings)
+        GameSettingsSO gameSettings,
+        IParticleEmitter particleEmitter)
     {
         this.gameManager = gameManager;
         this.gameSettings = gameSettings;
+        this.particleEmitter = particleEmitter;
     }
     
     private void Awake()
@@ -222,7 +226,7 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
                 return; // TODO: shield particles
             
             if (totalDamage > 0.0f)
-                Instantiate(Resources.Load("Prefabs/BloodParticle"), transform.position, Quaternion.identity);
+                particleEmitter.Emit("blood", transform.position);
         }
     }
 
