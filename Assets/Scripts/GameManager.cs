@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Core;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
@@ -11,16 +12,19 @@ public class GameManager : MonoBehaviour
     private AudioManager audioManager;
     private Item.Factory itemFactory;
     private GameSettingsSO gameSettings;
+    private IItemDatabase itemDatabase;
 
     [Inject]
     private void Init(
         AudioManager audioManager,
         Item.Factory itemFactory,
-        GameSettingsSO gameSettings)
+        GameSettingsSO gameSettings,
+        IItemDatabase itemDatabase)
     {
         this.audioManager = audioManager;
         this.gameSettings = gameSettings;
         this.itemFactory = itemFactory;
+        this.itemDatabase = itemDatabase;
     }
     
     private void Awake()
@@ -117,9 +121,9 @@ public class GameManager : MonoBehaviour
 
     public Item GetItemObjectById(string id)
     {
-        var itemSo = Resources.Load<ItemSO>($"Items/{id}");
+        var itemData = itemDatabase.GetItemDataByName(id);
         var item = itemFactory.Create(gameSettings);
-        item.Initialize(itemSo);
+        item.Initialize(itemData);
         
         return item;
     }

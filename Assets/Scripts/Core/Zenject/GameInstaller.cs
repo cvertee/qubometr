@@ -15,6 +15,7 @@ public class GameInstaller : MonoInstaller
     public CommandExecutor commandExecutorInstance;
     public GameSettingsSO defaultGameSettings;
     public ParticleEmitterSO particleEmitterInstance;
+    public ItemDataSO itemDataInstance;
     
     public override void InstallBindings()
     {
@@ -32,5 +33,6 @@ public class GameInstaller : MonoInstaller
         Container.Bind<CommandExecutor>().FromInstance(commandExecutorInstance);
         Container.Bind<GameSettingsSO>().FromInstance(defaultGameSettings);
         Container.Bind<IParticleEmitter>().To<ParticleEmitterSO>().FromInstance(particleEmitterInstance);
+        Container.Bind<IItemDatabase>().To<ItemDataSO>().FromInstance(itemDataInstance);
     }
 }

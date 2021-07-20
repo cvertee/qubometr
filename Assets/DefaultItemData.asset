@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ac5c6492eec455e99d3d1f3554591d5, type: 3}
+  m_Name: DefaultItemData
+  m_EditorClassIdentifier: 
+  itemDataList:
+  - name: DefaultArmor
+    item: {fileID: 11400000, guid: 7d60936018d9f224483a75cbe773f742, type: 2}
+  - name: HeavyArmor
+    item: {fileID: 11400000, guid: 73be0814e82b43643a5bf95b284d7864, type: 2}
+  - name: Knife
+    item: {fileID: 11400000, guid: e317b727bc5d5cd4ba6b2d8d0a0b9e79, type: 2}
+  - name: ShieldPlaceholder
+    item: {fileID: 11400000, guid: 5b4fbb962b3ddec46bcbeed04539bfa3, type: 2}
+  - name: Sword
+    item: {fileID: 11400000, guid: b380efe386c0c784a93cf8b1fe7ced59, type: 2}
