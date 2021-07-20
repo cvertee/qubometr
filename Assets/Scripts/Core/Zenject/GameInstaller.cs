@@ -16,23 +16,82 @@ public class GameInstaller : MonoInstaller
     public GameSettingsSO defaultGameSettings;
     public ParticleEmitterSO particleEmitterInstance;
     public ItemDataSO itemDataInstance;
+    public GameObjectDestroyer objectDestroyerInstance;
     
     public override void InstallBindings()
     {
-        var audioManager = Container.InstantiatePrefabForComponent<AudioManager>(audioManagerPrefab);
+        BindFactories();
+        InstallManagers();
+        InstallData();
+        InstallOther();
+    }
 
-        Container.BindFactory<GameSettingsSO, Item, Item.Factory>().FromComponentInNewPrefab(itemPrefab);
-        Container.Bind<AudioManager>().FromInstance(audioManager).AsSingle();
-        Container.Bind<CoinSpawner>().FromNew().AsSingle();
-        Container.BindFactory<AudioManager, Coin, Coin.Factory>().FromComponentInNewPrefab(coinPrefab);
-        Container.Bind<GameManager>().FromInstance(gameManagerInstance).AsSingle();
-        Container.Bind<StoreManager>().FromInstance(storeManagerInstance).AsSingle();
+    private void InstallManagers()
+    {
+        var audioManager = Container.InstantiatePrefabForComponent<AudioManager>(audioManagerPrefab);
+        
+        Container
+            .Bind<AudioManager>()
+            .FromInstance(audioManager)
+            .AsSingle();
+        
+        Container
+            .Bind<GameManager>()
+            .FromInstance(gameManagerInstance)
+            .AsSingle();
+        
+        Container
+            .Bind<StoreManager>()
+            .FromInstance(storeManagerInstance)
+            .AsSingle();
+    }
+
+    private void InstallData()
+    {
+        Container
+            .Bind<GameSettingsSO>()
+            .FromInstance(defaultGameSettings);
+        
+        Container
+            .Bind<IItemDatabase>()
+            .To<ItemDataSO>()
+            .FromInstance(itemDataInstance);
+    }
+    
+    private void InstallOther()
+    {
+        Container
+            .Bind<CoinSpawner>()
+            .FromNew()
+            .AsSingle();
+        
+        Container
+            .Bind<CommandExecutor>()
+            .FromInstance(commandExecutorInstance);
+        
+        Container
+            .Bind<IParticleEmitter>()
+            .To<ParticleEmitterSO>()
+            .FromInstance(particleEmitterInstance);
+        
+        Container
+            .Bind<IObjectDestroyer>()
+            .To<GameObjectDestroyer>()
+            .FromInstance(objectDestroyerInstance);
+    }
+
+    private void BindFactories()
+    {
+        Container
+            .BindFactory<GameSettingsSO, Item, Item.Factory>()
+            .FromComponentInNewPrefab(itemPrefab);
+        
         Container
             .BindFactory<StoreManager, StoreItemInfo, StoreItemInfo.Factory>()
             .FromComponentInNewPrefab(storeItemInfoPrefab);
-        Container.Bind<CommandExecutor>().FromInstance(commandExecutorInstance);
-        Container.Bind<GameSettingsSO>().FromInstance(defaultGameSettings);
-        Container.Bind<IParticleEmitter>().To<ParticleEmitterSO>().FromInstance(particleEmitterInstance);
-        Container.Bind<IItemDatabase>().To<ItemDataSO>().FromInstance(itemDataInstance);
+        
+        Container
+            .BindFactory<AudioManager, Coin, Coin.Factory>()
+            .FromComponentInNewPrefab(coinPrefab);
     }
 }
