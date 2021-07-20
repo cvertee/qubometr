@@ -713,7 +713,7 @@ GameObject:
   - component: {fileID: 3402024554990326677}
   - component: {fileID: 5675543789328981725}
   - component: {fileID: 1355786124816877560}
-  - component: {fileID: 6105740443668077241}
+  - component: {fileID: 928610615895654782}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -782,7 +782,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u0421\u0442\u0430\u0442\u0438\u0441\u0442\u0438\u043A\u0430"
---- !u!114 &6105740443668077241
+--- !u!114 &928610615895654782
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -791,10 +791,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 1995401847533750629}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdff9c53880b59940b1505bcb4f4a14a, type: 3}
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: '#MenuStatsButton'
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:3748e19b069b36d4d8b60005e439a933
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 1
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1355786124816877560}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &2535785166127002537
 GameObject:
   m_ObjectHideFlags: 0
@@ -2324,7 +2347,7 @@ GameObject:
   - component: {fileID: 7914457932602663179}
   - component: {fileID: 7248905923304127290}
   - component: {fileID: 3152064618030586836}
-  - component: {fileID: 6196649178268127818}
+  - component: {fileID: 286992516687082093}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -2393,7 +2416,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u0417\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C"
---- !u!114 &6196649178268127818
+--- !u!114 &286992516687082093
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2402,10 +2425,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 7981105902410004305}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdff9c53880b59940b1505bcb4f4a14a, type: 3}
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: '#MenuLoadButton'
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:3748e19b069b36d4d8b60005e439a933
+    m_TableEntryReference:
+      m_KeyId: 674440257536
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 1
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3152064618030586836}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &7986549404744058507
 GameObject:
   m_ObjectHideFlags: 0
@@ -2611,7 +2657,7 @@ GameObject:
   - component: {fileID: 2153392673336507570}
   - component: {fileID: 3112942722677024845}
   - component: {fileID: 5276099099490426516}
-  - component: {fileID: 6175222171003521006}
+  - component: {fileID: 4450158427993550800}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -2680,7 +2726,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C"
---- !u!114 &6175222171003521006
+--- !u!114 &4450158427993550800
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2689,10 +2735,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 8209727388595913609}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdff9c53880b59940b1505bcb4f4a14a, type: 3}
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: '#MenuSaveButton'
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:3748e19b069b36d4d8b60005e439a933
+    m_TableEntryReference:
+      m_KeyId: 1189836333056
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 1
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5276099099490426516}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &8232900002844141454
 GameObject:
   m_ObjectHideFlags: 0
@@ -3421,7 +3490,7 @@ GameObject:
   - component: {fileID: 4847213046661104880}
   - component: {fileID: 7726683560528314843}
   - component: {fileID: 5805471423409658662}
-  - component: {fileID: 1480777837200388996}
+  - component: {fileID: 8888422904178079191}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -3490,7 +3559,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u0412\u044B\u0439\u0442\u0438"
---- !u!114 &1480777837200388996
+--- !u!114 &8888422904178079191
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3499,10 +3568,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 9038827068530128275}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdff9c53880b59940b1505bcb4f4a14a, type: 3}
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: '#MenuExitButton'
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:3748e19b069b36d4d8b60005e439a933
+    m_TableEntryReference:
+      m_KeyId: 1057996775424
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 1
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5805471423409658662}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &9094397380531153056
 GameObject:
   m_ObjectHideFlags: 0
