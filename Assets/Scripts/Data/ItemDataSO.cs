@@ -14,7 +14,7 @@ namespace Data
     }
     
     // List of items' data (scriptable object) and their names that prevents resource loading
-    [CreateAssetMenu(fileName = "ItemData", menuName = "Item/Item data", order = 0)]
+    [CreateAssetMenu(fileName = "ItemData", menuName = "Items/Item data", order = 0)]
     public class ItemDataSO : ScriptableObject, IItemDatabase
     {
         [SerializeField] private List<ItemDataInfo> itemDataList;
