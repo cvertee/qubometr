@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7607921005365454121}
   - component: {fileID: 7607921005365454120}
   - component: {fileID: 7483756584798769240}
+  - component: {fileID: 4014979704451103542}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -90,6 +91,7 @@ MonoBehaviour:
   defaultGameSettings: {fileID: 11400000, guid: 845a82f82ba6d0140983b1501990a67d, type: 2}
   particleEmitterInstance: {fileID: 11400000, guid: 38c03f9867ffd1c4e84700b4e9654f82, type: 2}
   itemDataInstance: {fileID: 11400000, guid: fea5872f2117d4443bde6c4b96dcbcac, type: 2}
+  objectDestroyerInstance: {fileID: 4014979704451103542}
 --- !u!114 &7607921005365454121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,5 +126,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef94510fd6ae277408634f67a8b89c6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4014979704451103542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7607921005365454101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04f7adc29943473d9459621c4cd0e337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

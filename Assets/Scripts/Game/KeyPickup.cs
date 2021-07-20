@@ -20,6 +20,6 @@ public class KeyPickup : PickableItemBase
     {
         audioManager.PlaySound(AudioResource.KeyPickup);
         GameData.AddKey(key);
-        destroyer.DestroySave();
+        objectDestroyer.DestroyAndSave(gameObject);
     }
 }

@@ -35,9 +35,9 @@ public class PickableItem : PickableItemBase
             itemObject.name,
             FindObjectOfType<Player>()
         );
-        
+
         GameEvents.onAudioClipPlayRequested.Invoke(pickupSound);
-        
-        destroyer.DestroySave();
+
+        objectDestroyer.DestroyAndSave(gameObject);
     }
 }

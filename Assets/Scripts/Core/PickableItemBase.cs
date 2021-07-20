@@ -1,17 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
 public class PickableItemBase : MonoBehaviour, IInteractable
 {
     public UnityEvent onPickup;
 
-    protected DestroyerBase destroyer;
+    protected IObjectDestroyer objectDestroyer;
 
-    private void Awake()
+    [Inject]
+    public void Init(IObjectDestroyer objectDestroyer)
     {
-        destroyer = GetComponent<DestroyerBase>();
+        this.objectDestroyer = objectDestroyer;
+    }
+    
+    private void Start()
+    {
+        objectDestroyer.CheckIfDestroyed(gameObject);
     }
     
     public void Interact()
