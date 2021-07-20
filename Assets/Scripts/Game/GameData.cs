@@ -31,7 +31,7 @@ public static class GameData
         Data.pickedUpKeys.Add(key);
     }
 
-    public static float GetHealth() => data.hp;
+    public static float GetHealth() => Data.hp;
 
     public static float IncreaseHealth(float health)
     {
