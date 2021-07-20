@@ -266,7 +266,9 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
     public void AddItem(Item item)
     {
         // item = Instantiate<Item>(item, transform);
+        item.name = item.data.name;
         item.transform.SetParent(transform);
+        item.transform.localPosition = new Vector3(0, 0, -2); // Fixes pretty weird bug
         items.Add(item);
         GameData.Data.playerItemIds.Add(item.name);
 
