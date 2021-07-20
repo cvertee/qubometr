@@ -21,6 +21,10 @@ MonoBehaviour:
     m_Address: Assets/Locales/Tables/UITable Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+  - m_GUID: 001f52e09361f7b438cf9b59da5d33e0
+    m_Address: Assets/Locales/Tables/ItemTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 1d92b7ea3bf5bea49a387f4f0333d397, type: 2}
   m_SchemaSet:

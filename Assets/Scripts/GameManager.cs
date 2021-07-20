@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Debug.Log("Gamemanager awake", this);
-        LocalizationUtil.Init();
 
         GameEvents.onHealthKitUseStart.AddListener(() =>
         {

@@ -24,12 +24,12 @@ public class StatsUI : Singleton<StatsUI>, IPopupUIElement
         var data = GameData.Data;
         var sb = new StringBuilder();
 
-        sb.AppendLine($"{LocalizationUtil.IdToLocalized("#StatMoneyWaste")}: {data.totalWastedCoins}");
-        sb.AppendLine($"{LocalizationUtil.IdToLocalized("#StatMoneyCollected")}: {data.totalCollectedCoins}");
-        sb.AppendLine($"{LocalizationUtil.IdToLocalized("#StatDamageReceieved")}: {data.totalDamageReceived}");
-        //sb.AppendLine($"Игровое время: {data.gameTimeMs / 1000} секунд");
-        sb.AppendLine($"{LocalizationUtil.IdToLocalized("#StatKilledEnemyCount")}: {data.killedEnemiesCount}");
-        sb.AppendLine($"{LocalizationUtil.IdToLocalized("#StatHealthKitsUsed")}: {data.healthKitsUsed}");
+        // sb.AppendLine($"{LocalizationUtil.IdToLocalized("#StatMoneyWaste")}: {data.totalWastedCoins}");
+        // sb.AppendLine($"{LocalizationUtil.IdToLocalized("#StatMoneyCollected")}: {data.totalCollectedCoins}");
+        // sb.AppendLine($"{LocalizationUtil.IdToLocalized("#StatDamageReceieved")}: {data.totalDamageReceived}");
+        // //sb.AppendLine($"Игровое время: {data.gameTimeMs / 1000} секунд");
+        // sb.AppendLine($"{LocalizationUtil.IdToLocalized("#StatKilledEnemyCount")}: {data.killedEnemiesCount}");
+        // sb.AppendLine($"{LocalizationUtil.IdToLocalized("#StatHealthKitsUsed")}: {data.healthKitsUsed}");
 
         statsText.text = sb.ToString();
     }
