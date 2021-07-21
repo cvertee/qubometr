@@ -17,6 +17,7 @@ public class GameInstaller : MonoInstaller
     public ParticleEmitterSO particleEmitterInstance;
     public ItemDataSO itemDataInstance;
     public GameObjectDestroyer objectDestroyerInstance;
+    public ScriptService scriptServiceInstance;
     
     public override void InstallBindings()
     {
@@ -78,6 +79,10 @@ public class GameInstaller : MonoInstaller
             .Bind<IObjectDestroyer>()
             .To<GameObjectDestroyer>()
             .FromInstance(objectDestroyerInstance);
+
+        Container
+            .Bind<ScriptService>()
+            .FromInstance(scriptServiceInstance);
     }
 
     private void BindFactories()

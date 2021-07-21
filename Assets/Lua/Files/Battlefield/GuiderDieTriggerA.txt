@@ -1,0 +1,5 @@
+showSprite('GuiderBody')
+destroy('Guider')
+destroy('EnemyGuiderKiller')
+destroy('GuiderDieTriggerA')
+destroy('GuiderEscapeTrigger')

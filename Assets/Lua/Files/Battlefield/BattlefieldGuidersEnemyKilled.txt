@@ -1,0 +1,2 @@
+enableTrigger('GuiderEscapeTrigger')
+disableTrigger('GuiderDieTriggerA')
