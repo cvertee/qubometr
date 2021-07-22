@@ -1,4 +1,5 @@
 using System;
+using Data;
 using UnityEngine;
 using Zenject;
 
@@ -6,7 +7,7 @@ namespace Core
 {
     public class RunScriptOnStart : MonoBehaviour
     {
-        public TextAsset scriptAsset;
+        public LuaScriptSO scriptAsset;
 
         private ScriptService scriptService;
 
@@ -18,7 +19,7 @@ namespace Core
         
         private void Start()
         {
-            scriptService.RunScript(scriptAsset.text);
+            scriptService.RunScript(scriptAsset.GetScript());
         }
     }
 }

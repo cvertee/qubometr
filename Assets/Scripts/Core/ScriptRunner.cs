@@ -7,7 +7,7 @@ namespace Core
     public class ScriptRunner : MonoBehaviour
     {
         [TextArea(1, 255)]
-        public string script;
+        public LuaScriptSO script;
         
         private ScriptService _scriptService;
 

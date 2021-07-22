@@ -201,10 +201,10 @@ PrefabInstance:
     - target: {fileID: 4354358141116022769, guid: 58448b678538a6d4fa8b95430fd5379e, type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 4900000, guid: e73e367b14881ac4e9e05adf26583cd0, type: 3}
+      objectReference: {fileID: 271950057456261835, guid: 8882d708647d64f479707e06b26a9052, type: 3}
     - target: {fileID: 4354358141116022769, guid: 58448b678538a6d4fa8b95430fd5379e, type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.TextAsset, UnityEngine
+      value: Data.LuaScriptSO, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4354358141116022770, guid: 58448b678538a6d4fa8b95430fd5379e, type: 3}
       propertyPath: m_Name
@@ -3811,10 +3811,10 @@ PrefabInstance:
     - target: {fileID: 4354358141116022769, guid: 58448b678538a6d4fa8b95430fd5379e, type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 4900000, guid: 066683ce1b31d9343b258417b8732718, type: 3}
+      objectReference: {fileID: 271950057456261835, guid: b942b072efa16b547a02ac0e9c6c3340, type: 3}
     - target: {fileID: 4354358141116022769, guid: 58448b678538a6d4fa8b95430fd5379e, type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.TextAsset, UnityEngine
+      value: Data.LuaScriptSO, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4354358141116022770, guid: 58448b678538a6d4fa8b95430fd5379e, type: 3}
       propertyPath: m_Name
@@ -4844,7 +4844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f83513d3c1cd4a838968e0abf62cbbdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  script: 
+  script: {fileID: 0}
 --- !u!1 &904330964 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8167064951395009442, guid: 5ee36af603f438149bf02901c02fea7f, type: 3}
@@ -7220,14 +7220,14 @@ PrefabInstance:
     - target: {fileID: 4354358141116022769, guid: 58448b678538a6d4fa8b95430fd5379e, type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 4900000, guid: 81a2ca252ed3f644d8ce992aadb454b4, type: 3}
+      objectReference: {fileID: 271950057456261835, guid: c064374ac2f62854ebe85ac3d2caffc9, type: 3}
     - target: {fileID: 4354358141116022769, guid: 58448b678538a6d4fa8b95430fd5379e, type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4354358141116022769, guid: 58448b678538a6d4fa8b95430fd5379e, type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.TextAsset, UnityEngine
+      value: Data.LuaScriptSO, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4354358141116022769, guid: 58448b678538a6d4fa8b95430fd5379e, type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -8523,7 +8523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5003cd9c67943eb950001f1ea667e27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scriptAsset: {fileID: 4900000, guid: d28a28a99aae591448c8779c68db39de, type: 3}
+  scriptAsset: {fileID: 271950057456261835, guid: 2f7594abb72c0024cbc4afc223b2b154, type: 3}
 --- !u!4 &1579012548
 Transform:
   m_ObjectHideFlags: 0
@@ -9523,14 +9523,14 @@ PrefabInstance:
     - target: {fileID: 8105659037253959134, guid: ed57398a646848f46881bc0573d45ec6, type: 3}
       propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 4900000, guid: 7ab935dd07f36254fbdf9632b82ea40a, type: 3}
+      objectReference: {fileID: 271950057456261835, guid: b22c3e54f736b504e8b4694494622fb9, type: 3}
     - target: {fileID: 8105659037253959134, guid: ed57398a646848f46881bc0573d45ec6, type: 3}
       propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: DialogueSO, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8105659037253959134, guid: ed57398a646848f46881bc0573d45ec6, type: 3}
       propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.TextAsset, UnityEngine
+      value: Data.LuaScriptSO, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8105659037253959134, guid: ed57398a646848f46881bc0573d45ec6, type: 3}
       propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -10236,10 +10236,10 @@ PrefabInstance:
     - target: {fileID: 4354358141116022769, guid: 58448b678538a6d4fa8b95430fd5379e, type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 4900000, guid: e8d11cf9e26cad6418f00109c366adf2, type: 3}
+      objectReference: {fileID: 271950057456261835, guid: bceaa5030da187b41af705309ecbd250, type: 3}
     - target: {fileID: 4354358141116022769, guid: 58448b678538a6d4fa8b95430fd5379e, type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.TextAsset, UnityEngine
+      value: Data.LuaScriptSO, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4354358141116022769, guid: 58448b678538a6d4fa8b95430fd5379e, type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -10289,7 +10289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f83513d3c1cd4a838968e0abf62cbbdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  script: 
+  script: {fileID: 0}
 --- !u!1 &1928751752
 GameObject:
   m_ObjectHideFlags: 0
