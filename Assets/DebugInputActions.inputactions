@@ -1,0 +1,33 @@
+{
+    "name": "DebugInputActions",
+    "maps": [
+        {
+            "name": "DebugControls",
+            "id": "6ea466a0-b70c-434a-8b78-e814fa40ea87",
+            "actions": [
+                {
+                    "name": "Toggle debug menu",
+                    "type": "Button",
+                    "id": "b9a54bef-3c43-46eb-a635-46b9e7399810",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e3bdf055-7ac4-4c47-97e8-55817fc9183c",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Toggle debug menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

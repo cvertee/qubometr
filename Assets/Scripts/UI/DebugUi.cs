@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.InputSystem;
 using Zenject;
 
 public class DebugUi : MonoBehaviour
@@ -21,10 +22,10 @@ public class DebugUi : MonoBehaviour
         this.gameManager = gameManager;
         this.storeUI = storeUI;
     }
-    
-    private void Update()
+
+    public void OnDebugMenuToggle(InputAction.CallbackContext ctx)
     {
-        if (Input.GetKeyUp(KeyCode.Tab))
+        if (ctx.started)
             isShown = !isShown;
     }
 
