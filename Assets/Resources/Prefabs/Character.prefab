@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1597943905
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6b0faf1e2b3411c488593e3e4b130967, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f671adb533797f347b84b6b712b8a7cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueId: 
+  dialogue: {fileID: 0}
   dialogueBox: {fileID: 6217829520654389498}
 --- !u!1 &6217829520654389498
 GameObject:
