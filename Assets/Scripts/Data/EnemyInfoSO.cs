@@ -39,6 +39,6 @@ namespace Data
         [Min(0.0f)]
         public float obstacleDetectorDistance;
 
-        public List<string> ignoredObstacleTags;
+        public string[] ignoredObstacleMasks;
     }
 }

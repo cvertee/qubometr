@@ -221,7 +221,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
             position + enemyInfo.obstacleDetectorPosition,
             moveDirection,
             enemyInfo.obstacleDetectorDistance,
-            ~LayerMask.GetMask("Enemy")
+            ~LayerMask.GetMask(enemyInfo.ignoredObstacleMasks)
         );
 
         if (playerRightCast.collider != null)
@@ -236,12 +236,8 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         {
             state = CharacterState.Attack;
         } 
-        if (obstacleNearCast.collider != null)
+        if (obstacleNearCast.collider != null && !obstacleNearCast.collider.isTrigger)
         {
-            var obstacleTag = obstacleNearCast.collider.gameObject.tag;
-            if (enemyInfo.ignoredObstacleTags.Contains(obstacleTag))
-                return;
-            
             Jump();
         }
     }
