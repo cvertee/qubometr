@@ -11,6 +11,9 @@ TagManager:
   - Bullet
   - Armor
   - Pickable
+  - Character
+  - Door
+  - Store
   layers:
   - Default
   - TransparentFX
