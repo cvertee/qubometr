@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3974121490215157383}
   - component: {fileID: 3974121490215157376}
   - component: {fileID: 3974121490215157382}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CameraArea
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: af73899d5803d99448134360f184f348, type: 3}
