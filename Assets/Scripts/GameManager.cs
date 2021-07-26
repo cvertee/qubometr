@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Core;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Zenject;
 
@@ -71,18 +72,26 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += (scene, mode) => GameEvents.onLocationStart.Invoke();
     }
 
-    // Update is called once per frame
-    private void Update()
+    public void OnMenu(InputAction.CallbackContext ctx)
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            if (!UIManager.Instance.CloseLatestPopup())
-            {
-                MenuUI.Instance.Show();
-            }
-        }
+        if (!ctx.started) 
+            return;
+        
+        if (!UIManager.Instance.HasPopupElements)
+            MenuUI.Instance.Show();
     }
 
+    public void OnGoBack(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.started)
+            return;
+        
+        if (UIManager.Instance.HasPopupElements)
+        {
+            UIManager.Instance.CloseLatestPopup();
+        }
+    }
+    
     public void StartDialogue(DialogueSO dialogueSo, GameObject container)
     {
         Debug.Log($"Starting dialogue [{dialogueSo.name}]");

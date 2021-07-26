@@ -10,6 +10,8 @@ public class UIManager : Singleton<UIManager>
     {
         GameEvents.onCoinPickup.AddListener(ShowCoinPickupAnimation);
     }
+
+    public bool HasPopupElements => popupUIElements.Count > 0;
     
     public void RegisterPopup(IPopupUIElement element)
     {
