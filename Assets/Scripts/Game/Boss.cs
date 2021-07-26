@@ -8,6 +8,6 @@ public class Boss : MonoBehaviour
 
     private void Awake()
     {
-        GetComponent<Enemy>().hp = bossInfo.health;
+        GetComponent<Enemy>().enemyInfo.hp = bossInfo.health;
     }
 }

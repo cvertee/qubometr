@@ -38,6 +38,6 @@ public class BossUI : MonoBehaviour
         if (!isEnabled)
             return;
         
-        bossHp.value = boss.hp;
+        bossHp.value = boss.enemyInfo.hp;
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using Core;
+using Data;
 using Game;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,42 +12,17 @@ using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
 {
+    public EnemyInfoSO enemyInfo;
     private Rigidbody2D rb;
     private BoxCollider2D boxCollider2D;
 
     public UnityEvent onDeath;
-    
-    public float hp = 10;
-
     public bool playsAlertSound = true;
-    
-    public float moveSpeed = 10.0f;
-    private float moveSpeedMultiplier = 1.0f;
-    private float currentMoveSpeed = 0.0f;
-    
-    public float attackCooldownTime = 0.5f;
-    public float attackCooldownTimeMultiplier = 1.0f;
-    public float attackMinDistance = 3.0f;
-    public float attackMaxDistance = 3.0f;
-    public float attackMaxDistanceMultiplier = 1.0f;
-    
-    public float collisionDamageCooldownTime = 1.0f; // Time in which box collider of enemy is disabled
-    
-    public float jumpForce = 40.0f;
-    
-    public Vector3 wallDetectionBoxSize;
-    public Vector3 wallDetectionBoxOffset;
-    
-    [SerializeField] private float overlapCircleRadius;
-    [SerializeField] private Vector3 overlapCircleOffset;
-    
     public Vector3 moveDirection = Vector3.right;
 
-    [SerializeField] private float sightDistance = 10.0f;
-    private float sightDistanceFollow;
-    private const float SightDistanceForWall = 2.0f;
-    private const float SightDistanceForPlayerTooNear = 0.4f;
-
+    private float hp = 0.0f;
+    private float moveSpeedMultiplier = 1.0f;
+    private float currentMoveSpeed = 0.0f;
     private CharacterState state = CharacterState.Idle;
     private bool canAttack = true;
     private bool grounded = false;
@@ -75,7 +51,9 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
     
     private void Awake()
     {
-        sightDistanceFollow = sightDistance * 5.0f;
+        hp = enemyInfo.hp;
+        
+        enemyInfo.sightDistanceFollow = enemyInfo.sightDistance * 5.0f;
         
         if (GameData.Data.killedEnemies.Any(x => x == name))
         {
@@ -113,8 +91,8 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         }
         
         var groundHit = Physics2D.OverlapCircle(
-            transform.position + overlapCircleOffset, 
-            overlapCircleRadius,
+            transform.position + enemyInfo.overlapCircleOffset, 
+            enemyInfo.overlapCircleRadius,
             ~LayerMask.GetMask("Player")
         );
         grounded = groundHit != null;
@@ -165,16 +143,11 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
     {
         var position = transform.position;
         
-        Gizmos.DrawLine(position, position + new Vector3(sightDistance * moveDirection.x, 0));
-        Gizmos.DrawLine(position, position + new Vector3(sightDistance * -moveDirection.x, 0));
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        var position = transform.position;
-        
-        Gizmos.DrawCube(position + wallDetectionBoxOffset, wallDetectionBoxSize);
-        Gizmos.DrawSphere(position + overlapCircleOffset, overlapCircleRadius);
+        Gizmos.DrawLine(position, position + new Vector3(enemyInfo.sightDistance * moveDirection.x, 0));
+        Gizmos.DrawLine(position, position + new Vector3(enemyInfo.sightDistance * -moveDirection.x, 0));
+        Gizmos.DrawLine(position + enemyInfo.obstacleDetectorPosition, position + enemyInfo.obstacleDetectorPosition + new Vector3(enemyInfo.obstacleDetectorDistance * moveDirection.x, 0));
+        Gizmos.DrawCube(position + enemyInfo.wallDetectionBoxOffset, enemyInfo.wallDetectionBoxSize);
+        Gizmos.DrawSphere(position + enemyInfo.overlapCircleOffset, enemyInfo.overlapCircleRadius);
     }
 
     private void OnGUI()
@@ -200,13 +173,13 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         var playerHitRight = Physics2D.Raycast(
             transform.position, 
             Vector2.right, 
-            sightDistance, 
+            enemyInfo.sightDistance, 
             LayerMask.GetMask("Player")
         );
         var playerHitLeft = Physics2D.Raycast(
             transform.position, 
             Vector2.left, 
-            sightDistance, 
+            enemyInfo.sightDistance, 
             LayerMask.GetMask("Player")
         );
         if (playerHitRight.collider != null || playerHitLeft.collider != null)
@@ -224,34 +197,32 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
     /// </summary>
     protected virtual void OnFollow()
     {
-        currentMoveSpeed = moveSpeed;
+        currentMoveSpeed = enemyInfo.moveSpeed;
 
         var position = transform.position;
         var playerRightCast = Physics2D.Raycast(
             position, 
             Vector2.right,
-            sightDistanceFollow, 
+            enemyInfo.sightDistanceFollow, 
             LayerMask.GetMask("Player")
         );
         var playerLeftCast = Physics2D.Raycast(
             position, 
             Vector2.left,
-            sightDistanceFollow, 
+            enemyInfo.sightDistanceFollow, 
             LayerMask.GetMask("Player")
         );
         var playerNearCast = Physics2D.Raycast(
             position, 
             moveDirection, 
-            attackMinDistance, 
+            enemyInfo.attackMinDistance, 
             LayerMask.GetMask("Player")
         );
-        var wallNearCast = Physics2D.BoxCast(
-            position + wallDetectionBoxOffset,
-            wallDetectionBoxSize,
-            0f,
+        var obstacleNearCast = Physics2D.Raycast(
+            position + enemyInfo.obstacleDetectorPosition,
             moveDirection,
-            SightDistanceForWall,
-            LayerMask.GetMask("Floor")
+            enemyInfo.obstacleDetectorDistance,
+            ~LayerMask.GetMask("Enemy")
         );
 
         if (playerRightCast.collider != null)
@@ -266,8 +237,12 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         {
             state = CharacterState.Attack;
         } 
-        if (wallNearCast.collider != null)
+        if (obstacleNearCast.collider != null)
         {
+            var obstacleTag = obstacleNearCast.collider.gameObject.tag;
+            if (enemyInfo.ignoredObstacleTags.Contains(obstacleTag))
+                return;
+            
             Jump();
         }
     }
@@ -288,19 +263,19 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         var playerHit = Physics2D.Raycast(
             position, 
             moveDirection, 
-            attackMaxDistance * attackMaxDistanceMultiplier, 
+            enemyInfo.attackMaxDistance * enemyInfo.attackMaxDistanceMultiplier, 
             LayerMask.GetMask("Player")
         );
         var playerTooNearLeftCast = Physics2D.Raycast(
             position,
             Vector2.left,
-            SightDistanceForPlayerTooNear,
+            enemyInfo.SightDistanceForPlayerTooNear,
             LayerMask.GetMask("Player")
         );
         var playerTooNearRightCast = Physics2D.Raycast(
             position,
             Vector2.left,
-            SightDistanceForPlayerTooNear,
+            enemyInfo.SightDistanceForPlayerTooNear,
             LayerMask.GetMask("Player")
         );
 
@@ -316,7 +291,7 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
     private IEnumerator AttackCooldown()
     {
         canAttack = false;
-        yield return new WaitForSeconds(attackCooldownTime * attackCooldownTimeMultiplier);
+        yield return new WaitForSeconds(enemyInfo.attackCooldownTime * enemyInfo.attackCooldownTimeMultiplier);
         canAttack = true;
     }
 
@@ -344,15 +319,15 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
     
     private void Jump()
     {
-        rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(0, enemyInfo.jumpForce), ForceMode2D.Impulse);
     }
 
     private IEnumerator CollisionDamageCooldown()
     {
-        Debug.Log($"Collision damage cooldown for {collisionDamageCooldownTime} seconds...");
+        Debug.Log($"Collision damage cooldown for {enemyInfo.collisionDamageCooldownTime} seconds...");
        
         boxCollider2D.enabled = false;
-        yield return new WaitForSeconds(collisionDamageCooldownTime);
+        yield return new WaitForSeconds(enemyInfo.collisionDamageCooldownTime);
         boxCollider2D.enabled = true;
     }
 
