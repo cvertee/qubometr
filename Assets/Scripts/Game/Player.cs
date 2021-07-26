@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Core;
 using Game;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Zenject;
 
@@ -40,7 +41,7 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
     public AudioClip slashSound;
 
     private Vector2 velocity;
-    private Vector2 movementDirection;
+    private Vector2 movementDirection = Vector2.zero;
     
     [SerializeField] private float overlapCircleRadius;
     [SerializeField] private Vector3 overlapCircleOffset;
@@ -99,8 +100,6 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
 
         if (currentState == State.Locked)
             return;
-
-        FetchInput();
     }
 
     private void FixedUpdate()
@@ -128,7 +127,7 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
 
         // Move 
         rb.velocity = new Vector2(
-            Input.GetAxis("Horizontal") * (speed * speedMultiplier) * Time.fixedDeltaTime,
+            movementDirection.x * (speed * speedMultiplier) * Time.fixedDeltaTime,
             rb.velocity.y
         );
     }
@@ -160,35 +159,52 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
         }
     }
 
-    private void FetchInput() 
+    public void OnJumpAction(InputAction.CallbackContext ctx)
     {
-        if (currentState == State.Locked)
-            return;
+        if (ctx.started)
+            Jump();
+    }
 
-        var horizontal = Input.GetAxis("Horizontal");
-        if (horizontal < 0.0f)
+    public void OnMovement(InputAction.CallbackContext ctx)
+    {
+        var inputMovement = ctx.ReadValue<Vector2>();
+        
+        if (inputMovement.x < 0.0f)
         {
             FlipByDegrees(180f);
         }
-        else if (horizontal > 0.0f)
+        else if (inputMovement.x > 0.0f)
         {
             FlipByDegrees(360f);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Jump();
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            interactable?.Interact();
-        }
-        if (Input.GetMouseButtonDown(0))
-            primaryWeapon?.Use();
-        if (Input.GetMouseButtonDown(1))
-             secondaryWeapon?.Use();
-        if (Input.GetMouseButtonUp(1))
-             secondaryWeapon?.StopUse();
+        movementDirection = new Vector2(inputMovement.x, 0.0f);
+    }
+
+    public void OnAttack(InputAction.CallbackContext ctx)
+    {
+        if (primaryWeapon == null)
+            return;
+        
+        if (ctx.started)
+            primaryWeapon.Use();
+    }
+    
+    public void OnSecondaryAttack(InputAction.CallbackContext ctx)
+    {
+        if (secondaryWeapon == null)
+            return;
+        
+        if (ctx.started)
+            secondaryWeapon.Use();
+        else if (ctx.performed)
+            secondaryWeapon.StopUse();
+    }
+
+    public void OnInteraction(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+            interactable.Interact();
     }
 
     private void FlipByDegrees(float degrees)
