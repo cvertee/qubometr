@@ -27,7 +27,7 @@ MonoBehaviour:
   jumpForce: 40
   moveSpeed: 900
   hp: 20
-  obstacleDetectorPosition: {x: 0, y: -1.31, z: 0}
+  obstacleDetectorPosition: {x: 0, y: -2.35, z: 0}
   obstacleDetectorDistance: 8
   ignoredObstacleMasks:
   - Enemy
