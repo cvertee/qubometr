@@ -146,7 +146,6 @@ public class Enemy : MonoBehaviour, ITakesDamage, ICharacter
         Gizmos.DrawLine(position, position + new Vector3(enemyInfo.sightDistance * moveDirection.x, 0));
         Gizmos.DrawLine(position, position + new Vector3(enemyInfo.sightDistance * -moveDirection.x, 0));
         Gizmos.DrawLine(position + enemyInfo.obstacleDetectorPosition, position + enemyInfo.obstacleDetectorPosition + new Vector3(enemyInfo.obstacleDetectorDistance * moveDirection.x, 0));
-        Gizmos.DrawCube(position + enemyInfo.wallDetectionBoxOffset, enemyInfo.wallDetectionBoxSize);
         Gizmos.DrawSphere(position + enemyInfo.overlapCircleOffset, enemyInfo.overlapCircleRadius);
     }
 

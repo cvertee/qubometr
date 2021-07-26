@@ -30,8 +30,6 @@ namespace Data
         public float collisionDamageCooldownTime = 1.0f; // Time in which box collider of enemy is disabled
         [Min(0.0f)]
         public float jumpForce = 40.0f;
-        public Vector3 wallDetectionBoxSize;
-        public Vector3 wallDetectionBoxOffset;
         [Min(0.0f)]
         public float moveSpeed = 10.0f;
         [Min(0.0f)]
