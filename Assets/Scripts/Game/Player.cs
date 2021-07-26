@@ -44,6 +44,7 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
     
     [SerializeField] private float overlapCircleRadius;
     [SerializeField] private Vector3 overlapCircleOffset;
+    [SerializeField] private string[] ignoredGroundMasks;
 
     private GameManager gameManager;
     private GameSettingsSO gameSettings;
@@ -111,9 +112,15 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
         var groundHit = Physics2D.OverlapCircle(
             transform.position + overlapCircleOffset, 
             overlapCircleRadius,
-            ~LayerMask.GetMask("Player")
+            ~LayerMask.GetMask(ignoredGroundMasks)
         );
-        grounded = groundHit != null;
+        if (groundHit != null)
+        {
+            var groundHitCollider = groundHit.GetComponent<Collider2D>();
+            if (groundHitCollider != null)
+                grounded = !groundHitCollider.isTrigger; // ignore stuff like pickable, doors, etc
+
+        }
 
         // Move 
         rb.velocity = new Vector2(

@@ -102,6 +102,9 @@ MonoBehaviour:
   slashSound: {fileID: 8300000, guid: ae2bd1062a3af1c40844eddd438b08d8, type: 3}
   overlapCircleRadius: 1.31
   overlapCircleOffset: {x: 0.11, y: -3.3, z: 0}
+  ignoredGroundMasks:
+  - Player
+  - Enemy
 --- !u!70 &7129753167619185619
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
