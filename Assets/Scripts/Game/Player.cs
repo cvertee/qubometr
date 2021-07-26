@@ -204,7 +204,7 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
     public void OnInteraction(InputAction.CallbackContext ctx)
     {
         if (ctx.started)
-            interactable.Interact();
+            interactable?.Interact();
     }
 
     private void FlipByDegrees(float degrees)
