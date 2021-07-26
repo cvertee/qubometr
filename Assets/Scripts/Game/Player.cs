@@ -121,6 +121,10 @@ public class Player : MonoBehaviour, ITakesDamage, ICharacter
                 grounded = !groundHitCollider.isTrigger; // ignore stuff like pickable, doors, etc
 
         }
+        else
+        {
+            grounded = false;
+        }
 
         // Move 
         rb.velocity = new Vector2(
